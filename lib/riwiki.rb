@@ -1,1 +1,3 @@
-# Riwiki
+module Riwiki
+  
+end

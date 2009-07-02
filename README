@@ -1,13 +1,18 @@
 Riwiki
 ======
 
-Introduction goes here.
+Riwiki is Rails plugin which adds wiki functionality to your Rails application.
 
+Installation
+============
 
-Example
-=======
+In your application directory call:
+  script/plugin install git://github.com/alno/riwiki
 
-Example goes here.
+Usage
+=====
 
+Add to your @routes.rb@ something like:
+  map.riwiki_root '/wiki'
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 Alexey Noskov, released under the MIT license
