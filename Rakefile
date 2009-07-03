@@ -1,16 +1,35 @@
 require 'rake'
-require 'rake/testtask'
 require 'rake/rdoctask'
 
-desc 'Default: run unit tests.'
-task :default => :test
+require 'spec/rake/spectask'
 
-desc 'Test the riwiki plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+task :default => :spec
+task :test => :spec
+
+desc "Run all specs in spec directory (excluding plugin specs)"
+Spec::Rake::SpecTask.new(:spec) do |t|
+  t.spec_opts = ['--options', "\"spec/spec.opts\""]
+  t.spec_files = FileList['spec/**/*_spec.rb']
+end
+
+namespace :spec do
+  
+  desc "Print Specdoc for all specs (excluding plugin specs)"
+  Spec::Rake::SpecTask.new(:doc) do |t|
+    t.spec_opts = ["--format", "specdoc", "--dry-run"]
+    t.spec_files = FileList['spec/**/*_spec.rb']
+  end
+    
+  desc "Run all specs in spec directory with RCov (excluding plugin specs)"
+  Spec::Rake::SpecTask.new(:rcov) do |t|
+    t.spec_opts = ['--options', "\"spec/spec.opts\""]
+    t.spec_files = FileList['spec/**/*_spec.rb']
+    t.rcov = true
+    t.rcov_opts = lambda do
+      IO.readlines("spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
+    end
+  end
+    
 end
 
 desc 'Generate documentation for the riwiki plugin.'
