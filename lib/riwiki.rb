@@ -1,3 +1,2 @@
 module Riwiki
-  
 end

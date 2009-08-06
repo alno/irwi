@@ -1,5 +1,5 @@
-class Riwiki::BasePagesController < ApplicationController
-  
+module Riwiki::Extensions::WikiPagesControllerExtension
+
   def show
     render :text => params[:page].to_s
   end
