@@ -1,0 +1,6 @@
+<% if @page %>
+  <h1><%=h @page.title %></h1>
+  <div><%=h @page.content %></div>
+<% else %>
+  There are no page <%= @path %>. Do you want to <a href="<%=url_for( :action => :edit )%>">create it</a>?
+<% end %>
