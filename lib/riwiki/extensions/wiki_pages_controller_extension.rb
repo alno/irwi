@@ -12,25 +12,19 @@ module Riwiki::Extensions::WikiPagesControllerExtension
   
   module InstanceMethods
     
-    def show
-      @page = wiki_page_class.find_by_path( @path )
-      
+    def show      
       select_template 'show'
     end
     
-    def edit
-      @page = wiki_page_class.find_by_path_or_new( @path ) # Find existing page or create new
-      
+    def edit      
       select_template 'edit'
     end
     
-    def update
-      @page = wiki_page_class.find_by_path_or_new( @path ) # Find existing page or create new
+    def update      
       @page.attributes = params[:page] # Assign new attributes
-      
-      if @page.new_record? # If it's fresh page
-        @page.path = @path # Assign it's path
-      end
+        
+      @page.updator = @current_user # Assing user, which updated page
+      @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
            
       if @page.save
         redirect_to url_for( :action => :show )
@@ -41,10 +35,12 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     
     protected
     
+    # Retrieves wiki_page_class for this controller
     def wiki_page_class
       self.class.wiki_page_class
     end
     
+    # Renders user-specified or default template
     def select_template( template )
       dir = controller_path
       dir = 'base_wiki_pages' if Dir.glob( "app/views/#{dir}/#{template}.html.*" ).empty?
@@ -52,12 +48,10 @@ module Riwiki::Extensions::WikiPagesControllerExtension
       render "#{dir}/#{template}"
     end
     
-    def current_user
-      nil
-    end
-    
-    def setup_path
-      @path = params[:path].join('/')
+    # Initialize @current_user and @page instance variables
+    def setup_current_user_and_page
+      @current_user = respond_to?( :current_user ) ? current_user : nil
+      @page = wiki_page_class.find_by_path_or_new( params[:path].join('/') ) # Find existing page or create new
     end
     
   end
@@ -66,8 +60,7 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     base.send :extend, Riwiki::Extensions::WikiPagesControllerExtension::ClassMethods
     base.send :include, Riwiki::Extensions::WikiPagesControllerExtension::InstanceMethods
     
-    base.before_filter :setup_path # Setup @path instance variable before each action
-    
+    base.before_filter :setup_current_user_and_page # Setup @current_user and @page instance variable before each action    
   end
   
 end
