@@ -48,10 +48,14 @@ module Riwiki::Extensions::WikiPagesControllerExtension
       render "#{dir}/#{template}"
     end
     
-    # Initialize @current_user and @page instance variables
-    def setup_current_user_and_page
-      @current_user = respond_to?( :current_user ) ? current_user : nil
-      @page = wiki_page_class.find_by_path_or_new( params[:path].join('/') ) # Find existing page or create new
+    # Initialize @current_user instance variable
+    def setup_current_user
+      @current_user = respond_to?( :current_user ) ? current_user : nil # Find user by current_user method or return nil
+    end
+    
+    # Initialize @page instance variable
+    def setup_page
+      @page = wiki_page_class.find_by_path_or_new( params[:path].join('/') ) # Find existing page by path or create new
     end
     
   end
@@ -60,7 +64,8 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     base.send :extend, Riwiki::Extensions::WikiPagesControllerExtension::ClassMethods
     base.send :include, Riwiki::Extensions::WikiPagesControllerExtension::InstanceMethods
     
-    base.before_filter :setup_current_user_and_page # Setup @current_user and @page instance variable before each action    
+    base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
+    base.before_filter :setup_page # Setup @page instance variable before each action
   end
   
 end
