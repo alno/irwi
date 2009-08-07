@@ -3,5 +3,5 @@
 <% else %>
   <h1><%=h @page.title %></h1>
   <div class="links"><%= link_to 'Edit', wiki_page_edit_path %></div>
-  <div class="content"><%=h @page.content %></div>
+  <div class="content"><%=wiki_content @page.content %></div>
 <% end %>

@@ -16,8 +16,8 @@ module Riwiki::Extensions::WikiPageModelExtension
     base.send :extend, Riwiki::Extensions::WikiPageModelExtension::ClassMethods
     base.send :include, Riwiki::Extensions::WikiPageModelExtension::InstanceMethods
     
-    base.belongs_to :creator, :class_name => Riwiki::Options.user_class
-    base.belongs_to :updator, :class_name => Riwiki::Options.user_class
+    base.belongs_to :creator, :class_name => Riwiki.options.user_class
+    base.belongs_to :updator, :class_name => Riwiki.options.user_class
   end
   
 end

@@ -13,4 +13,8 @@ module Riwiki::Helpers::WikiPagesHelper
     url_for( :action => :show )
   end
   
+  def wiki_content( text )
+    sanitize( Riwiki.options.formatter.format( text ) )
+  end
+  
 end
