@@ -1,11 +1,11 @@
 class Riwiki::Options
   
-  def user_class
-    @user_class ||= select_user_class
+  def user_class_name
+    @user_class ||= select_user_class_name
   end
   
-  def user_class=(uc)
-    @user_class = uc.is_a? Class ? uc : uc.constantize
+  def user_class_name=(uc)
+    @user_class = uc.to_s
   end
   
   def formatter
@@ -18,8 +18,8 @@ class Riwiki::Options
   
   private
   
-  def select_user_class
-    'User'.constantize
+  def select_user_class_name
+    'User'
   end
 
   def select_formatter

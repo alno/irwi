@@ -12,6 +12,8 @@ module Riwiki::Extensions::WikiPagesControllerExtension
   
   module InstanceMethods
     
+    include Riwiki::Support::TemplateFinder
+    
     def show      
       select_template 'show'
     end
@@ -42,10 +44,7 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     
     # Renders user-specified or default template
     def select_template( template )
-      dir = controller_path
-      dir = 'base_wiki_pages' if Dir.glob( "app/views/#{dir}/#{template}.html.*" ).empty? # Select default if there are no template in resource directory
-      
-      render "#{dir}/#{template}"
+      render "#{template_dir template}/#{template}"
     end
     
     # Initialize @current_user instance variable
