@@ -1,0 +1,35 @@
+h1. Riwiki
+
+Riwiki is Ruby on Rails plugin which adds wiki functionality to your application.
+
+h2. Installation
+
+In your application directory call:
+  script/plugin install git://github.com/alno/riwiki
+
+h2. Usage
+
+In your application directory call:
+  script/generate riwiki
+  
+It will generate:
+* WikiPageController to server wiki pages
+* WikiPage model to represent page
+* Migration to prepare database
+
+Also it will add to your @routes.rb@ something like:
+  map.riwiki_root '/wiki'
+
+h2. Templates
+
+You may create your own templates for controller actions (@show@, @edit@ and @history@), in other case default built-in templates will be used.
+
+h2. Configuration
+
+Configuration options are acessed via @Riwiki.options@ object. Currently supported options:
+* @user_class_name@ - Name of user model class. By default - 'User'
+* @formatter@ - Formatter instance, which process wiki content before output. It should have method @format@, which gets a string and returns it formatted. By default instance of @Riwiki::Formatters::RedCloth@ is used (requires RedCloth gem). Other built-in formatter is @Riwiki::Formatters::BlueCloth@ (requires BlueCloth gem). 
+
+h2. Localization
+
+Copyright (c) 2009 Alexey Noskov, released under the MIT license

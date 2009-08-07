@@ -17,6 +17,8 @@ class RiwikiGenerator < Rails::Generator::Base
       # Migrations
       m.migration_template 'migrate/create_wiki_pages.rb', 'db/migrate', :migration_file_name => "create_wiki_pages"
 
+      # Routes
+      m.gsub_file 'config/routes.rb', /#{Regexp.quote 'ActionController::Routing::Routes.draw do |map|'}\n/, "\\0\n  map.riwiki_root '/wiki'\n"
     end
   end
 end
