@@ -7,6 +7,9 @@ class RiwikiGenerator < Rails::Generator::Base
         
       # Controllers
       m.file 'controllers/wiki_pages_controller.rb', 'app/controllers/wiki_pages_controller.rb'
+        
+      # Helpers
+      m.file 'helpers/wiki_pages_helper.rb', 'app/helpers/wiki_pages_helper.rb'
       
       # Models
       m.file 'models/wiki_page.rb', 'app/models/wiki_page.rb'

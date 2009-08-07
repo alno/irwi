@@ -1,4 +1,5 @@
-<% form_for( :page, @page, :url => url_for( :action => :update ) ) do |f| %>
+<% wiki_page_form do |f| %>
+  <%= f.text_field :path %>
   <%= f.text_field :title %>
   <%= f.text_area :content %>
   <%= f.submit %>

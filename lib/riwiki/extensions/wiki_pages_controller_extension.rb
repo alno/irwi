@@ -27,7 +27,7 @@ module Riwiki::Extensions::WikiPagesControllerExtension
       @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
            
       if @page.save
-        redirect_to url_for( :action => :show )
+        redirect_to url_for( :action => :show, :path => @page.path.split('/') ) # redirect to new page's path (if it changed)
       else
         select_template 'edit'
       end
@@ -43,7 +43,7 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     # Renders user-specified or default template
     def select_template( template )
       dir = controller_path
-      dir = 'base_wiki_pages' if Dir.glob( "app/views/#{dir}/#{template}.html.*" ).empty?
+      dir = 'base_wiki_pages' if Dir.glob( "app/views/#{dir}/#{template}.html.*" ).empty? # Select default if there are no template in resource directory
       
       render "#{dir}/#{template}"
     end

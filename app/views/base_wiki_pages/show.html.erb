@@ -1,6 +1,7 @@
 <% if @page.new_record? %>
-  There are no page <%= @page.path %>. Do you want to <a href="<%=url_for( :action => :edit )%>">create it</a>?
+  There are no page <%= @page.path %>. Do you want to <a href="<%=wiki_page_edit_path%>">create it</a>?
 <% else %>
   <h1><%=h @page.title %></h1>
-  <div><%=h @page.content %></div>
+  <div class="links"><%= link_to 'Edit', wiki_page_edit_path %></div>
+  <div class="content"><%=h @page.content %></div>
 <% end %>
