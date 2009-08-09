@@ -19,19 +19,19 @@ It will generate:
 * WikiPage model to represent page
 * Migration to prepare database
 
-Also it will add to your +routes.rb+ something like:
+Also it will add to your <tt>routes.rb</tt> something like:
 
   map.riwiki_root '/wiki'
 
 == Templates
 
-You may create your own templates for controller actions (+show+, +edit+ and +history+), in other case default built-in templates will be used.
+You may create your own templates for controller actions (<tt>show</tt>, <tt>edit</tt> and <tt>history</tt>), in other case default built-in templates will be used.
 
 == Configuration
 
-Configuration options are acessed via +Riwiki.options+ object. Currently supported options:
-* +user_class_name+ - Name of user model class. By default - 'User'
-* +formatter+ - Formatter instance, which process wiki content before output. It should have method @format@, which gets a string and returns it formatted. By default instance of +Riwiki::Formatters::RedCloth+ is used (requires RedCloth gem). Other built-in formatter is +Riwiki::Formatters::BlueCloth+ (requires BlueCloth gem). 
+Configuration options are acessed via <tt>Riwiki.options</tt> object. Currently supported options:
+* <tt>user_class_name</tt> - Name of user model class. By default - 'User'
+* <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method +format+, which gets a string and returns it formatted. By default instance of <tt>Riwiki::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Riwiki::Formatters::BlueCloth</tt> (requires BlueCloth gem). 
 
 == Localization
 
