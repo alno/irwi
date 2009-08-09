@@ -23,9 +23,14 @@ Also it will add to your <tt>routes.rb</tt> something like:
 
   map.riwiki_root '/wiki'
 
-== Templates
+== Template definition
 
 You may create your own templates for controller actions (<tt>show</tt>, <tt>edit</tt> and <tt>history</tt>), in other case default built-in templates will be used.
+
+== Helper definition
+
+Following helpers are defined by default and you may replace them with you own:
+* <tt>wiki_user</tt> - Renders user name or link by given user object. By default renders &lt;Unknown&gt; for <tt>nil</tt> and "User#{user.id}" for others.
 
 == Configuration
 
