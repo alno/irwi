@@ -31,7 +31,7 @@ You may create your own templates for controller actions (<tt>show</tt>, <tt>edi
 
 Configuration options are acessed via <tt>Riwiki.options</tt> object. Currently supported options:
 * <tt>user_class_name</tt> - Name of user model class. By default - 'User'
-* <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method +format+, which gets a string and returns it formatted. By default instance of <tt>Riwiki::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Riwiki::Formatters::BlueCloth</tt> (requires BlueCloth gem). 
+* <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method <tt>format</tt>, which gets a string and returns it formatted. By default instance of <tt>Riwiki::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Riwiki::Formatters::BlueCloth</tt> (requires BlueCloth gem). 
 
 == Localization
 
