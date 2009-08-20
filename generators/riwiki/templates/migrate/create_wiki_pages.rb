@@ -12,9 +12,25 @@ class CreateWikiPages < ActiveRecord::Migration
           
       t.timestamps
     end
+    
+    create_table :wiki_page_versions do |t|
+      t.integer :page_id # Reference to page
+      
+      t.integer :updator_id
+      
+      t.string :comment
+      
+      t.string :path
+      t.string :title
+      
+      t.text :content
+          
+      t.timestamp :updated_at
+    end
   end
   
   def self.down
+    drop_table :wiki_page_versions
     drop_table :wiki_pages
   end
   

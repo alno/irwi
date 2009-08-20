@@ -43,7 +43,7 @@ module Riwiki::Helpers::WikiPagesHelper
   #     _("Hello {{world}}!", :world => @world)
   #
   def _(msg, *args)
-    config = args.extract_config!
+    config = args.extract_options!
     config[:default] = msg
     I18n.t(msg, config)
   end

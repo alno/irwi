@@ -1,0 +1,19 @@
+<h1><%=h @page.title %> History</h1>
+  
+<%= wiki_page_info %>
+<%= wiki_page_actions %>
+  
+<table>
+  <tr>
+    <td>CreatedAt</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @page.versions.each do |v| %>
+    <tr>
+      <td><%=l( v.created_at, :format => :long ) %></td>
+      <td><%= wiki_user( v.updator ) %></td>
+      <td><%= v.comment %></td>
+    </tr>
+  <% end %>
+</table>

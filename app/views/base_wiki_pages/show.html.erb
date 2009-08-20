@@ -1,13 +1,9 @@
-<% if @page.new_record? %>
-  <%=_ 'There are no such page. Do you want to <a href="{{edit_url}}">create it</a>?', :edit_url => wiki_page_edit_path %>  
-<% else %>
-  <h1><%=h @page.title %></h1>
+<h1><%=h @page.title %></h1>
   
-  <%= wiki_page_info %>
-  <%= wiki_page_actions %>
+<%= wiki_page_info %>
+<%= wiki_page_actions %>
   
-  <div class="wiki_content"><%=wiki_content @page.content %></div>
-<% end %>
+<div class="wiki_content"><%=wiki_content @page.content %></div>
 
 <style>
 .wiki_page_info {

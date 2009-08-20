@@ -12,7 +12,8 @@ class RiwikiGenerator < Rails::Generator::Base
       m.file 'helpers/wiki_pages_helper.rb', 'app/helpers/wiki_pages_helper.rb'
       
       # Models
-      m.file 'models/wiki_page.rb', 'app/models/wiki_page.rb'
+      m.file 'models/wiki_page.rb',         'app/models/wiki_page.rb'
+      m.file 'models/wiki_page_version.rb', 'app/models/wiki_page_version.rb'
         
       # Migrations
       m.migration_template 'migrate/create_wiki_pages.rb', 'db/migrate', :migration_file_name => "create_wiki_pages"

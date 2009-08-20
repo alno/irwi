@@ -16,11 +16,15 @@ module Riwiki::Extensions::Controllers::WikiPages
     
     include Riwiki::Support::TemplateFinder
     
-    def show      
-      render_template 'show'
+    def show
+      render_template( @page.new_record? ? 'no' : 'show' )
     end
     
-    def edit      
+    def history
+      render_template( @page.new_record? ? 'no' : 'history' )
+    end
+    
+    def edit
       render_template 'edit'
     end
     

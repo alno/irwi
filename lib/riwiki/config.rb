@@ -1,6 +1,6 @@
 class Riwiki::Config
-
-  def self.class_name_attr_accessor(name,default)
+  
+  def self.string_attr_accessor(name,default)
     src = <<-END
       def #{name}
         @#{name} ||= '#{default}'
@@ -14,10 +14,12 @@ class Riwiki::Config
     class_eval src, __FILE__, __LINE__
   end
   
-  class_name_attr_accessor :user_class_name, 'User'
+  string_attr_accessor :user_class_name, 'User'
   
-  class_name_attr_accessor :page_class_name, 'WikiPage'
-  class_name_attr_accessor :page_version_class_name, 'WikiPageVersion'
+  string_attr_accessor :page_class_name, 'WikiPage'
+  string_attr_accessor :page_version_class_name, 'WikiPageVersion'
+  
+  string_attr_accessor :page_version_foreign_key, 'page_id'
   
   def formatter
     @formatter ||= select_formatter
