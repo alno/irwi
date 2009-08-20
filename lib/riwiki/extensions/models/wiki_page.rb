@@ -29,7 +29,7 @@ module Riwiki::Extensions::Models::WikiPage
     base.belongs_to :creator, :class_name => Riwiki.config.user_class_name
     base.belongs_to :updator, :class_name => Riwiki.config.user_class_name
     
-    base.has_many :versions, :class_name => Riwiki.config.page_version_class_name, :foreign_key => Riwiki.config.page_version_foreign_key, :order => 'created_at DESC'
+    base.has_many :versions, :class_name => Riwiki.config.page_version_class_name, :foreign_key => Riwiki.config.page_version_foreign_key, :order => 'id DESC'
     
     base.after_save :create_new_version
   end
