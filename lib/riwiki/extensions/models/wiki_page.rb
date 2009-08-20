@@ -11,9 +11,11 @@ module Riwiki::Extensions::Models::WikiPage
   module InstanceMethods
     
     protected
-    
+        
     def create_new_version
-      versions.create( self.attributes.except( 'created_at', 'creator_id' ) )
+      v = versions.build
+      v.attributes = self.attributes.slice( v.attribute_names )
+      v.save!
     end
     
   end
