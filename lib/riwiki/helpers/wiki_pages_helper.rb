@@ -3,8 +3,8 @@ module Riwiki::Helpers::WikiPagesHelper
   include Riwiki::Support::TemplateFinder
   
   # Edit form for wiki page model
-  def wiki_page_form( options = {}, &block )
-    form_for( :page, @page, { :url => url_for( :action => :update ) }.merge!( options ), &block )
+  def wiki_page_form( config = {}, &block )
+    form_for( :page, @page, { :url => url_for( :action => :update ) }.merge!( config ), &block )
   end
   
   def wiki_page_edit_path
@@ -20,7 +20,7 @@ module Riwiki::Helpers::WikiPagesHelper
   end
   
   def wiki_content( text )
-    sanitize( Riwiki.options.formatter.format( text ) )
+    sanitize( Riwiki.config.formatter.format( text ) )
   end
   
   def wiki_user( user )
@@ -43,9 +43,9 @@ module Riwiki::Helpers::WikiPagesHelper
   #     _("Hello {{world}}!", :world => @world)
   #
   def _(msg, *args)
-    options = args.extract_options!
-    options[:default] = msg
-    I18n.t(msg, options)
+    config = args.extract_config!
+    config[:default] = msg
+    I18n.t(msg, config)
   end
   
   def wiki_page_info(page = nil)

@@ -2,7 +2,9 @@ module Riwiki::Extensions::Controllers::WikiPages
   
   module ClassMethods
     
-    attr_reader :page_class
+    def page_class
+      @page_class ||= Riwiki.config.page_class_name.constantize
+    end
     
     def set_page_class(arg)
       @page_class = arg

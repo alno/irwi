@@ -24,8 +24,8 @@ describe Riwiki::Helpers::WikiPagesHelper do
     it { @m.should respond_to :wiki_page_actions }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
-      Riwiki.options.formatter = mock 'Formatter'
-      Riwiki.options.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
+      Riwiki.config.formatter = mock 'Formatter'
+      Riwiki.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
       
       @m.should_receive(:sanitize).with('Formatted content').and_return('Formatted and sanitized content')
       

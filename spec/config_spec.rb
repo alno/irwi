@@ -1,9 +1,9 @@
 require "spec/spec_helper"
 
-describe Riwiki::Options do
+describe Riwiki::Config do
       
   before(:each) do
-    @o = Riwiki::Options.new
+    @o = Riwiki::Config.new
   end
     
   specify "should save selected user_class_name" do 
@@ -13,6 +13,24 @@ describe Riwiki::Options do
   
   specify "should select 'User' as user_class_name by default" do
     @o.user_class_name.should == 'User'
+  end
+  
+  specify "should save selected page_class_name" do 
+    @o.page_class_name = 'MyPageClass'
+    @o.page_class_name.should == 'MyPageClass'
+  end
+  
+  specify "should select 'WikiPage' as page_class_name by default" do
+    @o.page_class_name.should == 'WikiPage'
+  end
+  
+  specify "should save selected page_version_class_name" do 
+    @o.page_version_class_name = 'MyVersionClass'
+    @o.page_version_class_name.should == 'MyVersionClass'
+  end
+  
+  specify "should select 'WikiPageVersion' as page_version_class_name by default" do
+    @o.page_version_class_name.should == 'WikiPageVersion'
   end
   
   specify "should save selected formatter" do 

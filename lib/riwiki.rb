@@ -1,7 +1,7 @@
 module Riwiki
   
-  def self.options
-    @@options ||= Riwiki::Options.new
+  def self.config
+    @@config ||= Riwiki::Config.new
   end
   
 end
