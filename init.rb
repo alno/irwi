@@ -10,7 +10,12 @@ ActiveRecord::Base.instance_eval do
   
   # 
   def acts_as_wiki_page( options = {} )
-    include Riwiki::Extensions::WikiPageModelExtension
+    include Riwiki::Extensions::Models::WikiPage
+  end
+  
+  # 
+  def acts_as_wiki_page_version( options = {} )
+    include Riwiki::Extensions::Models::WikiPageVersion
   end
   
 end
@@ -21,9 +26,9 @@ ActionController::Base.instance_eval do
   # @option page_class
   #
   def acts_as_wiki_pages_controller( options = {} )
-    include Riwiki::Extensions::WikiPagesControllerExtension
+    include Riwiki::Extensions::Controllers::WikiPages
     
-    set_wiki_page_class options[:page_class] || 'WikiPage'.constantize # Setting wiki page class
+    set_page_class options[:page_class] || 'WikiPage'.constantize # Setting wiki page class
   end
   
 end

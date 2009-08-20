@@ -15,7 +15,7 @@ In your application directory call:
   script/generate riwiki
   
 It will generate:
-* WikiPageController to server wiki pages
+* WikiPageController to serve wiki pages
 * WikiPage model to represent page
 * Migration to prepare database
 

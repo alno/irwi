@@ -1,4 +1,4 @@
-module Riwiki::Extensions::WikiPageModelExtension
+module Riwiki::Extensions::Models::WikiPage
   
   module ClassMethods
     
@@ -13,8 +13,8 @@ module Riwiki::Extensions::WikiPageModelExtension
   end
   
   def self.included( base )
-    base.send :extend, Riwiki::Extensions::WikiPageModelExtension::ClassMethods
-    base.send :include, Riwiki::Extensions::WikiPageModelExtension::InstanceMethods
+    base.send :extend, Riwiki::Extensions::Models::WikiPage::ClassMethods
+    base.send :include, Riwiki::Extensions::Models::WikiPage::InstanceMethods
     
     base.belongs_to :creator, :class_name => Riwiki.options.user_class_name
     base.belongs_to :updator, :class_name => Riwiki.options.user_class_name

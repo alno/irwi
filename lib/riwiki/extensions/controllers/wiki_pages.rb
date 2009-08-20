@@ -1,11 +1,11 @@
-module Riwiki::Extensions::WikiPagesControllerExtension
+module Riwiki::Extensions::Controllers::WikiPages
   
   module ClassMethods
     
-    attr_reader :wiki_page_class
+    attr_reader :page_class
     
-    def set_wiki_page_class(arg)
-      @wiki_page_class = arg
+    def set_page_class(arg)
+      @page_class = arg
     end
     
   end
@@ -15,11 +15,11 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     include Riwiki::Support::TemplateFinder
     
     def show      
-      select_template 'show'
+      render_template 'show'
     end
     
     def edit      
-      select_template 'edit'
+      render_template 'edit'
     end
     
     def update      
@@ -31,19 +31,19 @@ module Riwiki::Extensions::WikiPagesControllerExtension
       if @page.save
         redirect_to url_for( :action => :show, :path => @page.path.split('/') ) # redirect to new page's path (if it changed)
       else
-        select_template 'edit'
+        render_template 'edit'
       end
     end
     
     protected
     
     # Retrieves wiki_page_class for this controller
-    def wiki_page_class
-      self.class.wiki_page_class
+    def page_class
+      self.class.page_class
     end
     
     # Renders user-specified or default template
-    def select_template( template )
+    def render_template( template )
       render "#{template_dir template}/#{template}"
     end
     
@@ -54,14 +54,14 @@ module Riwiki::Extensions::WikiPagesControllerExtension
     
     # Initialize @page instance variable
     def setup_page
-      @page = wiki_page_class.find_by_path_or_new( params[:path].join('/') ) # Find existing page by path or create new
+      @page = page_class.find_by_path_or_new( params[:path].join('/') ) # Find existing page by path or create new
     end
     
   end
 
   def self.included( base )
-    base.send :extend, Riwiki::Extensions::WikiPagesControllerExtension::ClassMethods
-    base.send :include, Riwiki::Extensions::WikiPagesControllerExtension::InstanceMethods
+    base.send :extend, Riwiki::Extensions::Controllers::WikiPages::ClassMethods
+    base.send :include, Riwiki::Extensions::Controllers::WikiPages::InstanceMethods
     
     base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
     base.before_filter :setup_page # Setup @page instance variable before each action
