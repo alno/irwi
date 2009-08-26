@@ -1,6 +1,5 @@
-require 'riwiki'
-
-require 'riwiki/support/route_mapper' # Routes
+require 'irwi' # Main irwi class
+require 'irwi/support/route_mapper' # Routes
 
 ActionController::Routing::RouteSet::Mapper.instance_eval do
   include Irwi::Support::RouteMapper
