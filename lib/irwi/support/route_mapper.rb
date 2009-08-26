@@ -1,4 +1,4 @@
-module Riwiki::Support::RouteMapper
+module Irwi::Support::RouteMapper
   
   # Defining wiki root mount point
   def wiki_root( path, config = {} )

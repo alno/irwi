@@ -1,4 +1,4 @@
-class Riwiki::Config
+class Irwi::Config
   
   attr_accessor_with_default :user_class_name, 'User'
   
@@ -18,7 +18,7 @@ class Riwiki::Config
   private
   
   def select_formatter
-    Riwiki::Formatters::RedCloth.new
+    Irwi::Formatters::RedCloth.new
   end
   
 end

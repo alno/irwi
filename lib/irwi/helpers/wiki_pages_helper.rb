@@ -1,6 +1,6 @@
-module Riwiki::Helpers::WikiPagesHelper
+module Irwi::Helpers::WikiPagesHelper
   
-  include Riwiki::Support::TemplateFinder
+  include Irwi::Support::TemplateFinder
   
   # Edit form for wiki page model
   def wiki_page_form( config = {}, &block )
@@ -20,7 +20,7 @@ module Riwiki::Helpers::WikiPagesHelper
   end
   
   def wiki_content( text )
-    sanitize( Riwiki.config.formatter.format( text ) )
+    sanitize( Irwi.config.formatter.format( text ) )
   end
   
   def wiki_user( user )

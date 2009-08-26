@@ -1,6 +1,6 @@
-= Riwiki
+= Irwi
 
-Riwiki is Ruby on Rails plugin which adds wiki functionality to your application.
+Irwi is Ruby on Rails plugin which adds wiki functionality to your application.
 
 == Installation
 
@@ -12,7 +12,7 @@ In your application directory call:
 
 In your application directory call:
 
-  script/generate riwiki
+  script/generate irwi_wiki
   
 It will generate:
 * WikiPageController to serve wiki pages

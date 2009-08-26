@@ -1,4 +1,4 @@
-class Riwiki::Formatters::BlueCloth
+class Irwi::Formatters::BlueCloth
   
   def initialize
     require 'bluecloth'

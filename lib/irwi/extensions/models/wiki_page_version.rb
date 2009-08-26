@@ -1,4 +1,4 @@
-module Riwiki::Extensions::Models::WikiPageVersion
+module Irwi::Extensions::Models::WikiPageVersion
   
   module ClassMethods
         
@@ -23,11 +23,11 @@ module Riwiki::Extensions::Models::WikiPageVersion
   end
   
   def self.included( base )
-    base.send :extend, Riwiki::Extensions::Models::WikiPageVersion::ClassMethods
-    base.send :include, Riwiki::Extensions::Models::WikiPageVersion::InstanceMethods
+    base.send :extend, Irwi::Extensions::Models::WikiPageVersion::ClassMethods
+    base.send :include, Irwi::Extensions::Models::WikiPageVersion::InstanceMethods
     
-    base.belongs_to :page, :class_name => Riwiki.config.page_class_name
-    base.belongs_to :updator, :class_name => Riwiki.config.user_class_name
+    base.belongs_to :page, :class_name => Irwi.config.page_class_name
+    base.belongs_to :updator, :class_name => Irwi.config.user_class_name
     
     base.before_update :raise_on_update
   end

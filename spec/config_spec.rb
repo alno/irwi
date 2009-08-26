@@ -1,9 +1,9 @@
 require "spec/spec_helper"
 
-describe Riwiki::Config do
+describe Irwi::Config do
       
   before(:each) do
-    @o = Riwiki::Config.new
+    @o = Irwi::Config.new
   end
     
   specify "should save selected user_class_name" do 
@@ -39,7 +39,7 @@ describe Riwiki::Config do
   end
   
   specify "should select RedCloth as formatter by default" do
-    Riwiki::Formatters::RedCloth.should_receive(:new).and_return(:red_cloth_formatter)
+    Irwi::Formatters::RedCloth.should_receive(:new).and_return(:red_cloth_formatter)
     
     @o.formatter.should == :red_cloth_formatter
   end

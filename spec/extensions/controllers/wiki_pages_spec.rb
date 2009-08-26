@@ -4,13 +4,13 @@ require "action_controller"
 
 class WikiPage; end
 
-describe Riwiki::Extensions::Controllers::WikiPages do
+describe Irwi::Extensions::Controllers::WikiPages do
   
   it { should_not be_nil }
     
   before(:all) do
     @cls = Class.new ActionController::Base do
-      include Riwiki::Extensions::Controllers::WikiPages
+      include Irwi::Extensions::Controllers::WikiPages
     end
   end
   

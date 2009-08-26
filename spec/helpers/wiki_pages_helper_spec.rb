@@ -1,6 +1,6 @@
 require "spec/spec_helper"
 
-describe Riwiki::Helpers::WikiPagesHelper do
+describe Irwi::Helpers::WikiPagesHelper do
   
   it { should_not be_nil }
   
@@ -8,7 +8,7 @@ describe Riwiki::Helpers::WikiPagesHelper do
     
     before(:each) do
       @m = Object.new
-      @m.send :extend, Riwiki::Helpers::WikiPagesHelper
+      @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end
     
     it { @m.should respond_to :wiki_page_form }
@@ -24,8 +24,8 @@ describe Riwiki::Helpers::WikiPagesHelper do
     it { @m.should respond_to :wiki_page_actions }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
-      Riwiki.config.formatter = mock 'Formatter'
-      Riwiki.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
+      Irwi.config.formatter = mock 'Formatter'
+      Irwi.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
       
       @m.should_receive(:sanitize).with('Formatted content').and_return('Formatted and sanitized content')
       

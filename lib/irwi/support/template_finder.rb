@@ -1,4 +1,4 @@
-module Riwiki::Support::TemplateFinder
+module Irwi::Support::TemplateFinder
   
   def template_dir(template)
     dir = respond_to?( :controller_path ) ? controller_path : controller.controller_path

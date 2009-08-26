@@ -1,4 +1,4 @@
-class RiwikiGenerator < Rails::Generator::Base
+class IrwiWikiGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       

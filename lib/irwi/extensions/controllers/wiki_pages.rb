@@ -1,9 +1,9 @@
-module Riwiki::Extensions::Controllers::WikiPages
+module Irwi::Extensions::Controllers::WikiPages
   
   module ClassMethods
     
     def page_class
-      @page_class ||= Riwiki.config.page_class_name.constantize
+      @page_class ||= Irwi.config.page_class_name.constantize
     end
     
     def set_page_class(arg)
@@ -14,7 +14,7 @@ module Riwiki::Extensions::Controllers::WikiPages
   
   module InstanceMethods
     
-    include Riwiki::Support::TemplateFinder
+    include Irwi::Support::TemplateFinder
     
     def show
       render_template( @page.new_record? ? 'no' : 'show' )
@@ -66,8 +66,8 @@ module Riwiki::Extensions::Controllers::WikiPages
   end
 
   def self.included( base )
-    base.send :extend, Riwiki::Extensions::Controllers::WikiPages::ClassMethods
-    base.send :include, Riwiki::Extensions::Controllers::WikiPages::InstanceMethods
+    base.send :extend, Irwi::Extensions::Controllers::WikiPages::ClassMethods
+    base.send :include, Irwi::Extensions::Controllers::WikiPages::InstanceMethods
     
     base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
     base.before_filter :setup_page # Setup @page instance variable before each action

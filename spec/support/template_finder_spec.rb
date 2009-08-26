@@ -1,6 +1,6 @@
 require "spec/spec_helper"
 
-describe Riwiki::Support::TemplateFinder do
+describe Irwi::Support::TemplateFinder do
   
   it { should_not be_nil }
   
@@ -8,7 +8,7 @@ describe Riwiki::Support::TemplateFinder do
     
     before(:each) do
       @m = Object.new
-      @m.send :extend, Riwiki::Support::TemplateFinder
+      @m.send :extend, Irwi::Support::TemplateFinder
       @m.stub!(:controller_path).and_return('my_controller')
     end
     
