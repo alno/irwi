@@ -24,6 +24,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     
     it { @m.should respond_to :wiki_page_info }
     it { @m.should respond_to :wiki_page_actions }
+    it { @m.should respond_to :wiki_page_history }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
       Irwi.config.formatter = mock 'Formatter'
@@ -46,6 +47,23 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_actions", :locals => { :page => 'MyPage' }).and_return('partial_body')
       
       @m.wiki_page_actions( 'MyPage' ).should == 'partial_body'
+    end
+    
+    specify "should render wiki_page_history partial" do
+      @m.should_receive(:template_dir).and_return('partial_dir')
+      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => 'MyPage', :versions => [1,2], :with_form => true }).and_return('partial_body')
+      
+      @m.wiki_page_history( 'MyPage', [1,2] ).should == 'partial_body'
+    end
+    
+    specify "should render wiki_page_history partial (with default versions)" do
+      page = mock 'MyPage'
+      page.should_receive(:versions).and_return([1])
+      
+      @m.should_receive(:template_dir).and_return('partial_dir')
+      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => page, :versions => [1], :with_form => false }).and_return('partial_body')
+            
+      @m.wiki_page_history( page ).should == 'partial_body'
     end
     
   end

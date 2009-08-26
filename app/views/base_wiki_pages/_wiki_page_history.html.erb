@@ -1,0 +1,31 @@
+<% if with_form %>
+  <form action="<%=wiki_page_compare_path%>" method="get">
+<% end %>
+
+<table>
+  <tr>
+    <td><%=_ 'Number' %></td>
+    <td><%=_ 'Date' %></td>
+    <td><%=_ 'Author' %></td>
+    <td><%=_ 'Comment' %></td>
+  </tr>
+  <% versions.reverse.each do |v| %>
+    <tr>
+      <td>
+        <%=v.number%>
+        <% if with_form %>
+          <input type="radio" name="last" value="<%=v.number%>" />
+          <input type="radio" name="first" value="<%=v.number%>" />
+        <% end %>
+      </td>
+      <td><%=l( v.created_at, :format => :long ) %></td>
+      <td><%= wiki_user( v.updator ) %></td>
+      <td><%= v.comment %></td>
+    </tr>
+  <% end %>
+</table>
+  
+<% if with_form %>
+  <%= submit_tag _ 'Compare selected versions' %>
+  </form>
+<% end %>

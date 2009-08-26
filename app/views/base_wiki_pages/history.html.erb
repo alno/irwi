@@ -2,24 +2,4 @@
   
 <%= wiki_page_info %>
 <%= wiki_page_actions %>
-
-<form action="<%=wiki_page_compare_path%>" method="get">
-  <table>
-    <tr>
-      <td colspan="2"><%=_ 'Compare' %></td>
-      <td><%=_ 'Date' %></td>
-      <td><%=_ 'Author' %></td>
-      <td><%=_ 'Comment' %></td>
-    </tr>
-    <% @page.versions.reverse.each do |v| %>
-      <tr>
-        <td><input type="radio" name="last" value="<%=v.number%>" /></td>
-        <td><input type="radio" name="first" value="<%=v.number%>" /></td>
-        <td><%=l( v.created_at, :format => :long ) %></td>
-        <td><%= wiki_user( v.updator ) %></td>
-        <td><%= v.comment %></td>
-      </tr>
-    <% end %>
-  </table>
-  <%= submit_tag _ 'Compare selected versions' %>
-</form>
+<%= wiki_page_history %>

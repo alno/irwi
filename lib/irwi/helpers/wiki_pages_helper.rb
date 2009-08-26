@@ -57,11 +57,22 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_page_info(page = nil)
-    render :partial => "#{template_dir '_wiki_page_info'}/wiki_page_info", :locals => { :page => (page || @page) }
+    page ||= @page # By default take page from instance variable
+    
+    render :partial => "#{template_dir '_wiki_page_info'}/wiki_page_info", :locals => { :page => page }
   end
   
   def wiki_page_actions(page = nil)
-    render :partial => "#{template_dir '_wiki_page_actions'}/wiki_page_actions", :locals => { :page => (page || @page) }
+    page ||= @page # By default take page from instance variable
+    
+    render :partial => "#{template_dir '_wiki_page_actions'}/wiki_page_actions", :locals => { :page => page }
+  end
+  
+  def wiki_page_history(page = nil,versions = nil)
+    page ||= @page # By default take page from instance variable
+    versions ||= page.versions
+    
+    render :partial => "#{template_dir '_wiki_page_history'}/wiki_page_history", :locals => { :page => page, :versions => versions, :with_form => (versions.size > 1) }
   end
     
 end
