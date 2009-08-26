@@ -1,0 +1,3 @@
+<h1><%=h @page.title %> - Comparing versions <%= @first_version.number %> and <%= @last_version.number %></h1>
+
+<%= wiki_diff @first_version.content, @last_version.content %>

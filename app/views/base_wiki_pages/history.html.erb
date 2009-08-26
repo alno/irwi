@@ -1,19 +1,25 @@
-<h1><%=h @page.title %> History</h1>
+<h1><%=h @page.title %> - History</h1>
   
 <%= wiki_page_info %>
 <%= wiki_page_actions %>
-  
-<table>
-  <tr>
-    <td>CreatedAt</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <% @page.versions.each do |v| %>
+
+<form action="<%=wiki_page_compare_path%>" method="get">
+  <table>
     <tr>
-      <td><%=l( v.created_at, :format => :long ) %></td>
-      <td><%= wiki_user( v.updator ) %></td>
-      <td><%= v.comment %></td>
+      <td colspan="2"><%=_ 'Compare' %></td>
+      <td><%=_ 'Date' %></td>
+      <td><%=_ 'Author' %></td>
+      <td><%=_ 'Comment' %></td>
     </tr>
-  <% end %>
-</table>
+    <% @page.versions.reverse.each do |v| %>
+      <tr>
+        <td><input type="radio" name="last" value="<%=v.number%>" /></td>
+        <td><input type="radio" name="first" value="<%=v.number%>" /></td>
+        <td><%=l( v.created_at, :format => :long ) %></td>
+        <td><%= wiki_user( v.updator ) %></td>
+        <td><%= v.comment %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag _ 'Compare selected versions' %>
+</form>

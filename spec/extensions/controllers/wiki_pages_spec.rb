@@ -44,6 +44,8 @@ describe Irwi::Extensions::Controllers::WikiPages do
     it { @obj.should respond_to :show }
     it { @obj.should respond_to :edit }
     it { @obj.should respond_to :update }
+    it { @obj.should respond_to :history }
+    it { @obj.should respond_to :compare }
                 
   end
   

@@ -15,12 +15,20 @@ module Irwi::Helpers::WikiPagesHelper
     url_for( :action => :history )
   end
   
+  def wiki_page_compare_path
+    url_for( :action => :compare )
+  end
+  
   def wiki_page_path
     url_for( :action => :show )
   end
   
   def wiki_content( text )
     sanitize( Irwi.config.formatter.format( text ) )
+  end
+  
+  def wiki_diff( prev_text, next_text )
+    "#{prev_text} - #{next_text}"
   end
   
   def wiki_user( user )
@@ -55,5 +63,5 @@ module Irwi::Helpers::WikiPagesHelper
   def wiki_page_actions(page = nil)
     render :partial => "#{template_dir '_wiki_page_actions'}/wiki_page_actions", :locals => { :page => (page || @page) }
   end
-  
+    
 end

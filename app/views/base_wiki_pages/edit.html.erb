@@ -1,4 +1,6 @@
 <% wiki_page_form do |f| %>
+  <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
+  
   <p>Path:<br/><%= f.text_field :path %></p>
   <p>Title:<br /><%= f.text_field :title %></p>
   <p>Content:<br /><%= f.text_area :content %></p>

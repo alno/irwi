@@ -30,6 +30,11 @@ module Irwi::Extensions::Models::WikiPageVersion
     base.belongs_to :updator, :class_name => Irwi.config.user_class_name
     
     base.before_update :raise_on_update
+    
+    base.named_scope :between, lambda { | first, last | 
+      first, last = last, first if last < first # Reordering if neeeded
+      { :conditions => [ 'number >= ? AND number <= ?', first, last ] }
+    }
   end
   
 end

@@ -15,9 +15,11 @@ describe Irwi::Helpers::WikiPagesHelper do
     
     it { @m.should respond_to :wiki_page_edit_path }
     it { @m.should respond_to :wiki_page_history_path }
+    it { @m.should respond_to :wiki_page_compare_path }
     it { @m.should respond_to :wiki_page_path }
     
     it { @m.should respond_to :wiki_content }
+    it { @m.should respond_to :wiki_diff }
     it { @m.should respond_to :wiki_user }
     
     it { @m.should respond_to :wiki_page_info }

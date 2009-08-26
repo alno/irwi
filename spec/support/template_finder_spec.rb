@@ -19,13 +19,13 @@ describe Irwi::Support::TemplateFinder do
     specify "should select template at controller_path when exists" do 
       Dir.should_receive(:glob).with("app/views/my_controller/my_template.html.*").and_return(['some_template'])
       
-      @m.template_dir('my_template').should == 'my_controller'
+      @m.send( :template_dir, 'my_template' ).should == 'my_controller'
     end
     
     specify "should select template in base dir when it doesn't exists at controller_path" do 
       Dir.should_receive(:glob).with("app/views/my_controller/my_template.html.*").and_return([])
       
-      @m.template_dir('my_template').should == 'base_wiki_pages'
+      @m.send( :template_dir, 'my_template' ).should == 'base_wiki_pages'
     end
     
   end
