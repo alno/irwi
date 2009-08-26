@@ -1,7 +1,7 @@
 module Riwiki::Support::RouteMapper
   
   # Defining wiki root mount point
-  def riwiki_root( path, config = {} )
+  def wiki_root( path, config = {} )
     opts = {
       :controller => 'wiki_pages',
       :root => path

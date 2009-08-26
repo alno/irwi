@@ -21,7 +21,7 @@ It will generate:
 
 Also it will add to your <tt>routes.rb</tt> something like:
 
-  map.riwiki_root '/wiki'
+  map.wiki_root '/wiki'
 
 == Template definition
 

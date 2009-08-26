@@ -11,8 +11,8 @@ describe Riwiki::Support::RouteMapper do
       @m.send :extend, Riwiki::Support::RouteMapper
     end
     
-    specify "should provide riwiki_root method" do 
-      @m.should respond_to :riwiki_root 
+    specify "should provide wiki_root method" do 
+      @m.should respond_to :wiki_root 
     end
     
   end
