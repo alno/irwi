@@ -4,10 +4,10 @@
 
 <table class="wiki_history">
   <tr class="wiki_history_header">
-    <td><%=_ 'Version' %></td>
-    <td><%=_ 'Date' %></td>
-    <td><%=_ 'Author' %></td>
-    <td><%=_ 'Comment' %></td>
+    <td><%=wt 'Version' %></td>
+    <td><%=wt 'Date' %></td>
+    <td><%=wt 'Author' %></td>
+    <td><%=wt 'Comment' %></td>
   </tr>
   <% versions.reverse.each do |v| %>
     <tr>
@@ -26,6 +26,6 @@
 </table>
   
 <% if with_form %>
-  <%= submit_tag _ 'Compare selected versions' %>
+  <%= submit_tag wt 'Compare selected versions' %>
   </form>
 <% end %>

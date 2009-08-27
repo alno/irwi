@@ -44,15 +44,16 @@ module Irwi::Helpers::WikiPagesHelper
   #
   # We define this method to define the value only once:
   #
-  #     _("Hello World!")
+  #     wt("Hello World!")
   #
   # Note that interpolation still works ...
   #
-  #     _("Hello {{world}}!", :world => @world)
+  #     wt("Hello {{world}}!", :world => @world)
   #
-  def _(msg, *args)
+  def wt(msg, *args)
     config = args.extract_options!
     config[:default] = msg
+    config[:context] = :wiki
     I18n.t(msg, config)
   end
   
