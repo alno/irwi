@@ -1,4 +1,4 @@
 <ul class="wiki_page_actions">
-  <li><%= link_to wt( 'Edit' ), wiki_page_edit_path %></li>
-  <li><%= link_to wt( 'History' ), wiki_page_history_path %></li>
+  <%= '<li>' + link_to( wt( 'Edit' ), wiki_page_edit_path ) + '</li>' if edit_allowed? %>
+  <%= '<li>' + link_to( wt( 'History' ), wiki_page_history_path ) + '</li>' if history_allowed? %>
 </ul>
