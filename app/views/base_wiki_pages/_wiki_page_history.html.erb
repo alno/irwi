@@ -2,9 +2,9 @@
   <form action="<%=wiki_page_compare_path%>" method="get">
 <% end %>
 
-<table>
-  <tr>
-    <td><%=_ 'Number' %></td>
+<table class="wiki_history">
+  <tr class="wiki_history_header">
+    <td><%=_ 'Version' %></td>
     <td><%=_ 'Date' %></td>
     <td><%=_ 'Author' %></td>
     <td><%=_ 'Comment' %></td>
@@ -14,8 +14,8 @@
       <td>
         <%=v.number%>
         <% if with_form %>
-          <input type="radio" name="last" value="<%=v.number%>" />
-          <input type="radio" name="first" value="<%=v.number%>" />
+          <input type="radio" name="old" value="<%=v.number%>" <%= 'checked="true" ' if v == versions[-1] %>/>
+          <input type="radio" name="new" value="<%=v.number%>" <%= 'checked="true" ' if v == versions[-2] %>/>
         <% end %>
       </td>
       <td><%=l( v.created_at, :format => :long ) %></td>

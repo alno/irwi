@@ -4,7 +4,7 @@ module Irwi::Helpers::WikiPagesHelper
   
   # Edit form for wiki page model
   def wiki_page_form( config = {}, &block )
-    form_for( :page, @page, { :url => url_for( :action => :update ) }.merge!( config ), &block )
+    form_for( :page, @page, { :url => url_for( :action => :update ), :html=> { :class => 'wiki_form' } }.merge!( config ), &block )
   end
   
   def wiki_page_edit_path
@@ -27,8 +27,8 @@ module Irwi::Helpers::WikiPagesHelper
     sanitize( Irwi.config.formatter.format( text ) )
   end
   
-  def wiki_diff( prev_text, next_text )
-    "#{prev_text} - #{next_text}"
+  def wiki_diff( old_text, new_text )
+    Irwi.config.comparator.render_changes( old_text, new_text )
   end
   
   def wiki_user( user )
@@ -54,6 +54,10 @@ module Irwi::Helpers::WikiPagesHelper
     config = args.extract_options!
     config[:default] = msg
     I18n.t(msg, config)
+  end
+  
+  def wiki_page_style    
+    render :partial => "#{template_dir '_wiki_page_style'}/wiki_page_style"
   end
   
   def wiki_page_info(page = nil)

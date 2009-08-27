@@ -28,10 +28,10 @@ module Irwi::Extensions::Controllers::WikiPages
       if @page.new_record?
         render_template 'no'
       else
-        @versions = @page.versions.between( params[:first] || 1, params[:last] || @page.last_version_number ).all # Loading all versions between first and last
+        @versions = @page.versions.between( params[:old] || 1, params[:new] || @page.last_version_number ).all # Loading all versions between first and last
         
-        @last_version = @versions.last # Loading next version
-        @first_version = @versions.first # Loading previous version
+        @new_version = @versions.last # Loading next version
+        @old_version = @versions.first # Loading previous version
         
         render_template 'compare'
       end

@@ -1,4 +1,6 @@
-<h1><%=h @page.title %> - History</h1>
+<%= wiki_page_style %>
+
+<h1><%=_ '{{page_title}} - History', :page_title => @page.title %></h1>
   
 <%= wiki_page_info %>
 <%= wiki_page_actions %>

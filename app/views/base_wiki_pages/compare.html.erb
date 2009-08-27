@@ -1,5 +1,13 @@
-<h1><%=h @page.title %> - Comparing versions <%= @first_version.number %> and <%= @last_version.number %></h1>
+<%= wiki_page_style %>
+
+<h1><%=_ '{{page_title}} - Comparing versions {{old_version}} and {{new_version}}', :page_title => h( @page.title ), :old_version => @old_version.number, :new_version => @new_version.number %></h1>
+
+<%=_ 'Changes list:' %>
 
 <%= wiki_page_history @page, @versions[1..-1] %>
 
-<%= wiki_diff @first_version.content, @last_version.content %>
+<%=_ 'Changes in content:' %>
+
+<div class="wiki_diff">
+  <%= wiki_diff @old_version.content, @new_version.content %>
+</div>

@@ -24,7 +24,8 @@ describe Irwi::Helpers::WikiPagesHelper do
     
     it { @m.should respond_to :wiki_page_info }
     it { @m.should respond_to :wiki_page_actions }
-    it { @m.should respond_to :wiki_page_history }
+    it { @m.should respond_to :wiki_page_history }    
+    it { @m.should respond_to :wiki_page_style }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
       Irwi.config.formatter = mock 'Formatter'

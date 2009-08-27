@@ -26,4 +26,12 @@ describe Irwi::Comparators::DiffLcs do
     @c.render_changes('qwerty','qwasdfy').should == 'qw<span class="removed">ert</span><span class="added">asdf</span>y'
   end
   
+  specify "should survive on nil in old" do
+    @c.render_changes(nil,'AdDA').should == '<span class="added">AdDA</span>'
+  end
+  
+  specify "should survive on nil in new" do
+    @c.render_changes('AdDA',nil).should == '<span class="removed">AdDA</span>'
+  end
+  
 end
