@@ -6,7 +6,7 @@ Irwi is Ruby on Rails plugin which adds wiki functionality to your application.
 
 In your application directory call:
 
-  script/plugin install git://github.com/alno/riwiki
+  script/plugin install git://github.com/alno/irwi
 
 == Usage
 
