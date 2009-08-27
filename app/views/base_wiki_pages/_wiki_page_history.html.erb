@@ -18,7 +18,7 @@
           <input type="radio" name="new" value="<%=v.number%>" <%= 'checked="true" ' if v == versions[-2] %>/>
         <% end %>
       </td>
-      <td><%=l( v.created_at, :format => :long ) %></td>
+      <td><%=l( v.updated_at, :format => :long ) %></td>
       <td><%= wiki_user( v.updator ) %></td>
       <td><%= v.comment %></td>
     </tr>

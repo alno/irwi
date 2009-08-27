@@ -12,7 +12,8 @@ module Irwi::Extensions::Models::WikiPage
     
     # Retrieve number of last version
     def last_version_number
-      versions.last.number
+      last = versions.last
+      last ? last.number : 0
     end
     
     protected

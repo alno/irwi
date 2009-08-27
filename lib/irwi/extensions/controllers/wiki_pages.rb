@@ -50,7 +50,7 @@ module Irwi::Extensions::Controllers::WikiPages
     end
     
     def update
-      return not_allowed unless !page.new_record? && show_allowed? && edit_allowed? # Check for rights (but not for new record, for it we will use second check only)
+      return not_allowed unless @page.new_record? || ( show_allowed? && edit_allowed? ) # Check for rights (but not for new record, for it we will use second check only)
       
       @page.attributes = params[:page] # Assign new attributes
       
