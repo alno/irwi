@@ -44,4 +44,15 @@ describe Irwi::Config do
     @o.formatter.should == :red_cloth_formatter
   end
   
+  specify "should save selected comparator" do 
+    @o.comparator = :my_formatter
+    @o.comparator.should == :my_formatter
+  end
+  
+  specify "should select DiffLcs as comparator by default" do
+    Irwi::Comparators::DiffLcs.should_receive(:new).and_return(:diff_lcs_comparator)
+    
+    @o.comparator.should == :diff_lcs_comparator
+  end
+  
 end

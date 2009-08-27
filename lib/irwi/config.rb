@@ -7,18 +7,12 @@ class Irwi::Config
   
   attr_accessor_with_default :page_version_foreign_key, 'page_id'
   
-  def formatter
-    @formatter ||= select_formatter
-  end
-  
-  def formatter=(fmt)
-    @formatter = fmt
-  end
-  
-  private
-  
-  def select_formatter
+  attr_accessor_with_default :formatter do
     Irwi::Formatters::RedCloth.new
+  end
+  
+  attr_accessor_with_default :comparator do
+    Irwi::Comparators::DiffLcs.new
   end
   
 end
