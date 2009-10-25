@@ -23,13 +23,13 @@ module Irwi::Extensions::Controllers::WikiPages
     end
     
     def history
-      return not_allowed unless show_allowed? && history_allowed?
+      return not_allowed unless history_allowed?
       
       render_template( @page.new_record? ? 'no' : 'history' )
     end
     
     def compare
-      return not_allowed unless show_allowed? && history_allowed?
+      return not_allowed unless history_allowed?
       
       if @page.new_record?
         render_template 'no'
@@ -50,11 +50,11 @@ module Irwi::Extensions::Controllers::WikiPages
     end
     
     def update
-      return not_allowed unless @page.new_record? || ( show_allowed? && edit_allowed? ) # Check for rights (but not for new record, for it we will use second check only)
+      return not_allowed unless @page.new_record? || edit_allowed? # Check for rights (but not for new record, for it we will use second check only)
       
       @page.attributes = params[:page] # Assign new attributes
       
-      return not_allowed unless show_allowed? && edit_allowed? # Double check: used beacause action may become invalid after attributes update
+      return not_allowed unless edit_allowed? # Double check: used beacause action may become invalid after attributes update
         
       @page.updator = @current_user # Assing user, which updated page
       @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
@@ -64,6 +64,14 @@ module Irwi::Extensions::Controllers::WikiPages
       else
         render_template 'edit'
       end
+    end
+    
+    def destroy
+      return not_allowed unless destroy_allowed?
+      
+      @page.destroy
+      
+      redirect_to url_for( :action => :show )
     end
     
     protected
@@ -100,12 +108,17 @@ module Irwi::Extensions::Controllers::WikiPages
 
     # Check is it allowed for current user see current page history. Designed to be redefined by application programmer
     def history_allowed?
-      true
+      show_allowed?
     end
     
     # Check is it allowed for current user edit current page. Designed to be redefined by application programmer
     def edit_allowed?
-      true
+      show_allowed?
+    end
+    
+    # Check is it allowed for current user destroy current page. Designed to be redefined by application programmer
+    def destroy_allowed?
+      edit_allowed?
     end
     
   end
@@ -117,7 +130,7 @@ module Irwi::Extensions::Controllers::WikiPages
     base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
     base.before_filter :setup_page # Setup @page instance variable before each action
     
-    base.helper_method :show_allowed?, :edit_allowed?, :history_allowed? # Access control methods are avaliable in views
+    base.helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end
   
 end

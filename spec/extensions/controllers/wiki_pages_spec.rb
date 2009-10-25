@@ -47,6 +47,7 @@ describe Irwi::Extensions::Controllers::WikiPages do
     it { @obj.should respond_to :update }
     it { @obj.should respond_to :history }
     it { @obj.should respond_to :compare }
+    it { @obj.should respond_to :destroy }
                 
   end
   

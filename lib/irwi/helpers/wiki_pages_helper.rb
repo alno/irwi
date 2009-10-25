@@ -10,7 +10,7 @@ module Irwi::Helpers::WikiPagesHelper
   def wiki_page_edit_path
     url_for( :action => :edit )
   end
-  
+    
   def wiki_page_history_path
     url_for( :action => :history )
   end
