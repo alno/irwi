@@ -2,16 +2,17 @@ require "spec/spec_helper"
 
 require "action_controller"
 
-class WikiPage; end
-
-describe Irwi::Extensions::Controllers::WikiPages do
+describe Irwi::Extensions::Controllers::WikiPages do  
+  
+  class WikiPage; end
+  class WikiPagesController < ActionController::Base
+    include Irwi::Extensions::Controllers::WikiPages
+  end
   
   it { should_not be_nil }
     
   before(:all) do
-    @cls = Class.new ActionController::Base do
-      include Irwi::Extensions::Controllers::WikiPages
-    end
+    @cls = WikiPagesController
   end
   
   context "class" do    
