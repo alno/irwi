@@ -1,7 +1,7 @@
 class Irwi::Comparators::Base
     
   def render_changes( old_text, new_text )
-    build_changes( old_text, new_text ).join('')
+    build_changes( old_text, new_text ).join('').gsub( /\r?\n/, '<br />' )
   end
   
   protected

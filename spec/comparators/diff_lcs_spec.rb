@@ -34,4 +34,12 @@ describe Irwi::Comparators::DiffLcs do
     @c.render_changes('AdDA',nil).should == '<span class="removed">AdDA</span>'
   end
   
+  specify "should change \\n to <br />" do
+    @c.render_changes("AdDA\nhhh",'').should == '<span class="removed">AdDA<br />hhh</span>'
+  end
+  
+  specify "should change \\r\\n to <br />" do
+    @c.render_changes("AdDA\r\nhhh",'').should == '<span class="removed">AdDA<br />hhh</span>'
+  end
+  
 end
