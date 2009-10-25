@@ -4,7 +4,20 @@ Irwi is Ruby on Rails plugin which adds wiki functionality to your application.
 
 == Installation
 
-In your application directory call:
+Setup gemcutter as gem source:
+
+  sudo gem install gemcutter
+  gem tumble
+  
+And install irwi gem (recommended):
+
+  sudo gem install irwi
+  
+And add to your environment.rb:
+ 
+  config.gem "irwi", :source => "http://gemcutter.org"
+
+Or in your application directory call:
 
   script/plugin install git://github.com/alno/irwi
 
