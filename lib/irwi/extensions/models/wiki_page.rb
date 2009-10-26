@@ -3,7 +3,7 @@ module Irwi::Extensions::Models::WikiPage
   module ClassMethods
     
     def find_by_path_or_new( path )
-      self.find_by_path( path ) || self.new( :path => path )
+      self.find_by_path( path ) || self.new( :path => path, :title => path )
     end
     
   end

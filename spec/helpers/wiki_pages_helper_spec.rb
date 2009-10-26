@@ -27,6 +27,9 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { @m.should respond_to :wiki_page_history }    
     it { @m.should respond_to :wiki_page_style }
     
+    it { @m.should respond_to :wiki_link }
+    it { @m.should respond_to :wiki_linkify }
+    
     it { @m.should respond_to :wt }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
@@ -67,6 +70,38 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => page, :versions => [1], :with_form => false }).and_return('partial_body')
             
       @m.wiki_page_history( page ).should == 'partial_body'
+    end
+    
+    specify "should linkify string" do
+      
+      @m.should_receive(:wiki_link).with('Some other page').and_return('url')
+      
+      @m.wiki_linkify( '[[Some other page]] - link' ).should == '<a href="url">Some other page</a> - link'
+    end
+    
+    specify "should generate link for non-existent page" do
+      page_class = mock "WikiPageClass"
+      page_class.should_receive(:find_by_title).with('Page title').and_return(nil)
+      
+      Irwi.config.should_receive(:page_class).and_return(page_class)
+      
+      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page title' ).and_return('url')
+      
+      @m.wiki_link( 'Page title' ).should == 'url'
+    end
+    
+    specify "should generate link for existent page" do
+      page = mock "WikiPage"
+      page.should_receive(:path).and_return('page_path')
+      
+      page_class = mock "WikiPageClass"
+      page_class.should_receive(:find_by_title).with('Page title').and_return(page)
+      
+      Irwi.config.should_receive(:page_class).and_return(page_class)
+      
+      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'page_path' ).and_return('url')
+      
+      @m.wiki_link( 'Page title' ).should == 'url'
     end
     
   end

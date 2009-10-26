@@ -3,7 +3,7 @@ module Irwi::Extensions::Controllers::WikiPages
   module ClassMethods
     
     def page_class
-      @page_class ||= Irwi.config.page_class_name.constantize
+      @page_class ||= Irwi.config.page_class
     end
     
     def set_page_class(arg)

@@ -24,7 +24,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_content( text )
-    sanitize( Irwi.config.formatter.format( text ) )
+    sanitize( wiki_linkify( Irwi.config.formatter.format( text ) ) )
   end
   
   def wiki_diff( old_text, new_text )
@@ -32,9 +32,23 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_user( user )
-    return '&lt;Unknown&gt;' if user.nil?
+    return '&lt;Unknown&gt;' unless user
     
     "User##{user.id}"
+  end
+  
+  def wiki_linkify( str )
+    str.gsub /\[\[([^\[\]]+)\]\]/ do |m|
+      "<a href=\"#{wiki_link $1}\">#{$1}</a>"
+    end
+  end
+  
+  def wiki_link( title )
+    if page = Irwi.config.page_class.find_by_title( title )
+      url_for( :controller => Irwi.config.controller_name, :action => :show, :path => page.path )
+    else
+      url_for( :controller => Irwi.config.controller_name, :action => :show, :path => title )
+    end
   end
   
   ##
