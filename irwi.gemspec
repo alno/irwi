@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irwi}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Noskov"]
@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
      "spec/comparators/diff_lcs_spec.rb",
      "spec/config_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
+     "spec/formatters/red_cloth_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
      "spec/rcov.opts",
      "spec/spec.opts",
@@ -75,6 +76,7 @@ Gem::Specification.new do |s|
      "spec/support/template_finder_spec.rb",
      "spec/support/route_mapper_spec.rb",
      "spec/config_spec.rb",
+     "spec/formatters/red_cloth_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
      "spec/spec_helper.rb"
