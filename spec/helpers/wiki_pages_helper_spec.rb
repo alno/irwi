@@ -36,9 +36,10 @@ describe Irwi::Helpers::WikiPagesHelper do
       Irwi.config.formatter = mock 'Formatter'
       Irwi.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
       
-      @m.should_receive(:sanitize).with('Formatted content').and_return('Formatted and sanitized content')
+      @m.should_receive(:auto_link).with('Formatted content').and_return('Formatted content with links')
+      @m.should_receive(:sanitize).with('Formatted content with links').and_return('Formatted and sanitized content with links')
       
-      @m.wiki_content( 'Page content' ).should == 'Formatted and sanitized content'
+      @m.wiki_content( 'Page content' ).should == 'Formatted and sanitized content with links'
     end
     
     specify "should render wiki_page_info partial" do

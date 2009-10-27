@@ -24,7 +24,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_content( text )
-    sanitize( wiki_linkify( Irwi.config.formatter.format( text ) ) )
+    sanitize( wiki_linkify( auto_link( Irwi.config.formatter.format( text ) ) ) )
   end
   
   def wiki_diff( old_text, new_text )
