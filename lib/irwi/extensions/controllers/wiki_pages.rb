@@ -88,7 +88,7 @@ module Irwi::Extensions::Controllers::WikiPages
     
     # Initialize @current_user instance variable
     def setup_current_user
-      @current_user = respond_to?( :current_user ) ? current_user : nil # Find user by current_user method or return nil
+      @current_user = respond_to?( :current_user, true ) ? current_user : nil # Find user by current_user method or return nil
     end
     
     # Initialize @page instance variable
