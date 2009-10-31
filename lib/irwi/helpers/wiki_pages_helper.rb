@@ -43,6 +43,10 @@ module Irwi::Helpers::WikiPagesHelper
     end
   end
   
+  def wiki_paginate( collection, &block )
+    Irwi.config.paginator.paginated_section( self, collection, &block )
+  end
+  
   def wiki_link( title )
     if page = Irwi.config.page_class.find_by_title( title )
       url_for( :controller => Irwi.config.controller_name, :action => :show, :path => page.path )
@@ -89,7 +93,7 @@ module Irwi::Helpers::WikiPagesHelper
   
   def wiki_page_history(page = nil,versions = nil)
     page ||= @page # By default take page from instance variable
-    versions ||= page.versions
+    versions ||= @versions || page.versions
     
     render :partial => "#{template_dir '_wiki_page_history'}/wiki_page_history", :locals => { :page => page, :versions => versions, :with_form => (versions.size > 1) }
   end

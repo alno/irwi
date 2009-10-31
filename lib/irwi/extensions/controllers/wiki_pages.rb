@@ -25,6 +25,8 @@ module Irwi::Extensions::Controllers::WikiPages
     def history
       return not_allowed unless history_allowed?
       
+      @versions = Irwi.config.paginator.paginate( @page.versions, :page => params[:page] ) # Paginating them
+      
       render_template( @page.new_record? ? 'no' : 'history' )
     end
     
@@ -34,10 +36,17 @@ module Irwi::Extensions::Controllers::WikiPages
       if @page.new_record?
         render_template 'no'
       else
-        @versions = @page.versions.between( params[:old] || 1, params[:new] || @page.last_version_number ).all # Loading all versions between first and last
+        new_num = params[:new].to_i || @page.last_version_number # Last version number
+        old_num = params[:old].to_i || 1 # First version number
         
-        @new_version = @versions.last # Loading next version
-        @old_version = @versions.first # Loading previous version
+        old_num, new_num = new_num, old_num if new_num < old_num # Swapping them if last < first
+        
+        versions = @page.versions.between( old_num, new_num ) # Loading all versions between first and last
+        
+        @versions = Irwi.config.paginator.paginate( versions, :page => params[:page] ) # Paginating them
+  
+        @new_version = @versions.first.number == new_num ? @versions.first : versions.first # Loading next version
+        @old_version = @versions.last.number == old_num ? @versions.last : versions.last # Loading previous version
         
         render_template 'compare'
       end

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Noskov"]
-  s.date = %q{2009-10-27}
+  s.date = %q{2009-10-31}
   s.description = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
   s.email = %q{alexey.noskov@gmail.com}
   s.extra_rdoc_files = [
@@ -51,6 +51,8 @@ Gem::Specification.new do |s|
      "lib/irwi/formatters/blue_cloth.rb",
      "lib/irwi/formatters/red_cloth.rb",
      "lib/irwi/helpers/wiki_pages_helper.rb",
+     "lib/irwi/paginators/none.rb",
+     "lib/irwi/paginators/will_paginate.rb",
      "lib/irwi/support/route_mapper.rb",
      "lib/irwi/support/template_finder.rb",
      "rails/init.rb",
@@ -59,6 +61,8 @@ Gem::Specification.new do |s|
      "spec/extensions/controllers/wiki_pages_spec.rb",
      "spec/formatters/red_cloth_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
+     "spec/paginators/none_spec.rb",
+     "spec/paginators/will_paginate_spec.rb",
      "spec/rcov.opts",
      "spec/spec.opts",
      "spec/spec_helper.rb",
@@ -79,7 +83,9 @@ Gem::Specification.new do |s|
      "spec/formatters/red_cloth_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/paginators/will_paginate_spec.rb",
+     "spec/paginators/none_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

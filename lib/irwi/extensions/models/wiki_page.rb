@@ -38,7 +38,7 @@ module Irwi::Extensions::Models::WikiPage
     base.belongs_to :creator, :class_name => Irwi.config.user_class_name
     base.belongs_to :updator, :class_name => Irwi.config.user_class_name
     
-    base.has_many :versions, :class_name => Irwi.config.page_version_class_name, :foreign_key => Irwi.config.page_version_foreign_key, :order => 'id ASC'
+    base.has_many :versions, :class_name => Irwi.config.page_version_class_name, :foreign_key => Irwi.config.page_version_foreign_key, :order => 'id DESC'
     
     base.after_save :create_new_version
   end

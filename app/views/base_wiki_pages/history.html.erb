@@ -4,4 +4,7 @@
   
 <%= wiki_page_info %>
 <%= wiki_page_actions %>
-<%= wiki_page_history %>
+
+<% wiki_paginate @versions do%>
+  <%= wiki_page_history %>
+<% end %>
