@@ -18,6 +18,42 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { @m.should respond_to :wiki_page_compare_path }
     it { @m.should respond_to :wiki_page_path }
     
+    specify "should form url_for by wiki_page_edit_path" do
+      @m.should_receive(:url_for).with(:action => :edit).and_return('epath')
+      
+      @m.wiki_page_edit_path.should == 'epath'
+    end
+    
+    specify "should form url_for by wiki_page_edit_path with path" do
+      @m.should_receive(:url_for).with(:action => :edit, :path => 'qwerty').and_return('epath')
+      
+      @m.wiki_page_edit_path('qwerty').should == 'epath'
+    end
+    
+    specify "should form url_for by wiki_page_history_path" do
+      @m.should_receive(:url_for).with(:action => :history).and_return('hpath')
+      
+      @m.wiki_page_history_path.should == 'hpath'
+    end
+    
+    specify "should form url_for by wiki_page_compare_path" do
+      @m.should_receive(:url_for).with(:action => :compare).and_return('cpath')
+      
+      @m.wiki_page_compare_path.should == 'cpath'
+    end
+    
+    specify "should form url_for by wiki_page_path" do
+      @m.should_receive(:url_for).with(:action => :show).and_return('spath')
+      
+      @m.wiki_page_path.should == 'spath'
+    end
+    
+    specify "should form url_for by wiki_page_path with path" do
+      @m.should_receive(:url_for).with(:action => :show, :path => '123').and_return('spath')
+      
+      @m.wiki_page_path('123').should == 'spath'
+    end
+    
     it { @m.should respond_to :wiki_content }
     it { @m.should respond_to :wiki_diff }
     it { @m.should respond_to :wiki_user }

@@ -7,20 +7,26 @@ module Irwi::Helpers::WikiPagesHelper
     form_for( :page, @page, { :url => url_for( :action => :update ), :html=> { :class => 'wiki_form' } }.merge!( config ), &block )
   end
   
-  def wiki_page_edit_path
-    url_for( :action => :edit )
+  def wiki_page_edit_path( page = nil )
+    wiki_page_path( page, :edit )
   end
     
-  def wiki_page_history_path
-    url_for( :action => :history )
+  def wiki_page_history_path( page = nil )
+    wiki_page_path( page, :history )
   end
   
-  def wiki_page_compare_path
-    url_for( :action => :compare )
+  def wiki_page_compare_path( page = nil )
+    wiki_page_path( page, :compare )
   end
   
-  def wiki_page_path
-    url_for( :action => :show )
+  def wiki_page_path( page = nil, action = :show )
+    if page
+      page = page.path if page.respond_to? :path
+      
+      url_for( :action => action, :path => page )
+    else
+      url_for( :action => action )
+    end
   end
   
   def wiki_content( text )
