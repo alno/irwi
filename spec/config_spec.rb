@@ -55,4 +55,14 @@ describe Irwi::Config do
     @o.comparator.should == :diff_lcs_comparator
   end
   
+  specify "should contain 'all' action in system pages" do
+    Irwi.config.system_pages['all'].should == 'all'
+  end
+  
+  specify "should add action in system pages" do
+    Irwi.config.system_pages['custom'].should be_nil
+    Irwi.config.add_system_page :custom, '!custom_page'
+    Irwi.config.system_pages['custom'].should == '!custom_page'
+  end
+  
 end

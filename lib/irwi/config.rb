@@ -28,12 +28,25 @@ class Irwi::Config
     page_class_name.constantize
   end
   
-  def page_vrsion_class
+  def page_version_class
     page_version_class_name.constantize
   end
   
   def user_class
     user_class_name.constantize
+  end
+  
+  def system_pages
+    @system_pages ||= {
+      'all' => 'all'
+    }
+  end
+  
+  # Add system page
+  # @param action [String,Symbol] controller action
+  # @param path [String] path in routes
+  def add_system_page( action, path )
+    system_pages[ action.to_s ] = path.to_s
   end
   
 end

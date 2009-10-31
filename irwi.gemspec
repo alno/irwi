@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "app/views/base_wiki_pages/_wiki_page_history.html.erb",
      "app/views/base_wiki_pages/_wiki_page_info.html.erb",
      "app/views/base_wiki_pages/_wiki_page_style.html.erb",
+     "app/views/base_wiki_pages/all.html.erb",
      "app/views/base_wiki_pages/compare.html.erb",
      "app/views/base_wiki_pages/edit.html.erb",
      "app/views/base_wiki_pages/history.html.erb",

@@ -6,6 +6,10 @@ module Irwi::Support::RouteMapper
       :controller => 'wiki_pages',
       :root => path
     }.merge(config)
+    
+    Irwi.config.system_pages.each do |page_action, page_path| # Adding routes for system pages
+      connect( "#{path}/#{page_path}", opts.merge({ :action => page_action }) )
+    end
         
     connect( "#{path}/compare/*path", opts.merge({ :action => 'compare' }) ) # Comparing two versions of page
     connect( "#{path}/edit/*path", opts.merge({ :action => 'edit' }) ) # Wiki edit route

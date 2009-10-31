@@ -83,6 +83,12 @@ module Irwi::Extensions::Controllers::WikiPages
       redirect_to url_for( :action => :show )
     end
     
+    def all
+      @pages = Irwi.config.paginator.paginate( page_class, :page => params[:page] ) # Loading and paginating all pages
+      
+      render_template 'all'
+    end
+    
     protected
     
     # Retrieves wiki_page_class for this controller
@@ -137,7 +143,7 @@ module Irwi::Extensions::Controllers::WikiPages
     base.send :include, Irwi::Extensions::Controllers::WikiPages::InstanceMethods
     
     base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
-    base.before_filter :setup_page # Setup @page instance variable before each action
+    base.before_filter :setup_page, :only => [ :show, :history, :compare, :edit, :update, :destroy ] # Setup @page instance variable before each action
     
     base.helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end
