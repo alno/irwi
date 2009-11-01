@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irwi}
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Noskov"]
-  s.date = %q{2009-10-31}
+  s.date = %q{2009-11-01}
   s.description = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
   s.email = %q{alexey.noskov@gmail.com}
   s.extra_rdoc_files = [
