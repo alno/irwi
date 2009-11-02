@@ -26,7 +26,7 @@ Or in your application directory call:
 In your application directory call:
 
   script/generate irwi_wiki
-  
+
 It will generate:
 * WikiPageController to serve wiki pages
 * WikiPage model to represent page
@@ -61,6 +61,12 @@ If you want (and it's good idea) to specify which users can see or edit certain 
 
 == Localization
 
-TODO
+== Rails prior to 2.3
+
+If you have Rails prior to 2.3 when you should also call:
+  
+  script/generate irwi_wiki_views
+  
+To generate default wiki views.
 
 Copyright (c) 2009 Alexey Noskov, released under the MIT license
