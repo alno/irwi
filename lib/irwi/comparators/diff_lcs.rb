@@ -1,3 +1,5 @@
+require 'irwi/comparators/base'
+
 class Irwi::Comparators::DiffLcs < Irwi::Comparators::Base
   
   def initialize

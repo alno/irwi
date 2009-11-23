@@ -11,16 +11,22 @@ class Irwi::Config
   
   # Object using to format content
   attr_accessor_with_default :formatter do
+    require 'irwi/formatters/red_cloth'
+
     Irwi::Formatters::RedCloth.new
   end
   
   # Object using to compare pages
   attr_accessor_with_default :comparator do
+    require 'irwi/comparators/diff_lcs'
+
     Irwi::Comparators::DiffLcs.new
   end
   
   # Object using to paginate collections
   attr_accessor_with_default :paginator do
+    require 'irwi/paginators/none'
+
     Irwi::Paginators::None.new
   end
   

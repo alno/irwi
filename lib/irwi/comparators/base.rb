@@ -1,3 +1,6 @@
+require 'irwi/comparators/spans/changed_span'
+require 'irwi/comparators/spans/not_changed_span'
+
 class Irwi::Comparators::Base
     
   def render_changes( old_text, new_text )
