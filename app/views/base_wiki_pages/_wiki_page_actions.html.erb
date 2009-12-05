@@ -1,5 +1,5 @@
 <ul class="wiki_page_actions">
-  <%= '<li>' + link_to( wt( 'History' ), wiki_page_history_path ) + '</li>' if history_allowed? %>
-  <%= '<li>' + link_to( wt( 'Edit' ), wiki_page_edit_path ) + '</li>' if edit_allowed? %>
-  <%= '<li>' + link_to( wt( 'Destroy' ), wiki_page_path, :method => :delete, :confirm => wt( "Destroyed page cann't be restored. Are you ready for it?" ) ) + '</li>' if destroy_allowed? %>
+  <%= content_tag('li', link_to( wt( 'History' ), wiki_page_history_path )) if history_allowed? %>
+  <%= content_tag('li', link_to( wt( 'Edit' ), wiki_page_edit_path )) if edit_allowed? %>
+  <%= content_tag('li', link_to( wt( 'Destroy' ), wiki_page_path, :method => :delete, :confirm => wt( "Destroyed page cann't be restored. Are you ready for it?" ) )) if destroy_allowed? %>
 </ul>
