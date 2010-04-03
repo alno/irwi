@@ -76,7 +76,7 @@ module Irwi::Extensions::Controllers::WikiPages
       @page.updator = @current_user # Assing user, which updated page
       @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
            
-      if @page.save
+      if !params[:preview] && (params[:cancel] || @page.save)
         redirect_to url_for( :action => :show, :path => @page.path.split('/') ) # redirect to new page's path (if it changed)
       else
         render_template 'edit'

@@ -6,7 +6,10 @@ class Irwi::Config
   
   attr_accessor_with_default :page_class_name, 'WikiPage'
   attr_accessor_with_default :page_version_class_name, 'WikiPageVersion'
-  attr_accessor_with_default :page_attachment_class_name, 'WikiPageAttachment'  
+  attr_accessor_with_default :page_attachment_class_name do
+    # Can be for example 'WikiPageAttachment'  
+    nil
+  end
   
   attr_accessor_with_default :page_version_foreign_key, 'page_id'
   
@@ -42,7 +45,7 @@ class Irwi::Config
   def page_attachment_class
     page_attachment_class_name.constantize
   end
-  
+
   def user_class
     user_class_name.constantize
   end

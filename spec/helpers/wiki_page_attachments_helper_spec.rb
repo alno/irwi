@@ -7,6 +7,7 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
   context "included in class" do
     
     before(:each) do
+      Irwi.config.page_attachment_class_name = 'WikiPageAttachment'
       @m = Object.new
       @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end

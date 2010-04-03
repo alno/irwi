@@ -2,6 +2,12 @@
 
 <h1><%=wt 'Editing wiki page' %></h1>
 
+<% if params[:preview] %>
+<div class="wiki_content">
+  <%=wiki_content @page.content %>
+</div>
+<% end %>
+
 <% wiki_page_form do |f| %>
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
   
@@ -9,18 +15,10 @@
   <p><%=wt 'Content:' %><br /><%= f.text_area :content %></p>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
   
-  <input type="submit" value="<%=wt 'Save page' %>" class="submit" />
+  <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
+  <input type="submit" name="preview" value="<%=wt 'Preview' %>" class="submit" />
+  <input type="submit" name="cancel" value="<%=wt 'Cancel' %>" class="submit" />
 <% end %>
 
+<% wiki_page_attachments(@page) %>
 
-<%- @page.attachments.each do |attachment| %>
-  <%= image_tag attachment.wiki_page_attachment.url(:thumb) %>
-  <%= "Attachment_#{attachment.id}" %>
-  <%= link_to wt('Remove'), wiki_remove_page_attachment_path(attachment.id), :method => :delete %>
-<% end %>
-
-<% form_for :wiki_page_attachment, Irwi.config.page_attachment_class.new, :url => wiki_add_page_attachment_path(@page), :html => { :multipart => true } do |form| %>
-  <%= form.file_field :wiki_page_attachment %>
-  <%= form.hidden_field :page_id, :value => @page.id %>
-  <%= form.submit 'Add Attachment' %>
-<% end %>
