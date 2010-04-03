@@ -110,10 +110,11 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
     
     specify "should linkify string" do
-      
-      @m.should_receive(:wiki_link).with('Some other page').and_return('url')
+      @m.should_receive(:wiki_link).exactly(3).times.with('Some other page').and_return('url')
       
       @m.wiki_linkify( '[[Some other page]] - link' ).should == '<a href="url">Some other page</a> - link'
+      @m.wiki_linkify( '[[Some other page|Go other page]] - link' ).should == '<a href="url">Go other page</a> - link'
+      @m.wiki_linkify( '[[Some other page]]s are there' ).should == '<a href="url">Some other pages</a> are there'
     end
     
     specify "should generate link for non-existent page" do

@@ -49,8 +49,14 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_linkify( str )
-    str.gsub /\[\[([^\[\]]+)\]\]/ do |m|
-      "<a href=\"#{wiki_link $1}\">#{$1}</a>"
+    str.gsub /\[\[
+                (?:([^\[\]\|]+)\|)?
+                ([^\[\]]+)
+               \]\]
+               (\w+)?/xu do |m|
+      text = "#$2#$3"
+      link = $1 || $2
+      "<a href=\"#{wiki_link link}\">#{text}</a>"
     end
   end
   
