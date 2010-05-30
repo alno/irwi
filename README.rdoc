@@ -55,7 +55,7 @@ Following helpers are defined by default and you may replace them with you own:
 
 == Configuration
 
-Configuration options are acessed via <tt>Irwi.options</tt> object. Currently supported options:
+Configuration options are acessed via <tt>Irwi.config</tt> object. Currently supported options:
 * <tt>user_class_name</tt> - Name of user model class. By default - 'User'
 * <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method <tt>format</tt>, which gets a string and returns it formatted. By default instance of <tt>Irwi::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Irwi::Formatters::BlueCloth</tt> (requires BlueCloth gem). Option accepts formatter instance, not class, so correct usage is:
   
