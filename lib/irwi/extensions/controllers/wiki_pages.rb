@@ -68,6 +68,7 @@ module Irwi::Extensions::Controllers::WikiPages
       return not_allowed unless @page.new_record? || edit_allowed? # Check for rights (but not for new record, for it we will use second check only)
       
       @page.attributes = params[:page] # Assign new attributes
+      @page.comment = params[:page][:comment]
       
       return not_allowed unless edit_allowed? # Double check: used beacause action may become invalid after attributes update
         
