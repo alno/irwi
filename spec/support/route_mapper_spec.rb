@@ -12,7 +12,7 @@ describe Irwi::Support::RouteMapper do
     end
     
     specify "should provide wiki_root method" do 
-      @m.should respond_to :wiki_root 
+      @m.should respond_to(:wiki_root) 
     end
     
   end

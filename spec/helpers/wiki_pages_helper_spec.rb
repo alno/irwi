@@ -11,12 +11,12 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end
     
-    it { @m.should respond_to :wiki_page_form }
+    it { @m.should respond_to(:wiki_page_form) }
     
-    it { @m.should respond_to :wiki_page_edit_path }
-    it { @m.should respond_to :wiki_page_history_path }
-    it { @m.should respond_to :wiki_page_compare_path }
-    it { @m.should respond_to :wiki_page_path }
+    it { @m.should respond_to(:wiki_page_edit_path) }
+    it { @m.should respond_to(:wiki_page_history_path) }
+    it { @m.should respond_to(:wiki_page_compare_path) }
+    it { @m.should respond_to(:wiki_page_path) }
     
     specify "should form url_for by wiki_page_edit_path" do
       @m.should_receive(:url_for).with(:action => :edit).and_return('epath')
@@ -54,19 +54,19 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.wiki_page_path('123').should == 'spath'
     end
     
-    it { @m.should respond_to :wiki_content }
-    it { @m.should respond_to :wiki_diff }
-    it { @m.should respond_to :wiki_user }
+    it { @m.should respond_to(:wiki_content) }
+    it { @m.should respond_to(:wiki_diff) }
+    it { @m.should respond_to(:wiki_user) }
     
-    it { @m.should respond_to :wiki_page_info }
-    it { @m.should respond_to :wiki_page_actions }
-    it { @m.should respond_to :wiki_page_history }    
-    it { @m.should respond_to :wiki_page_style }
+    it { @m.should respond_to(:wiki_page_info) }
+    it { @m.should respond_to(:wiki_page_actions) }
+    it { @m.should respond_to(:wiki_page_history) }    
+    it { @m.should respond_to(:wiki_page_style) }
     
-    it { @m.should respond_to :wiki_link }
-    it { @m.should respond_to :wiki_linkify }
+    it { @m.should respond_to(:wiki_link) }
+    it { @m.should respond_to(:wiki_linkify) }
     
-    it { @m.should respond_to :wt }
+    it { @m.should respond_to(:wt) }
     
     specify "should format and sanitize content with current formatter and #sanitize" do      
       Irwi.config.formatter = mock 'Formatter'

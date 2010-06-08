@@ -52,6 +52,12 @@ module Irwi::Extensions::Controllers::WikiPages
       end
     end
     
+    def new
+      return not_allowed unless show_allowed? && edit_allowed?
+      
+      render_template 'new'
+    end
+    
     def edit
       return not_allowed unless show_allowed? && edit_allowed?
       
@@ -143,7 +149,7 @@ module Irwi::Extensions::Controllers::WikiPages
     base.send :include, Irwi::Extensions::Controllers::WikiPages::InstanceMethods
     
     base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
-    base.before_filter :setup_page, :only => [ :show, :history, :compare, :edit, :update, :destroy ] # Setup @page instance variable before each action
+    base.before_filter :setup_page, :only => [ :show, :history, :compare, :new, :edit, :update, :destroy ] # Setup @page instance variable before each action
     
     base.helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end

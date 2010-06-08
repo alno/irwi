@@ -13,7 +13,7 @@ describe Irwi::Support::TemplateFinder do
     end
     
     specify "should provide template_dir method" do 
-      @m.should respond_to :template_dir
+      @m.should respond_to(:template_dir)
     end
     
     specify "should select template at controller_path when exists" do 

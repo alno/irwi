@@ -12,6 +12,7 @@ module Irwi::Support::RouteMapper
     end
         
     connect( "#{path}/compare/*path", opts.merge({ :action => 'compare' }) ) # Comparing two versions of page
+    connect( "#{path}/new/*path", opts.merge({ :action => 'new' }) ) # Wiki new route
     connect( "#{path}/edit/*path", opts.merge({ :action => 'edit' }) ) # Wiki edit route
     connect( "#{path}/history/*path", opts.merge({ :action => 'history' }) ) # Wiki history route
     
