@@ -24,6 +24,7 @@ module Irwi::Extensions::Models::WikiPage
       v = versions.build
       v.attributes = attributes.slice( *v.attribute_names )
       v.comment = comment
+      v.content = ''
       v.number = n + 1
       v.save!
     end
