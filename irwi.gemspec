@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irwi}
-  s.version = "0.1.12"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Noskov", "Ravi Bhim"]
-  s.date = %q{2010-06-08}
+  s.date = %q{2010-06-09}
   s.description = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
   s.email = %q{alexey.noskov@gmail.com ravi.bhim@yahoo.com}
   s.extra_rdoc_files = [
@@ -41,7 +41,9 @@ Gem::Specification.new do |s|
      "generators/irwi_wiki/templates/models/wiki_page.rb",
      "generators/irwi_wiki/templates/models/wiki_page_version.rb",
      "generators/irwi_wiki_updates/irwi_wiki_updates_generator.rb",
+     "generators/irwi_wiki_updates/templates/migrate/create_wiki_page_attachments.rb",
      "generators/irwi_wiki_updates/templates/migrate/touched_file.txt",
+     "generators/irwi_wiki_updates/templates/models/wiki_page_attachment.rb",
      "generators/irwi_wiki_views/irwi_wiki_views_generator.rb",
      "irwi.gemspec",
      "lib/irwi.rb",
@@ -50,11 +52,14 @@ Gem::Specification.new do |s|
      "lib/irwi/comparators/spans/changed_span.rb",
      "lib/irwi/comparators/spans/not_changed_span.rb",
      "lib/irwi/config.rb",
+     "lib/irwi/extensions/controllers/wiki_page_attachments.rb",
      "lib/irwi/extensions/controllers/wiki_pages.rb",
      "lib/irwi/extensions/models/wiki_page.rb",
+     "lib/irwi/extensions/models/wiki_page_attachment.rb",
      "lib/irwi/extensions/models/wiki_page_version.rb",
      "lib/irwi/formatters/blue_cloth.rb",
      "lib/irwi/formatters/red_cloth.rb",
+     "lib/irwi/helpers/wiki_page_attachments_helper.rb",
      "lib/irwi/helpers/wiki_pages_helper.rb",
      "lib/irwi/paginators/none.rb",
      "lib/irwi/paginators/will_paginate.rb",
@@ -65,6 +70,7 @@ Gem::Specification.new do |s|
      "spec/config_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
      "spec/formatters/red_cloth_spec.rb",
+     "spec/helpers/wiki_page_attachments_helper_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
      "spec/paginators/none_spec.rb",
      "spec/paginators/will_paginate_spec.rb",
@@ -85,6 +91,7 @@ Gem::Specification.new do |s|
      "spec/config_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
      "spec/formatters/red_cloth_spec.rb",
+     "spec/helpers/wiki_page_attachments_helper_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
      "spec/paginators/none_spec.rb",
      "spec/paginators/will_paginate_spec.rb",
