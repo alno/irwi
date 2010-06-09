@@ -14,6 +14,7 @@ module Irwi::Extensions::Controllers::WikiPages
   
   module InstanceMethods
     
+    include Irwi::Extensions::Controllers::WikiPageAttachments
     include Irwi::Support::TemplateFinder
     
     def show
@@ -94,13 +95,6 @@ module Irwi::Extensions::Controllers::WikiPages
       @pages = Irwi.config.paginator.paginate( page_class, :page => params[:page] ) # Loading and paginating all pages
       
       render_template 'all'
-    end
-    
-    # Attachment related
-    def add_attachment
-      attachment = WikiPageAttachment.new(params[:wiki_page_attachment])
-      attachment.save
-      redirect_to url_for( :action => :edit)
     end
     
     protected
