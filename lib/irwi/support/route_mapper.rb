@@ -16,6 +16,9 @@ module Irwi::Support::RouteMapper
     connect( "#{path}/edit/*path", opts.merge({ :action => 'edit' }) ) # Wiki edit route
     connect( "#{path}/history/*path", opts.merge({ :action => 'history' }) ) # Wiki history route
     
+    # Attachments
+    connect("#{path}/attach/*path", opts.merge({:action => 'add_attachment', :conditions => {:method => :post}}))
+    
     connect( "#{path}/*path", opts.merge({ :action => 'destroy', :conditions => { :method => :delete } }) ) # Wiki destroy route
     connect( "#{path}/*path", opts.merge({ :action => 'update', :conditions => { :method => :post } }) ) # Save wiki pages route
     connect( "#{path}/*path", opts.merge({ :action => 'show', :conditions => { :method => :get } }) ) # Wiki pages route

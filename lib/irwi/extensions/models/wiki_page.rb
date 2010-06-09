@@ -40,6 +40,7 @@ module Irwi::Extensions::Models::WikiPage
     base.belongs_to :updator, :class_name => Irwi.config.user_class_name
     
     base.has_many :versions, :class_name => Irwi.config.page_version_class_name, :foreign_key => Irwi.config.page_version_foreign_key, :order => 'id DESC'
+    base.has_many :attachments, :class_name => Irwi.config.page_attachment_class_name, :foreign_key => Irwi.config.page_version_foreign_key
     
     base.after_save :create_new_version
   end

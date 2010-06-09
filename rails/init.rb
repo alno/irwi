@@ -17,6 +17,10 @@ ActiveRecord::Base.instance_eval do
     include Irwi::Extensions::Models::WikiPageVersion
   end
   
+  def acts_as_wiki_page_attachment(config = {})
+    include Irwi::Extensions::Models::WikiPageAttachment
+  end
+  
 end
 
 ActionController::Base.instance_eval do

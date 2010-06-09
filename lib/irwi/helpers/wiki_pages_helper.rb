@@ -33,8 +33,13 @@ module Irwi::Helpers::WikiPagesHelper
     end
   end
   
+  def wiki_add_page_attachment_path(page)
+    page = page.path if page.respond_to? :path
+    url_for(:action => 'add_attachment', :path => page)
+  end
+  
   def wiki_content( text )
-    sanitize( auto_link( Irwi.config.formatter.format( wiki_linkify( text ) ) ) )
+    sanitize( auto_link( Irwi.config.formatter.format( wiki_linkify( wiki_show_attachments(text) ) ) ) )
   end
   
   def wiki_diff( old_text, new_text )
@@ -50,6 +55,17 @@ module Irwi::Helpers::WikiPagesHelper
   def wiki_linkify( str )
     str.gsub /\[\[([^\[\]]+)\]\]/ do |m|
       "<a href=\"#{wiki_link $1}\">#{$1}</a>"
+    end
+  end
+  
+  def wiki_show_attachments(str)
+    str.gsub /Attachment_([\d]+)_([\w]+)/ do |m|
+      begin
+        attachment = Irwi.config.page_attachment_class.find($1)
+        image_tag attachment.wiki_page_attachment.url($2.to_sym), :class => 'wiki_page_attachment'
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
     end
   end
   

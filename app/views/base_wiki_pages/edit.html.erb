@@ -11,3 +11,15 @@
   
   <input type="submit" value="<%=wt 'Save page' %>" class="submit" />
 <% end %>
+
+
+<%- @page.attachments.each do |attachment| %>
+  <%= image_tag attachment.wiki_page_attachment.url(:thumb) %>
+  <%= "Attachment_#{attachment.id}" %>
+<% end %>
+
+<% form_for :wiki_page_attachment, Irwi.config.page_attachment_class.new, :url => wiki_add_page_attachment_path(@page), :html => { :multipart => true } do |form| %>
+  <%= form.file_field :wiki_page_attachment %>
+  <%= form.hidden_field :page_id, :value => @page.id %>
+  <%= form.submit 'Add Attachment' %>
+<% end %>

@@ -96,6 +96,13 @@ module Irwi::Extensions::Controllers::WikiPages
       render_template 'all'
     end
     
+    # Attachment related
+    def add_attachment
+      attachment = WikiPageAttachment.new(params[:wiki_page_attachment])
+      attachment.save
+      redirect_to url_for( :action => :edit)
+    end
+    
     protected
     
     # Retrieves wiki_page_class for this controller
@@ -149,9 +156,9 @@ module Irwi::Extensions::Controllers::WikiPages
     base.send :extend, Irwi::Extensions::Controllers::WikiPages::ClassMethods
     base.send :include, Irwi::Extensions::Controllers::WikiPages::InstanceMethods
     
-    base.before_filter :setup_current_user # Setup @current_user instance variable before each action    
-    base.before_filter :setup_page, :only => [ :show, :history, :compare, :new, :edit, :update, :destroy ] # Setup @page instance variable before each action
-    
+    base.before_filter :setup_current_user # Setup @current_user instance variable before each action
+    # Setup @page instance variable before each action
+    base.before_filter :setup_page, :only => [ :show, :history, :compare, :new, :edit, :update, :destroy, :add_attachment ]
     base.helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end
   
