@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irwi}
-  s.version = "0.1.11"
+  s.version = "0.1.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Alexey Noskov"]
-  s.date = %q{2009-12-05}
+  s.authors = ["Alexey Noskov", "Ravi Bhim"]
+  s.date = %q{2010-06-08}
   s.description = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
-  s.email = %q{alexey.noskov@gmail.com}
+  s.email = %q{alexey.noskov@gmail.com ravi.bhim@yahoo.com}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "app/views/base_wiki_pages/compare.html.erb",
      "app/views/base_wiki_pages/edit.html.erb",
      "app/views/base_wiki_pages/history.html.erb",
+     "app/views/base_wiki_pages/new.html.erb",
      "app/views/base_wiki_pages/no.html.erb",
      "app/views/base_wiki_pages/not_allowed.html.erb",
      "app/views/base_wiki_pages/show.html.erb",
@@ -39,6 +40,8 @@ Gem::Specification.new do |s|
      "generators/irwi_wiki/templates/migrate/create_wiki_pages.rb",
      "generators/irwi_wiki/templates/models/wiki_page.rb",
      "generators/irwi_wiki/templates/models/wiki_page_version.rb",
+     "generators/irwi_wiki_updates/irwi_wiki_updates_generator.rb",
+     "generators/irwi_wiki_updates/templates/migrate/touched_file.txt",
      "generators/irwi_wiki_views/irwi_wiki_views_generator.rb",
      "irwi.gemspec",
      "lib/irwi.rb",
@@ -79,15 +82,15 @@ Gem::Specification.new do |s|
   s.summary = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application.}
   s.test_files = [
     "spec/comparators/diff_lcs_spec.rb",
-     "spec/support/template_finder_spec.rb",
-     "spec/support/route_mapper_spec.rb",
      "spec/config_spec.rb",
-     "spec/formatters/red_cloth_spec.rb",
      "spec/extensions/controllers/wiki_pages_spec.rb",
+     "spec/formatters/red_cloth_spec.rb",
      "spec/helpers/wiki_pages_helper_spec.rb",
-     "spec/spec_helper.rb",
+     "spec/paginators/none_spec.rb",
      "spec/paginators/will_paginate_spec.rb",
-     "spec/paginators/none_spec.rb"
+     "spec/spec_helper.rb",
+     "spec/support/route_mapper_spec.rb",
+     "spec/support/template_finder_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

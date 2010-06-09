@@ -7,9 +7,9 @@ begin
     gem.name = "irwi"
     gem.summary = %Q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
     gem.description = %Q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
-    gem.email = "alexey.noskov@gmail.com"
+    gem.email = "alexey.noskov@gmail.com ravi.bhim@yahoo.com"
     gem.homepage = "http://github.com/alno/irwi"
-    gem.authors = ["Alexey Noskov"]
+    gem.authors = ["Alexey Noskov", "Ravi Bhim"]
     gem.add_dependency "diff-lcs", ">= 1.1.2"
     gem.add_development_dependency "rspec", ">= 1.2.9"
   end
