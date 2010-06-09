@@ -15,9 +15,9 @@ ActiveRecord::Base.instance_eval do
     include Irwi::Extensions::Models::WikiPageVersion
   end
   
-  def acts_as_wiki_page_attachment(options = {})
+  def acts_as_wiki_page_attachment
     include Irwi::Extensions::Models::WikiPageAttachment
-    self.send(:paperclip_options=, options[:paperclip_options])
+    yield if block_given?
   end
   
 end
