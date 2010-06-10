@@ -24,6 +24,7 @@ module Irwi::Support::RouteMapper
     connect( "#{root}/*path", opts.merge({ :action => 'destroy', :conditions => { :method => :delete } }) ) # Wiki destroy route
     connect( "#{root}/*path", opts.merge({ :action => 'update', :conditions => { :method => :post } }) ) # Save wiki pages route
     connect( "#{root}/*path", opts.merge({ :action => 'show', :conditions => { :method => :get } }) ) # Wiki pages route
+    #connect( "#{root}/*path", opts.merge({ :action => 'show', :conditions => { :method => :get } }) ) # Wiki pages route
   end
   
 end
