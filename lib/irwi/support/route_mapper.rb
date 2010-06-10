@@ -18,7 +18,7 @@ module Irwi::Support::RouteMapper
     
     # Attachments
     connect("#{root}/attach/*path", opts.merge({:action => 'add_attachment', :conditions => {:method => :post}}))
-    connect("#{root}/attach/delete/:attachment_id", opts.merge({:action => 'remove_attachment'}))
+    connect("#{root}/attach/:attachment_id", opts.merge({:action => 'remove_attachment', :conditions => {:method => :delete}}))
     
     
     connect( "#{root}/*path", opts.merge({ :action => 'destroy', :conditions => { :method => :delete } }) ) # Wiki destroy route
