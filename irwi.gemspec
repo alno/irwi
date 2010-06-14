@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Noskov", "Ravi Bhim"]
-  s.date = %q{2010-06-09}
+  s.date = %q{2010-06-14}
   s.description = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application. }
   s.email = %q{alexey.noskov@gmail.com ravi.bhim@yahoo.com}
   s.extra_rdoc_files = [
@@ -84,20 +84,20 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/alno/irwi}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Irwi is Ruby on Rails plugin which adds wiki functionality to your application.}
   s.test_files = [
-    "spec/comparators/diff_lcs_spec.rb",
-     "spec/config_spec.rb",
-     "spec/extensions/controllers/wiki_pages_spec.rb",
-     "spec/formatters/red_cloth_spec.rb",
-     "spec/helpers/wiki_page_attachments_helper_spec.rb",
-     "spec/helpers/wiki_pages_helper_spec.rb",
-     "spec/paginators/none_spec.rb",
-     "spec/paginators/will_paginate_spec.rb",
+    "spec/support/route_mapper_spec.rb",
+     "spec/support/template_finder_spec.rb",
      "spec/spec_helper.rb",
-     "spec/support/route_mapper_spec.rb",
-     "spec/support/template_finder_spec.rb"
+     "spec/comparators/diff_lcs_spec.rb",
+     "spec/extensions/controllers/wiki_pages_spec.rb",
+     "spec/config_spec.rb",
+     "spec/paginators/will_paginate_spec.rb",
+     "spec/paginators/none_spec.rb",
+     "spec/helpers/wiki_pages_helper_spec.rb",
+     "spec/helpers/wiki_page_attachments_helper_spec.rb",
+     "spec/formatters/red_cloth_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
