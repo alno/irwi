@@ -9,7 +9,7 @@ class Irwi::Comparators::DiffLcs < Irwi::Comparators::Base
   end
   
   def build_changes( old_text, new_text )
-    diffs = Diff::LCS.sdiff( old_text || '', new_text || '' ) # Building symmetric diff sequence    
+    diffs = Diff::LCS.sdiff( (old_text || '').mb_chars, (new_text || '').mb_chars ) # Building symmetric diff sequence    
     changes = [] # Array for our result changes 
     
     diffs.each do |change|
