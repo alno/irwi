@@ -80,4 +80,12 @@ If you have Rails prior to 2.3 when you should also call:
   
 To generate default wiki views.
 
+== Contributors
+
+* Alexey Noskov (http://github.com/alno)
+* Ravi Bhim (http://github.com/ravibhim)
+* http://github.com/valodzka
+
+Feel free to add yourself when you add new features.
+
 Copyright (c) 2009 Alexey Noskov, released under the MIT license
