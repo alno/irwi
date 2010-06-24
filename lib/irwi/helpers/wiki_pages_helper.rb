@@ -55,8 +55,8 @@ module Irwi::Helpers::WikiPagesHelper
                \]\]
                (\w+)?/xu do |m|
       text = "#$2#$3"
-      link = $1 || $2
-      "<a href=\"#{wiki_link link}\">#{text}</a>"
+      link, anchor = if $1 then $1.split('#', 2) else $2 end
+      "<a href=\"#{wiki_link link}#{ '#' + anchor if anchor}\">#{text}</a>"
     end
   end
   

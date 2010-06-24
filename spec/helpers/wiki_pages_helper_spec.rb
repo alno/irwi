@@ -116,6 +116,12 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.wiki_linkify( '[[Some other page|Go other page]] - link' ).should == '<a href="url">Go other page</a> - link'
       @m.wiki_linkify( '[[Some other page]]s are there' ).should == '<a href="url">Some other pages</a> are there'
     end
+
+    specify "should linkify with anchors" do
+      @m.should_receive(:wiki_link).once.with('Some other page').and_return('url')
+      
+      @m.wiki_linkify( 'And [[Some other page#other|other page]]' ).should == 'And <a href="url#other">other page</a>'
+    end
     
     specify "should generate link for non-existent page" do
       page_class = mock "WikiPageClass"
