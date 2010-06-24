@@ -92,7 +92,7 @@ To generate default wiki views.
 
 * Alexey Noskov (http://github.com/alno)
 * Ravi Bhim (http://github.com/ravibhim)
-* http://github.com/valodzka
+* Pavel Valodzka (http://github.com/valodzka)
 
 Feel free to add yourself when you add new features.
 
