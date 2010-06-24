@@ -15,10 +15,6 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
     describe :wiki_show_attachment do
       before do
         class WikiPageAttachment; end
-        module ActiveRecord
-          class RecordNotFound < StandardError
-          end
-        end
       end
 
       it 'replaces Attachment_1_thumb with its corresponding image tag' do
