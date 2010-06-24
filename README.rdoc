@@ -70,6 +70,14 @@ If you want (and it's good idea) to specify which users can see or edit certain 
 * <tt>history_allowed?</tt> - should return <tt>true</tt> when it's allowed for user to see history of current page (@page) and compare it's versions.
 * <tt>edit_allowed?</tt> - should return <tt>true</tt> when it's allowed for current user to modify current page (@page).
 
+== Attachments
+
+Irwi allows easy attachment integration in your wiki. There area several simple steps to add attachments to wiki pages:
+* Call <tt>irwi_wiki_attachments</tt> generator. It will create WikiPageAttachment class.
+* Include <tt>config.gem "paperclip"</tt> in your <tt>environment.rb</tt> or, if you prefer another library modify generated code for it.
+* Append to initializer (or create a new one) something like <tt>Irwi.config.page_attachment_class_name = 'WikiPageAttachment'</tt>.
+* Run <tt>rake db:migrate</tt> and start using attachments in your wiki!
+
 == Localization
 
 == Rails prior to 2.3
