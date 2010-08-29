@@ -90,7 +90,11 @@ To generate default wiki views.
 
 == I18n Issues
 
-If you get some weird errors like <tt>missing interpolation argument in "%{count} %B %Y, %H:%M"</tt> please check your Rails and I18n versions, because of incompatibility issue between Rails prior to 2.3.6 and I18n 0.4.x (http://github.com/svenfuchs/i18n/issues/issue/20). If it's your case, consider upgrade of Rails or downgrade of I18n. Big thanks to Tomasz Stachewicz for information ;)
+If you get some weird errors like 
+
+  missing interpolation argument in "%{count} %B %Y, %H:%M"
+
+Please check your Rails and I18n versions, because of incompatibility issue between Rails prior to 2.3.6 and I18n 0.4.x (http://github.com/svenfuchs/i18n/issues/issue/20). If it's your case, consider upgrade of Rails or downgrade of I18n. Big thanks to Tomasz Stachewicz for information ;)
 
 == Contributors
 
