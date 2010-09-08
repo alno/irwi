@@ -39,7 +39,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
   
   def wiki_diff( old_text, new_text )
-    Irwi.config.comparator.render_changes( old_text, new_text )
+    Irwi.config.comparator.render_changes(h(old_text), h(new_text))
   end
   
   def wiki_user( user )
