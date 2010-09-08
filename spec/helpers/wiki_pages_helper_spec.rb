@@ -148,6 +148,11 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.wiki_link( 'Page title' ).should == 'url'
     end
     
+    specify "not be vulnerable to XSS when showing a diff" do
+      xss = '<script>alert("exploit")</script>'  
+      @m.wiki_diff('foo bar', "foo #{xss} bar").should_not include(xss)
+    end
+    
   end
   
 end
