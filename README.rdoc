@@ -101,6 +101,7 @@ Please check your Rails and I18n versions, because of incompatibility issue betw
 * Alexey Noskov (http://github.com/alno)
 * Ravi Bhim (http://github.com/ravibhim)
 * Pavel Valodzka (http://github.com/valodzka)
+* Xavier Defrang (http://github.com/xavier)
 
 Feel free to add yourself when you add new features.
 
