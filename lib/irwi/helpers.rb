@@ -1,5 +1,6 @@
 module Irwi::Helpers
-
+  autoload :WikiPagesHelper, 'irwi/helpers/wiki_pages_helper'
+  autoload :WikiPageAttachmentsHelper, 'irwi/helpers/wiki_page_attachments_helper'
 end
 
 Module.class_eval do

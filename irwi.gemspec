@@ -1,4 +1,4 @@
-require File.expand_path("../lib/rayo/version", __FILE__)
+require File.expand_path("../lib/irwi/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "irwi"
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", ">=2.0"
 
   # Gem files
-  s.files = Dir["lib/**/*.rb", "bin/*", "MIT-LICENSE", "README.rdoc"]
+  s.files = Dir["app/views/**/*.erb", "lib/**/*.rb", "bin/*", "MIT-LICENSE", "README.rdoc"]
   s.extra_rdoc_files = [ "README.rdoc", "MIT-LICENSE"]
   s.require_path = 'lib'
 

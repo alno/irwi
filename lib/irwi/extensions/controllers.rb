@@ -1,6 +1,8 @@
 require 'action_controller'
 
 module Irwi::Extensions::Controllers
+  autoload :WikiPages, 'irwi/extensions/controllers/wiki_pages'
+  autoload :WikiPageAttachments, 'irwi/extensions/controllers/wiki_page_attachments'
 end
 
 ActionController::Base.instance_eval do

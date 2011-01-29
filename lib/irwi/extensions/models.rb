@@ -1,6 +1,9 @@
 require 'active_record'
 
 module Irwi::Extensions::Models
+  autoload :WikiPage, 'irwi/extensions/models/wiki_page'
+  autoload :WikiPageVersion, 'irwi/extensions/models/wiki_page_version'
+  autoload :WikiPageAttachment, 'irwi/extensions/models/wiki_page_attachment'
 end
 
 ActiveRecord::Base.instance_eval do
