@@ -8,13 +8,13 @@ Setup gemcutter as gem source:
 
   sudo gem install gemcutter
   gem tumble
-  
+
 And install irwi gem (recommended):
 
   sudo gem install irwi
-  
+
 And add to your environment.rb:
- 
+
   config.gem "irwi", :source => "http://gemcutter.org"
 
 Or in your application directory call:
@@ -58,15 +58,15 @@ Following helpers are defined by default and you may replace them with you own:
 Configuration options are acessed via <tt>Irwi.config</tt> object. Currently supported options:
 * <tt>user_class_name</tt> - Name of user model class. By default - 'User'
 * <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method <tt>format</tt>, which gets a string and returns it formatted. By default instance of <tt>Irwi::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Irwi::Formatters::BlueCloth</tt> (requires BlueCloth gem). Option accepts formatter instance, not class, so correct usage is:
-  
+
   Irwi.config.formatter = Irwi::Formatters::BlueCloth.new
-  
+
 * <tt>comparator</tt> - Comparator instance, which builds and renders a set of changes between to texts. By default instance of <tt>Irwi::Comparators::DiffLcs</tt> is used (requires diff-lcs gem).
 
 == Access control
 
 If you want (and it's good idea) to specify which users can see or edit certain pages you should simply override following methods in your controller:
-* <tt>show_allowed?</tt> - should return <tt>true</tt> when it's allowed for current user to see current page (@page). 
+* <tt>show_allowed?</tt> - should return <tt>true</tt> when it's allowed for current user to see current page (@page).
 * <tt>history_allowed?</tt> - should return <tt>true</tt> when it's allowed for user to see history of current page (@page) and compare it's versions.
 * <tt>edit_allowed?</tt> - should return <tt>true</tt> when it's allowed for current user to modify current page (@page).
 
@@ -83,14 +83,14 @@ Irwi allows easy attachment integration in your wiki. There area several simple 
 == Rails prior to 2.3
 
 If you have Rails prior to 2.3 when you should also call:
-  
+
   script/generate irwi_wiki_views
-  
+
 To generate default wiki views.
 
 == I18n Issues
 
-If you get some weird errors like 
+If you get some weird errors like
 
   missing interpolation argument in "%{count} %B %Y, %H:%M"
 

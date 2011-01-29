@@ -1,3 +1,5 @@
+require 'active_record/errors'
+
 module Irwi::Helpers::WikiPageAttachmentsHelper
 
   def wiki_add_page_attachment_path(page)
@@ -19,5 +21,5 @@ module Irwi::Helpers::WikiPageAttachmentsHelper
       end
     end
   end
-  
+
 end

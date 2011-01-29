@@ -1,17 +1,17 @@
 require "spec/spec_helper"
 
 describe Irwi::Helpers::WikiPageAttachmentsHelper do
-  
+
   it { should_not be_nil }
-  
+
   context "included in class" do
-    
+
     before(:each) do
       Irwi.config.page_attachment_class_name = 'WikiPageAttachment'
       @m = Object.new
       @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end
-    
+
     describe :wiki_show_attachment do
       before do
         class WikiPageAttachment; end
@@ -39,7 +39,7 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
 
         @m.wiki_show_attachments('Foo Attachment_10_thumb Bar').should == 'Foo  Bar'
       end
-    end  
-    
+    end
+
   end
 end
