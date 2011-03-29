@@ -10,6 +10,7 @@
 
 <% wiki_page_form do |f| %>
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
+  <%= hidden_field_tag :path, @page.path %>
   
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
   <p><%=wt 'Content:' %><br /><%= f.text_area :content %></p>
