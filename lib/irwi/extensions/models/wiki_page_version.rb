@@ -31,7 +31,7 @@ module Irwi::Extensions::Models::WikiPageVersion
 
     base.before_update :raise_on_update
 
-    base.named_scope :between, lambda { | first, last |
+    base.scope :between, lambda { | first, last |
       first = first.to_i
       last = last.to_i
       first, last = last, first if last < first # Reordering if neeeded

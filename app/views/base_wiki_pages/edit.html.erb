@@ -8,7 +8,7 @@
 </div>
 <% end %>
 
-<% wiki_page_form do |f| %>
+<%= wiki_page_form do |f| %>
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
   <%= hidden_field_tag :path, @page.path %>
   
