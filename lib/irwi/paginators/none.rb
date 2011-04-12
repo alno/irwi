@@ -10,6 +10,7 @@ class Irwi::Paginators::None
 
   def paginated_section( view, collection, &block )
     yield
+    return
   end
 
 end
