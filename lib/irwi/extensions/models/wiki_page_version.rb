@@ -31,21 +31,12 @@ module Irwi::Extensions::Models::WikiPageVersion
 
     base.before_update :raise_on_update
 
-    if Rails.version =~ /^2/
-      base.named_scope :between, lambda { | first, last |
-        first = first.to_i
-        last = last.to_i
-        first, last = last, first if last < first # Reordering if neeeded
-        { :conditions => [ 'number >= ? AND number <= ?', first, last ] }
-      }
-    else
-      base.scope :between, lambda { | first, last |
-        first = first.to_i
-        last = last.to_i
-        first, last = last, first if last < first # Reordering if neeeded
-        { :conditions => [ 'number >= ? AND number <= ?', first, last ] }
-      }
-    end
+    base.scope :between, lambda { | first, last |
+      first = first.to_i
+      last = last.to_i
+      first, last = last, first if last < first # Reordering if neeeded
+      { :conditions => [ 'number >= ? AND number <= ?', first, last ] }
+    }
   end
 
 end
