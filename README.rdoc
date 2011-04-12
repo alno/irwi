@@ -1,6 +1,6 @@
 = Irwi
 
-Irwi is Ruby on Rails plugin which adds wiki functionality to your application.
+Irwi is a Ruby on Rails 3 plugin which adds wiki functionality to your application.
 
 == Installation
 
@@ -77,24 +77,6 @@ Irwi allows easy attachment integration in your wiki. There area several simple 
 * Include <tt>config.gem "paperclip"</tt> in your <tt>environment.rb</tt> or, if you prefer another library modify generated code for it.
 * Append to initializer (or create a new one) something like <tt>Irwi.config.page_attachment_class_name = 'WikiPageAttachment'</tt>.
 * Run <tt>rake db:migrate</tt> and start using attachments in your wiki!
-
-== Localization
-
-== Rails prior to 2.3
-
-If you have Rails prior to 2.3 when you should also call:
-
-  script/generate irwi_wiki_views
-
-To generate default wiki views.
-
-== I18n Issues
-
-If you get some weird errors like
-
-  missing interpolation argument in "%{count} %B %Y, %H:%M"
-
-Please check your Rails and I18n versions, because of incompatibility issue between Rails prior to 2.3.6 and I18n 0.4.x (http://github.com/svenfuchs/i18n/issues/issue/20). If it's your case, consider upgrade of Rails or downgrade of I18n. Big thanks to Tomasz Stachewicz for information ;)
 
 == Contributors
 
