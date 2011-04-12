@@ -4,9 +4,7 @@
 
 <%=wt 'Changes list:' %>
 
-<% wiki_paginate @versions do%>
-  <%= wiki_page_history @page, @versions %>
-<% end %>
+<%= wiki_page_history @page, @versions %>
 
 <%=wt 'Changes in content:' %>
 
