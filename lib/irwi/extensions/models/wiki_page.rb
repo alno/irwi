@@ -45,6 +45,7 @@ module Irwi::Extensions::Models::WikiPage
       base.has_many :attachments, :class_name => Irwi.config.page_attachment_class_name, :foreign_key => Irwi.config.page_version_foreign_key
     end
 
+    base.before_save {|record| record.content = '' if record.content.nil? }
     base.after_save :create_new_version
   end
 
