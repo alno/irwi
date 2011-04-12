@@ -13,7 +13,15 @@
   <%= hidden_field_tag :path, @page.path %>
   
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
-  <p><%=wt 'Content:' %><br /><%= f.text_area :content %></p>
+  <%# If our 'content' contains newlines, Erubis will indent them (to make the
+      produced HTML look nicer). However those indenting spaces *will* appear
+      in the textarea in the user's browser and will get POSTed by the browser
+      when submitting the form and thus would get written to the wiki content
+      into the database.  The gsub's below replace the linebreaks ('\r\n')
+      with UTF8 linefeeds (same way HAML solves this problem), which are
+      ignored by Erubis and should be correctly displayed as linebreaks by
+      modern browsers. %>
+  <p><%=wt 'Content:' %><br /><%= f.text_area(:content).gsub("\n", '&#x000A;').gsub("\r",'') %></p>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
   
   <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
