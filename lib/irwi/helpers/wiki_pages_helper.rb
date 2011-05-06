@@ -68,7 +68,7 @@ module Irwi::Helpers::WikiPagesHelper
     if page = Irwi.config.page_class.find_by_title( title )
       url_for( :controller => Irwi.config.controller_name, :action => :show, :path => page.path )
     else
-      url_for( :controller => Irwi.config.controller_name, :action => :show, :path => title )
+      url_for( :controller => Irwi.config.controller_name, :action => :show, :path => CGI::escape(title) )
     end
   end
 
