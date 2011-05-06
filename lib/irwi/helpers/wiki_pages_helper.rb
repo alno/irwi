@@ -8,7 +8,7 @@ module Irwi::Helpers::WikiPagesHelper
     form_for( @page, { :as => :page, :url => url_for( :action => :update ), :html=> { :class => 'wiki_form', :method => :post } }.merge!( config ), &block )
   end
 
-  def wiki_page_new_path( page = params[:path] )
+  def wiki_page_new_path( page = CGI::escape(params[:path]) )
     wiki_page_path( page, :new )
   end
 
