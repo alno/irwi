@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   # Info
-  s.has_rdoc = true
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Rayo CMS", "--main", "README.rdoc"]
 
 end
