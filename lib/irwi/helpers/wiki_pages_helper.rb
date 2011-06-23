@@ -43,7 +43,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_user( user )
-    return '&lt;Unknown&gt;'.html_safe unless user
+    return ("&lt;" + wt("Unknown") + "&gt;").html_safe unless user
 
     "User##{user.id}"
   end
