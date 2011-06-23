@@ -87,7 +87,7 @@ module Irwi::Helpers::WikiPagesHelper
   #
   def wt(msg, *args)
     config = args.extract_options!
-    config[:default] = msg
+    config[:default] = msg if config[:default].blank?
     config[:scope] = 'wiki'
     I18n.t(msg, config)
   end
