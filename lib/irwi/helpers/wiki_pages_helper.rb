@@ -9,7 +9,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_page_new_path
-    if params && params.is_a?(Hash)
+    if params && params[:path].present?
       page = CGI::escape(params[:path])
     end
     wiki_page_path( page, :new )
