@@ -4,9 +4,6 @@ describe Irwi::Helpers::WikiPagesHelper do
 
   it { should_not be_nil }
 
-  def params
-  end
-
   context "included in class" do
 
     before(:each) do
@@ -23,17 +20,17 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { @m.should respond_to(:wiki_page_path) }
 
     specify "should form url_for by wiki_page_new_path" do
-      pending
-      @m.should_receive(:url_for).with(:action => :new, :path => "newpath")
+      @m.stub(:params).and_return({:path => 'newpath'})
+      @m.should_receive(:url_for).with(:action => :new, :path => 'newpath').and_return('newpath')
 
       @m.wiki_page_new_path.should == 'newpath'
     end
     
     specify "should form url_for by wiki_page_new_path if path left blank" do
-      pending
-      @m.should_receive(:url_for).with(:action => :new, :path => "")
+      @m.stub(:params).and_return(nil)
+      @m.should_receive(:url_for).with(:action => :new).and_return('blank_path')
 
-      @m.wiki_page_new_path.should == ''
+      @m.wiki_page_new_path.should == 'blank_path'
     end
 
     specify "should form url_for by wiki_page_edit_path" do
