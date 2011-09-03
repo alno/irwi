@@ -48,7 +48,11 @@ module Irwi::Helpers::WikiPagesHelper
   def wiki_user( user )
     return ("&lt;" + wt("Unknown") + "&gt;").html_safe unless user
 
-    "User##{user.id}"
+    if user.respond_to?(:name)
+      user.name
+    else
+      "User##{user.id}"
+    end
   end
 
   def wiki_linkify( str )
