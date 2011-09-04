@@ -30,6 +30,7 @@ module Irwi::Helpers::WikiPagesHelper
   def wiki_page_path( page = nil, action = :show )
     if page
       page = page.path if page.respond_to? :path
+      page = nil if page.empty?
 
       url_for( :action => action, :path => page )
     else
