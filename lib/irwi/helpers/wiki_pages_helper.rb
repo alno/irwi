@@ -8,7 +8,10 @@ module Irwi::Helpers::WikiPagesHelper
     form_for( @page, { :as => :page, :url => url_for( :action => :update ), :html=> { :class => 'wiki_form', :method => :post } }.merge!( config ), &block )
   end
 
-  def wiki_page_new_path( page = CGI::escape(params[:path]) )
+  def wiki_page_new_path
+    if params && params[:path].present?
+      page = CGI::escape(params[:path])
+    end
     wiki_page_path( page, :new )
   end
 
@@ -43,9 +46,13 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_user( user )
-    return '&lt;Unknown&gt;'.html_safe unless user
+    return ("&lt;" + wt("Unknown") + "&gt;").html_safe unless user
 
-    "User##{user.id}"
+    if user.respond_to?(:name)
+      user.name
+    else
+      "User##{user.id}"
+    end
   end
 
   def wiki_linkify( str )
@@ -87,7 +94,7 @@ module Irwi::Helpers::WikiPagesHelper
   #
   def wt(msg, *args)
     config = args.extract_options!
-    config[:default] = msg
+    config[:default] = msg if config[:default].blank?
     config[:scope] = 'wiki'
     I18n.t(msg, config)
   end

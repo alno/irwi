@@ -5,7 +5,7 @@ class IrwiWikiViewsGenerator < Rails::Generators::Base
   def views
     empty_directory 'app/views/base_wiki_pages'
 
-    Dir.foreach source_root do |file| # Searching for files in app/views
+    Dir.foreach File.expand_path("../../../../app/views/base_wiki_pages", __FILE__) do |file| # Searching for files in app/views
       copy_file( file, 'app/views/base_wiki_pages/' + file ) if file != '.' && file != '..'
     end
   end

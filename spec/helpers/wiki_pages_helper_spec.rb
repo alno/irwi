@@ -1,4 +1,4 @@
-require "spec/spec_helper"
+require "spec_helper"
 
 describe Irwi::Helpers::WikiPagesHelper do
 
@@ -12,11 +12,26 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
 
     it { @m.should respond_to(:wiki_page_form) }
-
+    
+    it { @m.should respond_to(:wiki_page_new_path) }
     it { @m.should respond_to(:wiki_page_edit_path) }
     it { @m.should respond_to(:wiki_page_history_path) }
     it { @m.should respond_to(:wiki_page_compare_path) }
     it { @m.should respond_to(:wiki_page_path) }
+
+    specify "should form url_for by wiki_page_new_path" do
+      @m.stub(:params).and_return({:path => 'newpath'})
+      @m.should_receive(:url_for).with(:action => :new, :path => 'newpath').and_return('newpath')
+
+      @m.wiki_page_new_path.should == 'newpath'
+    end
+    
+    specify "should form url_for by wiki_page_new_path if path left blank" do
+      @m.stub(:params).and_return(nil)
+      @m.should_receive(:url_for).with(:action => :new).and_return('blank_path')
+
+      @m.wiki_page_new_path.should == 'blank_path'
+    end
 
     specify "should form url_for by wiki_page_edit_path" do
       @m.should_receive(:url_for).with(:action => :edit).and_return('epath')
@@ -125,13 +140,13 @@ describe Irwi::Helpers::WikiPagesHelper do
 
     specify "should generate link for non-existent page" do
       page_class = mock "WikiPageClass"
-      page_class.should_receive(:find_by_title).with('Page title').and_return(nil)
+      page_class.should_receive(:find_by_title).with('Page_title').and_return(nil)
 
       Irwi.config.should_receive(:page_class).and_return(page_class)
 
-      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page title' ).and_return('url')
+      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page_title' ).and_return('url')
 
-      @m.wiki_link( 'Page title' ).should == 'url'
+      @m.wiki_link( 'Page_title' ).should == 'url'
     end
 
     specify "should generate link for existent page" do

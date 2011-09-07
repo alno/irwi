@@ -1,1 +1,1 @@
-<%=(wt 'There is no such page. Do you want to <a href="%{new_url}">create it</a>?', :new_url => wiki_page_new_path ).html_safe %>  
+<%=(wt 'There is no such page', :default => 'There is no such page. Do you want to <a href="%{new_url}">create it</a>?', :new_url => wiki_page_new_path ).html_safe %>  
