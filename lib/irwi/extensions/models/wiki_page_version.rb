@@ -26,6 +26,8 @@ module Irwi::Extensions::Models::WikiPageVersion
     base.send :extend, Irwi::Extensions::Models::WikiPageVersion::ClassMethods
     base.send :include, Irwi::Extensions::Models::WikiPageVersion::InstanceMethods
 
+    base.attr_protected :id
+
     base.belongs_to :page, :class_name => Irwi.config.page_class_name
     base.belongs_to :updator, :class_name => Irwi.config.user_class_name
 

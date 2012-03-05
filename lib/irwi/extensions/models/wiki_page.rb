@@ -34,6 +34,8 @@ module Irwi::Extensions::Models::WikiPage
     base.send :extend, Irwi::Extensions::Models::WikiPage::ClassMethods
     base.send :include, Irwi::Extensions::Models::WikiPage::InstanceMethods
 
+    base.attr_protected :id
+
     base.send :attr_accessor, :comment, :previous_version_number
 
     base.belongs_to :creator, :class_name => Irwi.config.user_class_name
