@@ -86,6 +86,7 @@ Irwi allows easy attachment integration in your wiki. There area several simple 
 * Xavier Defrang (http://github.com/xavier)
 * Tomáš Pospíšek (http://github.com/tpo)
 * Evan Arnold (http://github.com/earnold)
+* https://github.com/alno/irwi/contributors
 
 Feel free to add yourself when you add new features.
 
