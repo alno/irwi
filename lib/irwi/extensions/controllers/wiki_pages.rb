@@ -106,7 +106,7 @@ module Irwi::Extensions::Controllers::WikiPages
 
     # Renders user-specified or default template
     def render_template( template )
-      render "#{template_dir template}/#{template}"
+      render "#{template_dir template}/#{template}", :status => (case template when 'no' then 404 when 'not_allowed' then 403 else 200 end)
     end
 
     # Initialize @current_user instance variable
