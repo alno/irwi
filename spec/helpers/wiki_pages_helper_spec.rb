@@ -8,11 +8,12 @@ describe Irwi::Helpers::WikiPagesHelper do
 
     before(:each) do
       @m = Object.new
+      @m.send :extend, ERB::Util
       @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end
 
     it { @m.should respond_to(:wiki_page_form) }
-    
+
     it { @m.should respond_to(:wiki_page_new_path) }
     it { @m.should respond_to(:wiki_page_edit_path) }
     it { @m.should respond_to(:wiki_page_history_path) }
@@ -25,7 +26,7 @@ describe Irwi::Helpers::WikiPagesHelper do
 
       @m.wiki_page_new_path.should == 'newpath'
     end
-    
+
     specify "should form url_for by wiki_page_new_path if path left blank" do
       @m.stub(:params).and_return(nil)
       @m.should_receive(:url_for).with(:action => :new).and_return('blank_path')

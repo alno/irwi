@@ -6,7 +6,6 @@ describe Irwi::Extensions::Models::WikiPage do
 
   class AbstractPage < ActiveRecord::Base
 
-
     def self.columns
       c = ActiveRecord::ConnectionAdapters::Column
 
@@ -25,6 +24,9 @@ describe Irwi::Extensions::Models::WikiPage do
     Irwi::config.page_attachment_class_name = nil
 
     @cls = Class.new AbstractPage do
+
+      self.table_name  = 'pages'
+
       include Irwi::Extensions::Models::WikiPage
     end
   end
@@ -60,6 +62,9 @@ describe Irwi::Extensions::Models::WikiPage do
       Irwi::config.page_attachment_class_name = 'WikiPageAttachment'
 
       @cls = Class.new AbstractPage do
+
+        self.table_name  = 'pages'
+
         include Irwi::Extensions::Models::WikiPage
       end
     end
