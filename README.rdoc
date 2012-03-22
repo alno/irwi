@@ -2,6 +2,10 @@
 
 Irwi is a Ruby on Rails 3 plugin which adds wiki functionality to your application.
 
+== Status
+
+{<img src="https://secure.travis-ci.org/alno/irwi.png?branch=master" alt="Build Status" />}[http://travis-ci.org/alno/irwi]
+
 == Installation
 
 Setup gemcutter as gem source:
