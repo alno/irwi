@@ -24,3 +24,5 @@ doc
 .yardoc
 .rspec
 *.gem
+.bundle
+vendor/bundle

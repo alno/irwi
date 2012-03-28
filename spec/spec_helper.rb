@@ -23,6 +23,11 @@ ActiveRecord::Schema.define do
     t.column "path", :string, :limit => 255, :null => false
     t.column "content", :text , :null => false
   end
+
+  create_table "page_attachments", :force => true do |t|
+    t.column "page_id", :integer, :null => false
+    t.column "wiki_page_attachment", :string, :limit => 255, :null => false
+  end
 end
 
 RSpec.configure do |config|

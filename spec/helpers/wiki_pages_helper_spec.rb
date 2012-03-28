@@ -1,5 +1,8 @@
 require "spec_helper"
 
+class PageAttachment < ActiveRecord::Base
+end
+
 describe Irwi::Helpers::WikiPagesHelper do
 
   it { should_not be_nil }
@@ -7,7 +10,7 @@ describe Irwi::Helpers::WikiPagesHelper do
   context "included in class" do
 
     before(:each) do
-      @m = Object.new
+      @m = ActionView::Base.new
       @m.send :extend, ERB::Util
       @m.send :extend, Irwi::Helpers::WikiPagesHelper
     end
@@ -167,6 +170,27 @@ describe Irwi::Helpers::WikiPagesHelper do
     specify "not be vulnerable to XSS when showing a diff" do
       xss = '<script>alert("exploit")</script>'
       @m.wiki_diff('foo bar', "foo #{xss} bar").should_not include(xss)
+    end
+
+    it "should render wiki_page_form" do
+      @m.stub(:url_for).and_return("some_url")
+      @m.stub(:protect_against_forgery?).and_return(false)
+
+      code = @m.wiki_page_form do |f|
+        f.text_field :title
+      end
+
+      code.should include('<form')
+    end
+
+    it "should render wiki_page_attachments" do
+      Irwi::config.page_attachment_class_name = 'PageAttachment'
+
+      @m.stub(:url_for).and_return("some_url")
+      @m.stub(:protect_against_forgery?).and_return(false)
+
+      code = @m.wiki_page_attachments(stub(:id => 11, :attachments => []))
+      code.should include('<form')
     end
 
   end
