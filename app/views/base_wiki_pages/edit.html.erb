@@ -11,7 +11,7 @@
 <%= wiki_page_form do |f| %>
   <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
   <%= hidden_field_tag :path, @page.path %>
-  
+
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
   <%# If our 'content' contains newlines, Erubis will indent them (to make the
       produced HTML look nicer). However those indenting spaces *will* appear
@@ -21,9 +21,9 @@
       with UTF8 linefeeds (same way HAML solves this problem), which are
       ignored by Erubis and should be correctly displayed as linebreaks by
       modern browsers. %>
-  <p><%=wt 'Content:' %><br /><%= f.text_area(:content).gsub("\n", '&#x000A;').gsub("\r",'') %></p>
+  <p><%=wt 'Content:' %><br /><%= f.text_area(:content).gsub("\n", '&#x000A;').gsub("\r",'').html_safe %></p>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
-  
+
   <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
   <input type="submit" name="preview" value="<%=wt 'Preview' %>" class="submit" />
   <input type="submit" name="cancel" value="<%=wt 'Cancel' %>" class="submit" />
