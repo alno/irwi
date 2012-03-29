@@ -2,7 +2,7 @@ module Irwi::Extensions::Controllers::WikiPageAttachments
 
   def add_attachment
     attachment = page_attachment_class.new(params[:wiki_page_attachment])
-    attachment.save
+    attachment.save!
     redirect_to url_for(:path => attachment.page.path, :action => :edit)
   end
 
