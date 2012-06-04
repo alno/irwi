@@ -21,7 +21,7 @@
       with UTF8 linefeeds (same way HAML solves this problem), which are
       ignored by Erubis and should be correctly displayed as linebreaks by
       modern browsers. %>
-  <p><%=wt 'Content:' %><br /><%= f.text_area(:content).gsub("\n", '&#x000A;').gsub("\r",'').html_safe %></p>
+  <p><%=wt 'Content:' %><br /><%= f.text_area(:content, :value => f.object.content.gsub("\n", '&#x000A;').gsub("\r",'')).html_safe %></p>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
 
   <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
