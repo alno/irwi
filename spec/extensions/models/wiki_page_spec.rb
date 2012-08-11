@@ -28,31 +28,32 @@ describe Irwi::Extensions::Models::WikiPage do
       self.table_name  = 'pages'
 
       include Irwi::Extensions::Models::WikiPage
+
     end
   end
 
   context "class" do
 
-    it { @cls.should respond_to(:find) }
-    it { @cls.should respond_to(:find_by_path_or_new) }
+    subject { @cls }
+
+    it { should respond_to(:find) }
+    it { should respond_to(:find_by_path_or_new) }
 
   end
 
   context "instance" do
 
-    before :each do
-      @obj = @cls.new
-    end
+    subject { @cls.new }
 
-    it { @obj.should respond_to(:save) }
-    it { @obj.should respond_to(:destroy) }
+    it { should respond_to(:save) }
+    it { should respond_to(:destroy) }
 
-    it { @obj.should respond_to(:comment) }
-    it { @obj.should respond_to(:previous_version_number) }
+    it { should respond_to(:comment) }
+    it { should respond_to(:previous_version_number) }
 
-    it { @obj.should respond_to(:versions) }
+    it { should respond_to(:versions) }
 
-    it { @obj.should_not respond_to(:attachments) }
+    it { should_not respond_to(:attachments) }
 
   end
 
