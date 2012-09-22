@@ -10,7 +10,7 @@ Irwi is a Ruby on Rails 3 plugin which adds wiki functionality to your applicati
 
 Add to your Gemfile:
 
-  gem 'irwi'
+  gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 
 Then in your application directory call:
 
@@ -46,6 +46,10 @@ Following helpers are defined by default and you may replace them with you own:
 
 Configuration options are acessed via <tt>Irwi.config</tt> object. Currently supported options:
 * <tt>user_class_name</tt> - Name of user model class. By default - 'User'
+
+ Define a method named 'current_user' method on WikiPagesController that returns the object for the current user 
+
+
 * <tt>formatter</tt> - Formatter instance, which process wiki content before output. It should have method <tt>format</tt>, which gets a string and returns it formatted. By default instance of <tt>Irwi::Formatters::RedCloth</tt> is used (requires RedCloth gem). Other built-in formatter is <tt>Irwi::Formatters::BlueCloth</tt> (requires BlueCloth gem). Option accepts formatter instance, not class, so correct usage is:
 
   Irwi.config.formatter = Irwi::Formatters::BlueCloth.new
