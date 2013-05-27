@@ -39,7 +39,7 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_content( text )
-    sanitize( auto_link( Irwi.config.formatter.format( wiki_linkify( wiki_show_attachments(text) ) ) ) )
+    Irwi.config.formatter.format( wiki_linkify( wiki_show_attachments(text) ) ).html_safe
   end
 
   def wiki_diff( old_text, new_text )
