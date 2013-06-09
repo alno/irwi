@@ -4,6 +4,8 @@ module Irwi::Extensions::Models::WikiPageAttachment
 
   def self.included( base )
     base.belongs_to :page, :class_name => Irwi.config.page_class_name
+
+    base.attr_accessible :page_id, :wiki_page_attachment
   end
 
 end
