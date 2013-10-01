@@ -1,5 +1,5 @@
 <% if with_form %>
-  <form action="<%=wiki_page_compare_path%>" method="get">
+  <form action="<%=wiki_page_compare_path local_assigns[:page]%>" method="get">
 <% end %>
 
 <table class="wiki_history">
