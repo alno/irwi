@@ -1,9 +1,7 @@
-require 'rails/generators/active_record/migration'
-
-class IrwiWikiGenerator < Rails::Generators::Base
-
-  include Rails::Generators::Migration
-  extend ActiveRecord::Generators::Migration
+require 'rails/generators/active_record'
+require 'rails/generators'
+require 'rails/generators/migration'
+class IrwiWikiGenerator < ActiveRecord::Generators::Base
 
   source_root File.expand_path("../templates", __FILE__)
 
@@ -20,7 +18,7 @@ class IrwiWikiGenerator < Rails::Generators::Base
     copy_file 'models/wiki_page_version.rb', 'app/models/wiki_page_version.rb'
 
     # Migrations
-    migration_template 'migrate/create_wiki_pages.rb', 'db/migrate/create_wiki_pages'
+    migration_template 'migrate/create_wiki_pages.rb', 'db/migrate/create_wiki_pages.rb'
 
     # Routes
     route "wiki_root '/wiki'"
