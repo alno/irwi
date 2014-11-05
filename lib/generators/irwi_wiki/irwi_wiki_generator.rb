@@ -18,7 +18,7 @@ class IrwiWikiGenerator < ActiveRecord::Generators::Base
     copy_file 'models/wiki_page_version.rb', 'app/models/wiki_page_version.rb'
 
     # Migrations
-    migration_template 'migrate/create_wiki_pages.rb', 'db/migrate/create_wiki_pages'
+    migration_template 'migrate/create_wiki_pages.rb', 'db/migrate/create_wiki_pages.rb'
 
     # Routes
     route "wiki_root '/wiki'"
