@@ -1,9 +1,7 @@
-require 'rails/generators/active_record/migration'
-
-class IrwiWikiGenerator < Rails::Generators::Base
-
-  include Rails::Generators::Migration
-  extend ActiveRecord::Generators::Migration
+require 'rails/generators/active_record'
+require 'rails/generators'
+require 'rails/generators/migration'
+class IrwiWikiGenerator < ActiveRecord::Generators::Base
 
   source_root File.expand_path("../templates", __FILE__)
 
