@@ -8,6 +8,7 @@ module Irwi
     autoload :RedCloth, 'irwi/formatters/red_cloth'
     autoload :SimpleHtml, 'irwi/formatters/simple_html'
     autoload :WikiCloth, 'irwi/formatters/wiki_cloth'
+    autoload :RedCarpet, 'irwi/formatters/red_carpet'
   end
 
   module Comparators

@@ -13,6 +13,7 @@
   <%= hidden_field_tag :path, @page.path %>
 
   <p><%=wt 'Title:' %><br /><%= f.text_field :title %></p>
+
   <%# If our 'content' contains newlines, Erubis will indent them (to make the
       produced HTML look nicer). However those indenting spaces *will* appear
       in the textarea in the user's browser and will get POSTed by the browser
@@ -21,9 +22,9 @@
       with UTF8 linefeeds (same way HAML solves this problem), which are
       ignored by Erubis and should be correctly displayed as linebreaks by
       modern browsers. %>
-  <p><%=wt 'Content:' %><br /><%= f.text_area(:content, :value => f.object.content.gsub("\n", '&#x000A;').gsub("\r",'')).html_safe %></p>
+  <p><%=wt "Content: #{link_to('(Textile Markup', 'http://redcloth.org/hobix.com/textile/', target: '_blank')}".html_safe %> allowed)<br /><%= f.text_area(:content) %> </p>
+  <%#<p><%#=wt 'Content:' %><br /><%#= f.text_area(:content, :value => f.object.content.gsub("\n", '&#x000A;').gsub("\r",'')).html_safe %#></p>%>
   <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment %></p>
-
   <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit" />
   <input type="submit" name="preview" value="<%=wt 'Preview' %>" class="submit" />
   <input type="submit" name="cancel" value="<%=wt 'Cancel' %>" class="submit" />

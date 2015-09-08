@@ -2,6 +2,8 @@
 
 <h1><%=wt '%{page_title} - Comparing versions %{old_version} and %{new_version}', :page_title => h( @page.title ), :old_version => @old_version.number, :new_version => @new_version.number %></h1>
 
+<%= link_to "Back to history", history_wiki_page_path(@page.path) %><br />
+
 <%=wt 'Changes list:' %>
 
 <%= wiki_paginate @versions do%>
