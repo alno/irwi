@@ -1,9 +1,8 @@
-require 'rails/generators/active_record/migration'
+require 'rails/generators/active_record'
 
 class IrwiWikiGenerator < Rails::Generators::Base
 
   include Rails::Generators::Migration
-  extend ActiveRecord::Generators::Migration
 
   source_root File.expand_path("../templates", __FILE__)
 
@@ -24,6 +23,10 @@ class IrwiWikiGenerator < Rails::Generators::Base
 
     # Routes
     route "wiki_root '/wiki'"
+  end
+  
+  def self.next_migration_number dirname
+    ActiveRecord::Generators::Base.next_migration_number dirname
   end
 
 end
