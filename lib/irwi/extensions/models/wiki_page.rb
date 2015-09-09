@@ -21,7 +21,7 @@ module Irwi::Extensions::Models::WikiPage
     n = last_version_number
 
     v = versions.build
-    v.attributes = attributes.slice( *v.attribute_names )
+    v.attributes = attributes.slice( *(v.attribute_names - ['id']) )
     v.comment = comment
     v.number = n + 1
     v.save!
