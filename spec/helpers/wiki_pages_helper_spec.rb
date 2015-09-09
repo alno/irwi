@@ -88,7 +88,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { @m.should respond_to(:wt) }
 
     specify "should format and sanitize content with current formatter and #sanitize" do
-      Irwi.config.formatter = mock 'Formatter'
+      Irwi.config.formatter = double 'Formatter'
       Irwi.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
 
       @m.should_receive(:auto_link).with('Formatted content').and_return('Formatted content with links')
@@ -119,7 +119,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
 
     specify "should render wiki_page_history partial (with default versions)" do
-      page = mock 'MyPage'
+      page = double 'MyPage'
       page.should_receive(:versions).and_return([1])
 
       @m.should_receive(:template_dir).and_return('partial_dir')
@@ -143,7 +143,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
 
     specify "should generate link for non-existent page" do
-      page_class = mock "WikiPageClass"
+      page_class = double "WikiPageClass"
       page_class.should_receive(:find_by_title).with('Page_title').and_return(nil)
 
       Irwi.config.should_receive(:page_class).and_return(page_class)
@@ -154,10 +154,10 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
 
     specify "should generate link for existent page" do
-      page = mock "WikiPage"
+      page = double "WikiPage"
       page.should_receive(:path).and_return('page_path')
 
-      page_class = mock "WikiPageClass"
+      page_class = double "WikiPageClass"
       page_class.should_receive(:find_by_title).with('Page title').and_return(page)
 
       Irwi.config.should_receive(:page_class).and_return(page_class)
@@ -175,6 +175,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     it "should render wiki_page_form" do
       @m.stub(:url_for).and_return("some_url")
       @m.stub(:protect_against_forgery?).and_return(false)
+      @m.instance_variable_set(:@page, double(id: 11, title: 'Some value'))
 
       code = @m.wiki_page_form do |f|
         f.text_field :title
@@ -189,7 +190,7 @@ describe Irwi::Helpers::WikiPagesHelper do
       @m.stub(:url_for).and_return("some_url")
       @m.stub(:protect_against_forgery?).and_return(false)
 
-      code = @m.wiki_page_attachments(stub(:id => 11, :attachments => []))
+      code = @m.wiki_page_attachments(double(:id => 11, :attachments => []))
       code.should include('<form')
     end
 

@@ -18,8 +18,8 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
       end
 
       it 'replaces Attachment_1_thumb with its corresponding image tag' do
-        paperclip_attachment = mock('paperclip attachment')
-        attachment = mock(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
+        paperclip_attachment = double('paperclip attachment')
+        attachment = double(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
 
         WikiPageAttachment.should_receive(:find).with('1').and_return(attachment)
         paperclip_attachment.should_receive(:url).with(:thumb).and_return(:thumb_image)
@@ -33,8 +33,8 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
       end
 
       it 'ignores absent attachments' do
-        paperclip_attachment = mock('paperclip attachment')
-        attachment = mock(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
+        paperclip_attachment = double('paperclip attachment')
+        attachment = double(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
         WikiPageAttachment.should_receive(:find).with('10').and_raise(ActiveRecord::RecordNotFound)
 
         @m.wiki_show_attachments('Foo Attachment_10_thumb Bar').should == 'Foo  Bar'

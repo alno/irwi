@@ -25,6 +25,8 @@ module Irwi
   module Paginators
     autoload :None, 'irwi/paginators/none'
     autoload :WillPaginate, 'irwi/paginators/will_paginate'
+    # TODO Implement Kaminari paginator
+    # TODO Autodetect paginator
   end
 
   module Support

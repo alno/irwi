@@ -9,7 +9,7 @@ describe Irwi::Support::TemplateFinder do
     before(:each) do
       @m = Object.new
       @m.send :extend, Irwi::Support::TemplateFinder
-      @m.stub!(:controller_path).and_return('my_controller')
+      @m.stub(:controller_path).and_return('my_controller')
     end
 
     specify "should provide template_dir method" do

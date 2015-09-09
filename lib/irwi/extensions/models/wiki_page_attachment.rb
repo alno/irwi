@@ -1,11 +1,10 @@
 module Irwi::Extensions::Models::WikiPageAttachment
+  extend ActiveSupport::Concern
 
   DEFAULT_PAPERCLIP_OPTIONS = {:styles => { :medium => "300x300>", :thumb => "100x100>" }}
 
-  def self.included( base )
-    base.belongs_to :page, :class_name => Irwi.config.page_class_name
-
-    base.attr_accessible :page_id, :wiki_page_attachment
+  included do
+    belongs_to :page, class_name: Irwi.config.page_class_name
   end
 
 end

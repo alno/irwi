@@ -36,32 +36,24 @@ describe Irwi::Extensions::Controllers::WikiPages do
 
   context "instance" do
 
-    before(:each) do
-      @obj = @cls.new
-    end
-
-    it { @obj.should respond_to(:page_class) }
+    subject { @cls.new }
 
     specify "should have WikiPage as default page_class" do
-      @obj.send(:page_class).should == WikiPage
+      subject.send(:page_class).should be WikiPage
     end
 
-    it { @obj.should respond_to(:render_template) }
-    it { @obj.should respond_to(:setup_current_user) }
-    it { @obj.should respond_to(:setup_page) }
-
-    it { @obj.should respond_to(:show) }
-    it { @obj.should respond_to(:new) }
-    it { @obj.should respond_to(:edit) }
-    it { @obj.should respond_to(:update) }
-    it { @obj.should respond_to(:history) }
-    it { @obj.should respond_to(:compare) }
-    it { @obj.should respond_to(:destroy) }
+    it { should respond_to(:show) }
+    it { should respond_to(:new) }
+    it { should respond_to(:edit) }
+    it { should respond_to(:update) }
+    it { should respond_to(:history) }
+    it { should respond_to(:compare) }
+    it { should respond_to(:destroy) }
 
     specify "should correctly handle current_user" do
-      @obj.send(:setup_current_user)
-      @obj.send(:current_user).should == 'Some user'
-      @obj.instance_variable_get(:@current_user).should == 'Some user'
+      subject.send(:setup_current_user)
+      subject.send(:current_user).should eq 'Some user'
+      subject.instance_variable_get(:@current_user).should eq 'Some user'
     end
 
   end

@@ -5,7 +5,7 @@ describe Irwi::Paginators::None do
   let(:p) { Irwi::Paginators::None.new }
 
   specify "should paginate collection - call find" do
-    coll = mock "Collection"
+    coll = double "Collection"
     coll.should_receive(:find).with(:all,{}).and_return("full collection")
 
     p.paginate( coll, :page => 10 ).should == "full collection"
@@ -16,7 +16,7 @@ describe Irwi::Paginators::None do
     p.paginated_section "view", "collection" do
       a = true
     end
-    a.should be_true
+    a.should be true
   end
 
 end
