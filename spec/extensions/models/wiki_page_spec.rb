@@ -18,7 +18,7 @@ describe Irwi::Extensions::Models::WikiPage do
 
   end
 
-  it { should_not be_nil }
+  it { is_expected.not_to be_nil }
 
   before :all do
     Irwi::config.page_attachment_class_name = nil
@@ -36,8 +36,8 @@ describe Irwi::Extensions::Models::WikiPage do
 
     subject { @cls }
 
-    it { should respond_to(:find) }
-    it { should respond_to(:find_by_path_or_new) }
+    it { is_expected.to respond_to(:find) }
+    it { is_expected.to respond_to(:find_by_path_or_new) }
 
   end
 
@@ -45,15 +45,15 @@ describe Irwi::Extensions::Models::WikiPage do
 
     subject { @cls.new }
 
-    it { should respond_to(:save) }
-    it { should respond_to(:destroy) }
+    it { is_expected.to respond_to(:save) }
+    it { is_expected.to respond_to(:destroy) }
 
-    it { should respond_to(:comment) }
-    it { should respond_to(:previous_version_number) }
+    it { is_expected.to respond_to(:comment) }
+    it { is_expected.to respond_to(:previous_version_number) }
 
-    it { should respond_to(:versions) }
+    it { is_expected.to respond_to(:versions) }
 
-    it { should_not respond_to(:attachments) }
+    it { is_expected.not_to respond_to(:attachments) }
 
   end
 
@@ -76,7 +76,7 @@ describe Irwi::Extensions::Models::WikiPage do
         @obj = @cls.new
       end
 
-      it { @obj.should respond_to(:attachments) }
+      it { expect(@obj).to respond_to(:attachments) }
 
     end
 

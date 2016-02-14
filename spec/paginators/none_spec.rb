@@ -6,9 +6,9 @@ describe Irwi::Paginators::None do
 
   specify "should paginate collection - call find" do
     coll = double "Collection"
-    coll.should_receive(:find).with(:all,{}).and_return("full collection")
+    expect(coll).to receive(:find).with(:all,{}).and_return("full collection")
 
-    p.paginate( coll, :page => 10 ).should == "full collection"
+    expect(p.paginate( coll, :page => 10 )).to eq("full collection")
   end
 
   specify "should render paginated section" do
@@ -16,7 +16,7 @@ describe Irwi::Paginators::None do
     p.paginated_section "view", "collection" do
       a = true
     end
-    a.should be true
+    expect(a).to be true
   end
 
 end

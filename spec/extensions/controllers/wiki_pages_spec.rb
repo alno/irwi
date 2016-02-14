@@ -17,43 +17,41 @@ describe Irwi::Extensions::Controllers::WikiPages do
 
   end
 
-  it { should_not be_nil }
+  it { is_expected.not_to be_nil }
 
-  before(:all) do
-    @cls = WikiPagesController
-  end
+  let(:cls) { WikiPagesController }
 
   context "class" do
 
-    it { @cls.should respond_to(:set_page_class) }
-    it { @cls.should respond_to(:page_class) }
+    it { expect(cls).to respond_to(:set_page_class) }
+    it { expect(cls).to respond_to(:page_class) }
 
     specify "should have WikiPage as default page_class" do
-      @cls.page_class.should == WikiPage
+      expect(cls.page_class).to eq(WikiPage)
     end
 
   end
 
   context "instance" do
 
-    subject { @cls.new }
+    subject { cls.new }
 
     specify "should have WikiPage as default page_class" do
-      subject.send(:page_class).should be WikiPage
+      expect(subject.send(:page_class)).to be WikiPage
     end
 
-    it { should respond_to(:show) }
-    it { should respond_to(:new) }
-    it { should respond_to(:edit) }
-    it { should respond_to(:update) }
-    it { should respond_to(:history) }
-    it { should respond_to(:compare) }
-    it { should respond_to(:destroy) }
+    it { is_expected.to respond_to(:show) }
+    it { is_expected.to respond_to(:new) }
+    it { is_expected.to respond_to(:edit) }
+    it { is_expected.to respond_to(:update) }
+    it { is_expected.to respond_to(:history) }
+    it { is_expected.to respond_to(:compare) }
+    it { is_expected.to respond_to(:destroy) }
 
     specify "should correctly handle current_user" do
       subject.send(:setup_current_user)
-      subject.send(:current_user).should eq 'Some user'
-      subject.instance_variable_get(:@current_user).should eq 'Some user'
+      expect(subject.send(:current_user)).to eq 'Some user'
+      expect(subject.instance_variable_get(:@current_user)).to eq 'Some user'
     end
 
   end

@@ -5,193 +5,194 @@ end
 
 describe Irwi::Helpers::WikiPagesHelper do
 
-  it { should_not be_nil }
+  it { is_expected.not_to be_nil }
 
   context "included in class" do
 
-    before(:each) do
-      @m = ActionView::Base.new
-      @m.send :extend, ERB::Util
-      @m.send :extend, Irwi::Helpers::WikiPagesHelper
+    subject do
+      ActionView::Base.new.tap do |v|
+        v.send :extend, ERB::Util
+        v.send :extend, Irwi::Helpers::WikiPagesHelper
+      end
     end
 
-    it { @m.should respond_to(:wiki_page_form) }
+    it { is_expected.to respond_to(:wiki_page_form) }
 
-    it { @m.should respond_to(:wiki_page_new_path) }
-    it { @m.should respond_to(:wiki_page_edit_path) }
-    it { @m.should respond_to(:wiki_page_history_path) }
-    it { @m.should respond_to(:wiki_page_compare_path) }
-    it { @m.should respond_to(:wiki_page_path) }
+    it { is_expected.to respond_to(:wiki_page_new_path) }
+    it { is_expected.to respond_to(:wiki_page_edit_path) }
+    it { is_expected.to respond_to(:wiki_page_history_path) }
+    it { is_expected.to respond_to(:wiki_page_compare_path) }
+    it { is_expected.to respond_to(:wiki_page_path) }
 
     specify "should form url_for by wiki_page_new_path" do
-      @m.stub(:params).and_return({:path => 'newpath'})
-      @m.should_receive(:url_for).with(:action => :new, :path => 'newpath').and_return('newpath')
+      allow(subject).to receive(:params).and_return({:path => 'newpath'})
+      expect(subject).to receive(:url_for).with(:action => :new, :path => 'newpath').and_return('newpath')
 
-      @m.wiki_page_new_path.should == 'newpath'
+      expect(subject.wiki_page_new_path).to eq 'newpath'
     end
 
     specify "should form url_for by wiki_page_new_path if path left blank" do
-      @m.stub(:params).and_return(nil)
-      @m.should_receive(:url_for).with(:action => :new).and_return('blank_path')
+      allow(subject).to receive(:params).and_return(nil)
+      expect(subject).to receive(:url_for).with(:action => :new).and_return('blank_path')
 
-      @m.wiki_page_new_path.should == 'blank_path'
+      expect(subject.wiki_page_new_path).to eq('blank_path')
     end
 
     specify "should form url_for by wiki_page_edit_path" do
-      @m.should_receive(:url_for).with(:action => :edit).and_return('epath')
+      expect(subject).to receive(:url_for).with(:action => :edit).and_return('epath')
 
-      @m.wiki_page_edit_path.should == 'epath'
+      expect(subject.wiki_page_edit_path).to eq('epath')
     end
 
     specify "should form url_for by wiki_page_edit_path with path" do
-      @m.should_receive(:url_for).with(:action => :edit, :path => 'qwerty').and_return('epath')
+      expect(subject).to receive(:url_for).with(:action => :edit, :path => 'qwerty').and_return('epath')
 
-      @m.wiki_page_edit_path('qwerty').should == 'epath'
+      expect(subject.wiki_page_edit_path('qwerty')).to eq('epath')
     end
 
     specify "should form url_for by wiki_page_history_path" do
-      @m.should_receive(:url_for).with(:action => :history).and_return('hpath')
+      expect(subject).to receive(:url_for).with(:action => :history).and_return('hpath')
 
-      @m.wiki_page_history_path.should == 'hpath'
+      expect(subject.wiki_page_history_path).to eq('hpath')
     end
 
     specify "should form url_for by wiki_page_compare_path" do
-      @m.should_receive(:url_for).with(:action => :compare).and_return('cpath')
+      expect(subject).to receive(:url_for).with(:action => :compare).and_return('cpath')
 
-      @m.wiki_page_compare_path.should == 'cpath'
+      expect(subject.wiki_page_compare_path).to eq('cpath')
     end
 
     specify "should form url_for by wiki_page_path" do
-      @m.should_receive(:url_for).with(:action => :show).and_return('spath')
+      expect(subject).to receive(:url_for).with(:action => :show).and_return('spath')
 
-      @m.wiki_page_path.should == 'spath'
+      expect(subject.wiki_page_path).to eq('spath')
     end
 
     specify "should form url_for by wiki_page_path with path" do
-      @m.should_receive(:url_for).with(:action => :show, :path => '123').and_return('spath')
+      expect(subject).to receive(:url_for).with(:action => :show, :path => '123').and_return('spath')
 
-      @m.wiki_page_path('123').should == 'spath'
+      expect(subject.wiki_page_path('123')).to eq('spath')
     end
 
-    it { @m.should respond_to(:wiki_content) }
-    it { @m.should respond_to(:wiki_diff) }
-    it { @m.should respond_to(:wiki_user) }
+    it { expect(subject).to respond_to(:wiki_content) }
+    it { expect(subject).to respond_to(:wiki_diff) }
+    it { expect(subject).to respond_to(:wiki_user) }
 
-    it { @m.should respond_to(:wiki_page_info) }
-    it { @m.should respond_to(:wiki_page_actions) }
-    it { @m.should respond_to(:wiki_page_history) }
-    it { @m.should respond_to(:wiki_page_style) }
+    it { expect(subject).to respond_to(:wiki_page_info) }
+    it { expect(subject).to respond_to(:wiki_page_actions) }
+    it { expect(subject).to respond_to(:wiki_page_history) }
+    it { expect(subject).to respond_to(:wiki_page_style) }
 
-    it { @m.should respond_to(:wiki_link) }
-    it { @m.should respond_to(:wiki_linkify) }
+    it { expect(subject).to respond_to(:wiki_link) }
+    it { expect(subject).to respond_to(:wiki_linkify) }
 
-    it { @m.should respond_to(:wt) }
+    it { expect(subject).to respond_to(:wt) }
 
     specify "should format and sanitize content with current formatter and #sanitize" do
       Irwi.config.formatter = double 'Formatter'
-      Irwi.config.formatter.should_receive(:format).with('Page content').and_return('Formatted content')
+      expect(Irwi.config.formatter).to receive(:format).with('Page content').and_return('Formatted content')
 
-      @m.should_receive(:auto_link).with('Formatted content').and_return('Formatted content with links')
-      @m.should_receive(:sanitize).with('Formatted content with links').and_return('Formatted and sanitized content with links')
+      expect(subject).to receive(:auto_link).with('Formatted content').and_return('Formatted content with links')
+      expect(subject).to receive(:sanitize).with('Formatted content with links').and_return('Formatted and sanitized content with links')
 
-      @m.wiki_content( 'Page content' ).should == 'Formatted and sanitized content with links'
+      expect(subject.wiki_content( 'Page content' )).to eq('Formatted and sanitized content with links')
     end
 
     specify "should render wiki_page_info partial" do
-      @m.should_receive(:template_dir).and_return('partial_dir')
-      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_info", :locals => { :page => 'MyPage' }).and_return('partial_body')
+      expect(subject).to receive(:template_dir).and_return('partial_dir')
+      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_info", :locals => { :page => 'MyPage' }).and_return('partial_body')
 
-      @m.wiki_page_info( 'MyPage' ).should == 'partial_body'
+      expect(subject.wiki_page_info( 'MyPage' )).to eq('partial_body')
     end
 
     specify "should render wiki_page_actions partial" do
-      @m.should_receive(:template_dir).and_return('partial_dir')
-      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_actions", :locals => { :page => 'MyPage' }).and_return('partial_body')
+      expect(subject).to receive(:template_dir).and_return('partial_dir')
+      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_actions", :locals => { :page => 'MyPage' }).and_return('partial_body')
 
-      @m.wiki_page_actions( 'MyPage' ).should == 'partial_body'
+      expect(subject.wiki_page_actions( 'MyPage' )).to eq('partial_body')
     end
 
     specify "should render wiki_page_history partial" do
-      @m.should_receive(:template_dir).and_return('partial_dir')
-      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => 'MyPage', :versions => [1,2], :with_form => true }).and_return('partial_body')
+      expect(subject).to receive(:template_dir).and_return('partial_dir')
+      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => 'MyPage', :versions => [1,2], :with_form => true }).and_return('partial_body')
 
-      @m.wiki_page_history( 'MyPage', [1,2] ).should == 'partial_body'
+      expect(subject.wiki_page_history( 'MyPage', [1,2] )).to eq('partial_body')
     end
 
     specify "should render wiki_page_history partial (with default versions)" do
       page = double 'MyPage'
-      page.should_receive(:versions).and_return([1])
+      expect(page).to receive(:versions).and_return([1])
 
-      @m.should_receive(:template_dir).and_return('partial_dir')
-      @m.should_receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => page, :versions => [1], :with_form => false }).and_return('partial_body')
+      expect(subject).to receive(:template_dir).and_return('partial_dir')
+      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => page, :versions => [1], :with_form => false }).and_return('partial_body')
 
-      @m.wiki_page_history( page ).should == 'partial_body'
+      expect(subject.wiki_page_history( page )).to eq('partial_body')
     end
 
     specify "should linkify string" do
-      @m.should_receive(:wiki_link).exactly(3).times.with('Some other page').and_return('url')
+      expect(subject).to receive(:wiki_link).exactly(3).times.with('Some other page').and_return('url')
 
-      @m.wiki_linkify( '[[Some other page]] - link' ).should == '<a href="url">Some other page</a> - link'
-      @m.wiki_linkify( '[[Some other page|Go other page]] - link' ).should == '<a href="url">Go other page</a> - link'
-      @m.wiki_linkify( '[[Some other page]]s are there' ).should == '<a href="url">Some other pages</a> are there'
+      expect(subject.wiki_linkify( '[[Some other page]] - link' )).to eq('<a href="url">Some other page</a> - link')
+      expect(subject.wiki_linkify( '[[Some other page|Go other page]] - link' )).to eq('<a href="url">Go other page</a> - link')
+      expect(subject.wiki_linkify( '[[Some other page]]s are there' )).to eq('<a href="url">Some other pages</a> are there')
     end
 
     specify "should linkify with anchors" do
-      @m.should_receive(:wiki_link).once.with('Some other page').and_return('url')
+      expect(subject).to receive(:wiki_link).once.with('Some other page').and_return('url')
 
-      @m.wiki_linkify( 'And [[Some other page#other|other page]]' ).should == 'And <a href="url#other">other page</a>'
+      expect(subject.wiki_linkify( 'And [[Some other page#other|other page]]' )).to eq('And <a href="url#other">other page</a>')
     end
 
     specify "should generate link for non-existent page" do
       page_class = double "WikiPageClass"
-      page_class.should_receive(:find_by_title).with('Page_title').and_return(nil)
+      expect(page_class).to receive(:find_by_title).with('Page_title').and_return(nil)
 
-      Irwi.config.should_receive(:page_class).and_return(page_class)
+      expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page_title' ).and_return('url')
+      expect(subject).to receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page_title' ).and_return('url')
 
-      @m.wiki_link( 'Page_title' ).should == 'url'
+      expect(subject.wiki_link( 'Page_title' )).to eq('url')
     end
 
     specify "should generate link for existent page" do
       page = double "WikiPage"
-      page.should_receive(:path).and_return('page_path')
+      expect(page).to receive(:path).and_return('page_path')
 
       page_class = double "WikiPageClass"
-      page_class.should_receive(:find_by_title).with('Page title').and_return(page)
+      expect(page_class).to receive(:find_by_title).with('Page title').and_return(page)
 
-      Irwi.config.should_receive(:page_class).and_return(page_class)
+      expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      @m.should_receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'page_path' ).and_return('url')
+      expect(subject).to receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'page_path' ).and_return('url')
 
-      @m.wiki_link( 'Page title' ).should == 'url'
+      expect(subject.wiki_link( 'Page title' )).to eq('url')
     end
 
     specify "not be vulnerable to XSS when showing a diff" do
       xss = '<script>alert("exploit")</script>'
-      @m.wiki_diff('foo bar', "foo #{xss} bar").should_not include(xss)
+      expect(subject.wiki_diff('foo bar', "foo #{xss} bar")).not_to include(xss)
     end
 
     it "should render wiki_page_form" do
-      @m.stub(:url_for).and_return("some_url")
-      @m.stub(:protect_against_forgery?).and_return(false)
-      @m.instance_variable_set(:@page, double(id: 11, title: 'Some value'))
+      allow(subject).to receive(:url_for).and_return("some_url")
+      allow(subject).to receive(:protect_against_forgery?).and_return(false)
+      subject.instance_variable_set(:@page, double(id: 11, title: 'Some value'))
 
-      code = @m.wiki_page_form do |f|
+      code = subject.wiki_page_form do |f|
         f.text_field :title
       end
 
-      code.should include('<form')
+      expect(code).to include('<form')
     end
 
     it "should render wiki_page_attachments" do
       Irwi::config.page_attachment_class_name = 'PageAttachment'
 
-      @m.stub(:url_for).and_return("some_url")
-      @m.stub(:protect_against_forgery?).and_return(false)
+      allow(subject).to receive(:url_for).and_return("some_url")
+      allow(subject).to receive(:protect_against_forgery?).and_return(false)
 
-      code = @m.wiki_page_attachments(double(:id => 11, :attachments => []))
-      code.should include('<form')
+      code = subject.wiki_page_attachments(double(:id => 11, :attachments => []))
+      expect(code).to include('<form')
     end
 
   end

@@ -6,18 +6,18 @@ describe Irwi::Paginators::WillPaginate do
 
   specify "should paginate collection" do
     coll = double "Collection"
-    coll.should_receive(:paginate).with( :page => 15 ).and_return("paginated_collection")
+    expect(coll).to receive(:paginate).with( :page => 15 ).and_return("paginated_collection")
 
-    p.paginate( coll, :page => 15 ).should == "paginated_collection"
+    expect(p.paginate( coll, :page => 15 )).to eq("paginated_collection")
   end
 
   specify "should render paginated collection" do
     block = lambda { |x| 11 }
     coll = []
     view = double "View"
-    view.should_receive(:paginated_section).with( coll, &block ).and_return("result")
+    expect(view).to receive(:paginated_section).with( coll, &block ).and_return("result")
 
-    p.paginated_section( view, coll, &block ).should == "result"
+    expect(p.paginated_section( view, coll, &block )).to eq("result")
   end
 
 end

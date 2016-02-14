@@ -2,14 +2,16 @@ require "spec_helper"
 
 describe Irwi::Helpers::WikiPageAttachmentsHelper do
 
-  it { should_not be_nil }
+  it { is_expected.to_not be_nil }
 
   context "included in class" do
 
+    subject { Object.new }
+
     before(:each) do
       Irwi.config.page_attachment_class_name = 'WikiPageAttachment'
-      @m = Object.new
-      @m.send :extend, Irwi::Helpers::WikiPagesHelper
+
+      subject.send :extend, Irwi::Helpers::WikiPagesHelper
     end
 
     describe :wiki_show_attachment do
@@ -21,23 +23,22 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
         paperclip_attachment = double('paperclip attachment')
         attachment = double(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
 
-        WikiPageAttachment.should_receive(:find).with('1').and_return(attachment)
-        paperclip_attachment.should_receive(:url).with(:thumb).and_return(:thumb_image)
-        @m.should_receive(:image_tag).with(:thumb_image, :class => 'wiki_page_attachment').and_return('thumb_image_markup')
+        expect(WikiPageAttachment).to receive(:find).with('1').and_return(attachment)
+        expect(paperclip_attachment).to receive(:url).with(:thumb).and_return(:thumb_image)
 
-        @m.wiki_show_attachments('Foo Attachment_1_thumb Bar').should == 'Foo thumb_image_markup Bar'
+        expect(subject).to receive(:image_tag).with(:thumb_image, :class => 'wiki_page_attachment').and_return('thumb_image_markup')
+
+        expect(subject.wiki_show_attachments('Foo Attachment_1_thumb Bar')).to eq 'Foo thumb_image_markup Bar'
       end
 
       it 'does not affect text without attachments' do
-        @m.wiki_show_attachments('Foo Bar').should == 'Foo Bar'
+        expect(subject.wiki_show_attachments('Foo Bar')).to eq 'Foo Bar'
       end
 
       it 'ignores absent attachments' do
-        paperclip_attachment = double('paperclip attachment')
-        attachment = double(WikiPageAttachment, :wiki_page_attachment => paperclip_attachment)
-        WikiPageAttachment.should_receive(:find).with('10').and_raise(ActiveRecord::RecordNotFound)
+        expect(WikiPageAttachment).to receive(:find).with('10').and_raise(ActiveRecord::RecordNotFound)
 
-        @m.wiki_show_attachments('Foo Attachment_10_thumb Bar').should == 'Foo  Bar'
+        expect(subject.wiki_show_attachments('Foo Attachment_10_thumb Bar')).to eq 'Foo  Bar'
       end
     end
 
