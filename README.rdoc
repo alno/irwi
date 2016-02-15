@@ -1,5 +1,3 @@
-*WARNING: It's unstable branch for migration to Rails 4*
-
 = Irwi
 
 Irwi is a Ruby on Rails 4 plugin which adds wiki functionality to your application.
