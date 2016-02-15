@@ -2,7 +2,7 @@
 
 = Irwi
 
-Irwi is a Ruby on Rails 3 plugin which adds wiki functionality to your application.
+Irwi is a Ruby on Rails 4 plugin which adds wiki functionality to your application.
 
 == Status
 
@@ -16,7 +16,7 @@ Add to your Gemfile:
 
 Then in your application directory call:
 
-  script/generate irwi_wiki
+  rails g irwi_wiki
 
 It will generate:
 * WikiPageController to serve wiki pages
@@ -25,7 +25,7 @@ It will generate:
 
 Also it will add to your <tt>routes.rb</tt> something like:
 
-  map.wiki_root '/wiki'
+  wiki_root '/wiki'
 
 == Wiki syntax (links to other pages)
 
