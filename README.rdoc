@@ -29,7 +29,7 @@ Also it will add to your <tt>routes.rb</tt> something like:
 
 You can link pages by using
 
-[[Some page title]]
+    [[Some page title]]
 
 construction in text. If linked page exists, when it will be replaced with link to this page, in other case it will be replaced with link to new page with such path/title.
 
