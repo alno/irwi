@@ -8,8 +8,6 @@ module Irwi
     autoload :Autodetector, 'irwi/support/autodetector'
   end
 
-  autoload :Formatters, 'irwi/formatters'
-
   module Comparators
     autoload :DiffLcs, 'irwi/comparators/diff_lcs'
     autoload :Base, 'irwi/comparators/base'
@@ -21,12 +19,8 @@ module Irwi
 
   module Extensions; end
 
-  module Paginators
-    autoload :None, 'irwi/paginators/none'
-    autoload :WillPaginate, 'irwi/paginators/will_paginate'
-    # TODO Implement Kaminari paginator
-    # TODO Autodetect paginator
-  end
+  autoload :Formatters, 'irwi/formatters'
+  autoload :Paginators, 'irwi/paginators'
 
   def self.config
     require 'irwi/config'

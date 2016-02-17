@@ -31,11 +31,7 @@ class Irwi::Config
   attr_writer :paginator
 
   def paginator
-    @paginator ||= begin
-                     require 'irwi/paginators/none'
-
-                     self.paginator = Irwi::Paginators::None.new
-                   end
+    @paginator ||= Irwi::Paginators.autodetect
   end
 
   def initialize
