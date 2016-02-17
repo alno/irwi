@@ -3,13 +3,7 @@ require 'rails_autolink' if defined?(Rails)
 
 module Irwi
 
-  module Formatters
-    autoload :BlueCloth, 'irwi/formatters/blue_cloth'
-    autoload :RedCloth, 'irwi/formatters/red_cloth'
-    autoload :SimpleHtml, 'irwi/formatters/simple_html'
-    autoload :WikiCloth, 'irwi/formatters/wiki_cloth'
-    autoload :RedCarpet, 'irwi/formatters/red_carpet'
-  end
+  autoload :Formatters, 'irwi/formatters'
 
   module Comparators
     autoload :DiffLcs, 'irwi/comparators/diff_lcs'
