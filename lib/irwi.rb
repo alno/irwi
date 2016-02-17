@@ -3,6 +3,11 @@ require 'rails_autolink' if defined?(Rails)
 
 module Irwi
 
+  module Support
+    autoload :TemplateFinder, 'irwi/support/template_finder'
+    autoload :Autodetector, 'irwi/support/autodetector'
+  end
+
   autoload :Formatters, 'irwi/formatters'
 
   module Comparators
@@ -21,10 +26,6 @@ module Irwi
     autoload :WillPaginate, 'irwi/paginators/will_paginate'
     # TODO Implement Kaminari paginator
     # TODO Autodetect paginator
-  end
-
-  module Support
-    autoload :TemplateFinder, 'irwi/support/template_finder'
   end
 
   def self.config
