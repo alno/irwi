@@ -56,21 +56,46 @@ Configuration options are acessed via `Irwi.config` object. Currently
 supported options:
 *   `user_class_name` - Name of user model class. By default - 'User'
 
-
     Define a method named 'current_user' method on WikiPagesController that returns the object for the current user
 
 *   `formatter` - Formatter instance, which process wiki content before
-    output. It should have method `format`, which gets a string and returns it
-    formatted. By default instance of `Irwi::Formatters::RedCloth` is used
-    (requires RedCloth gem). Other built-in formatter is
-    `Irwi::Formatters::BlueCloth` (requires BlueCloth gem). Option accepts
-    formatter instance, not class, so correct usage is:
+    output (see section below).
 
-    Irwi.config.formatter = Irwi::Formatters::BlueCloth.new
+*   `paginator` - Paginator instance, which display pagination controls (see section below).
 
 *   `comparator` - Comparator instance, which builds and renders a set of
     changes between to texts. By default instance of
     `Irwi::Comparators::DiffLcs` is used (requires diff-lcs gem).
+
+### Formatters
+
+Irwi supports custom formatters which can be configured by setting `Irwi.config.formatter` to corresponding instance.
+Each formatter should have method `format`, which gets a string and returns it formatted.
+
+There are several supported formatters based on different gems (which tou should add to `Gemfile` of your application):
+* `Irwi::Formatters::RedCloth` - markdown formatter based on `RedCloth` gem.
+* `Irwi::Formatters::RedCarpet` - markdown formatter based on `redcarpet  gem.
+* `Irwi::Formatters::BlueCloth` - textile formatter based on `BlueCloth` gem.
+* `Irwi::Formatters::WikiCloth` - formatter based on `wiki_cloth` gem.
+* `Irwi::Formatters::SimpleHtml` which does nothing.
+
+By default, Irwi will select first available (having corresponding gem in application `Gemfile`) formatter.
+Also, you may select formatter explicitly by specifying `Irwi.config.formatter` value like:
+
+    Irwi.config.formatter = Irwi::Formatters::BlueCloth.new
+
+### Paginators
+
+Irwi supports custom paginators which can be configured by setting `Irwi.config.paginator` to corresponding instance.
+
+There are following supported paginators (which tou should add to `Gemfile` of your application):
+* `Irwi::Paginators::WillPaginate` - based on `will_paginate` gem.
+* `Irwi::Paginators::None` which does nothing.
+
+By default, Irwi will select first available (having corresponding gem in application `Gemfile`) paginator.
+Also, you may select paginator explicitly by specifying `Irwi.config.paginator` value like:
+
+    Irwi.config.paginator = Irwi::Paginators::WillPaginate.new
 
 
 ## Access control
