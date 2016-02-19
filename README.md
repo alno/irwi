@@ -90,6 +90,7 @@ Irwi supports custom paginators which can be configured by setting `Irwi.config.
 
 There are following supported paginators (which tou should add to `Gemfile` of your application):
 * `Irwi::Paginators::WillPaginate` - based on `will_paginate` gem.
+* `Irwi::Paginators::Kaminari` - based on `kaminari` gem.
 * `Irwi::Paginators::None` which does nothing.
 
 By default, Irwi will select first available (having corresponding gem in application `Gemfile`) paginator.
