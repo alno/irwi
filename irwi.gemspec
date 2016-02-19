@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", ">=2.0"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "RedCloth"
+  s.add_development_dependency "will_paginate"
 
   # Gem files
   s.files = Dir["app/views/**/*.erb", "lib/**/*.rb", "bin/*", "MIT-LICENSE", "README.rdoc"]
