@@ -2,6 +2,7 @@
   <form action="<%=wiki_page_compare_path(@page)%>" method="get">
 <% end %>
 
+<%= wiki_paginate versions do -%>
 <table class="wiki_history">
   <tr class="wiki_history_header">
     <td><%=wt 'Version' %></td>
@@ -24,7 +25,8 @@
     </tr>
   <% end %>
 </table>
-  
+<% end %>
+
 <% if with_form %>
   <%= submit_tag wt 'Compare selected versions' %>
   </form>
