@@ -1,5 +1,9 @@
 class Irwi::Paginators::WillPaginate
 
+  def initialize
+    require 'will_paginate'
+  end
+
   def paginate( collection, options = {} )
     collection.paginate( options )
   end
