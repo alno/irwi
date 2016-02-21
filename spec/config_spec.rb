@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe Irwi::Config do
-
   specify "should save selected user_class_name" do
     subject.user_class_name = 'MyUserClass'
     expect(subject.user_class_name).to eq 'MyUserClass'
@@ -62,5 +61,4 @@ describe Irwi::Config do
 
     expect(Irwi.config.system_pages['custom']).to eq '!custom_page'
   end
-
 end

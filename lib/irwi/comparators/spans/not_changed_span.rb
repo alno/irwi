@@ -1,8 +1,7 @@
 class Irwi::Comparators::Spans::NotChangedSpan
-
   attr_accessor :value
 
-  def initialize( v )
+  def initialize(v)
     @value = v
   end
 
@@ -14,7 +13,6 @@ class Irwi::Comparators::Spans::NotChangedSpan
     '='
   end
 
-  alias_method :old_value, :value
-  alias_method :new_value, :value
-
+  alias old_value value
+  alias new_value value
 end

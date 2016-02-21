@@ -1,11 +1,9 @@
 require "spec_helper"
 
 describe Irwi::Helpers::WikiPageAttachmentsHelper do
-
   it { is_expected.to_not be_nil }
 
   context "included in class" do
-
     subject { Object.new }
 
     before(:each) do
@@ -41,6 +39,5 @@ describe Irwi::Helpers::WikiPageAttachmentsHelper do
         expect(subject.wiki_show_attachments('Foo Attachment_10_thumb Bar')).to eq 'Foo  Bar'
       end
     end
-
   end
 end

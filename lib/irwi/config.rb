@@ -1,7 +1,6 @@
 require 'active_support'
 
 class Irwi::Config
-
   attr_accessor :controller_name
   attr_accessor :user_class_name
   attr_accessor :page_class_name
@@ -68,8 +67,7 @@ class Irwi::Config
   # Add system page
   # @param action [String,Symbol] controller action
   # @param path [String] path in routes
-  def add_system_page( action, path )
-    system_pages[ action.to_s ] = path.to_s
+  def add_system_page(action, path)
+    system_pages[action.to_s] = path.to_s
   end
-
 end

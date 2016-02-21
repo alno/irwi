@@ -1,13 +1,11 @@
 require 'rails/generators/active_record'
 
 class IrwiWikiGenerator < Rails::Generators::Base
-
   include Rails::Generators::Migration
 
   source_root File.expand_path("../templates", __FILE__)
 
   def generate_wiki
-
     # Controllers
     copy_file 'controllers/wiki_pages_controller.rb', 'app/controllers/wiki_pages_controller.rb'
 
@@ -25,8 +23,7 @@ class IrwiWikiGenerator < Rails::Generators::Base
     route "wiki_root '/wiki'"
   end
 
-  def self.next_migration_number dirname
+  def self.next_migration_number(dirname)
     ActiveRecord::Generators::Base.next_migration_number dirname
   end
-
 end

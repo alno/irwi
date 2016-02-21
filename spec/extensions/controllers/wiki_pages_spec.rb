@@ -3,7 +3,6 @@ require "spec_helper"
 require "action_controller"
 
 describe Irwi::Extensions::Controllers::WikiPages do
-
   class WikiPage; end
   class WikiPagesController < ActionController::Base
     include Irwi::Extensions::Controllers::WikiPages
@@ -14,7 +13,6 @@ describe Irwi::Extensions::Controllers::WikiPages do
       return @current_user if defined?(@current_user)
       @current_user = 'Some user'
     end
-
   end
 
   it { is_expected.not_to be_nil }
@@ -22,18 +20,15 @@ describe Irwi::Extensions::Controllers::WikiPages do
   let(:cls) { WikiPagesController }
 
   context "class" do
-
     it { expect(cls).to respond_to(:set_page_class) }
     it { expect(cls).to respond_to(:page_class) }
 
     specify "should have WikiPage as default page_class" do
       expect(cls.page_class).to eq(WikiPage)
     end
-
   end
 
   context "instance" do
-
     subject { cls.new }
 
     specify "should have WikiPage as default page_class" do
@@ -53,7 +48,5 @@ describe Irwi::Extensions::Controllers::WikiPages do
       expect(subject.send(:current_user)).to eq 'Some user'
       expect(subject.instance_variable_get(:@current_user)).to eq 'Some user'
     end
-
   end
-
 end

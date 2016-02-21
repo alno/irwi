@@ -1,5 +1,4 @@
 class Irwi::Paginators::Kaminari
-
   def initialize
     require 'kaminari'
   end
@@ -13,5 +12,4 @@ class Irwi::Paginators::Kaminari
 
     pager + view.capture(&block) + pager
   end
-
 end

@@ -2,7 +2,6 @@ require 'active_support/dependencies'
 require 'rails_autolink' if defined?(Rails)
 
 module Irwi
-
   module Support
     autoload :TemplateFinder, 'irwi/support/template_finder'
     autoload :Autodetector, 'irwi/support/autodetector'
@@ -27,7 +26,6 @@ module Irwi
 
     @@config ||= Irwi::Config.new
   end
-
 end
 
 require 'irwi/extensions/controllers'

@@ -2,7 +2,6 @@ module Irwi::Extensions::Controllers::WikiPages
   extend ActiveSupport::Concern
 
   module ClassMethods
-
     def page_class
       @page_class ||= Irwi.config.page_class
     end
@@ -10,7 +9,6 @@ module Irwi::Extensions::Controllers::WikiPages
     def set_page_class(arg)
       @page_class = arg
     end
-
   end
 
   include Irwi::Extensions::Controllers::WikiPageAttachments
@@ -19,15 +17,15 @@ module Irwi::Extensions::Controllers::WikiPages
   def show
     return not_allowed unless show_allowed?
 
-    render_template( @page.new_record? ? 'no' : 'show' )
+    render_template(@page.new_record? ? 'no' : 'show')
   end
 
   def history
     return not_allowed unless history_allowed?
 
-    @versions = Irwi.config.paginator.paginate( @page.versions, page: params[:page] ) # Paginating them
+    @versions = Irwi.config.paginator.paginate(@page.versions, page: params[:page]) # Paginating them
 
-    render_template( @page.new_record? ? 'no' : 'history' )
+    render_template(@page.new_record? ? 'no' : 'history')
   end
 
   def compare
@@ -41,9 +39,9 @@ module Irwi::Extensions::Controllers::WikiPages
 
       old_num, new_num = new_num, old_num if new_num < old_num # Swapping them if last < first
 
-      versions = @page.versions.between( old_num, new_num ) # Loading all versions between first and last
+      versions = @page.versions.between(old_num, new_num) # Loading all versions between first and last
 
-      @versions = Irwi.config.paginator.paginate( versions, page: params[:page] ) # Paginating them
+      @versions = Irwi.config.paginator.paginate(versions, page: params[:page]) # Paginating them
 
       @new_version = @versions.first.number == new_num ? @versions.first : versions.first # Loading next version
       @old_version = @versions.last.number == old_num ? @versions.last : versions.last # Loading previous version
@@ -75,7 +73,7 @@ module Irwi::Extensions::Controllers::WikiPages
     @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
 
     if !params[:preview] && (params[:cancel] || @page.save)
-      redirect_to url_for( action: :show, path: @page.path.split('/') ) # redirect to new page's path (if it changed)
+      redirect_to url_for(action: :show, path: @page.path.split('/')) # redirect to new page's path (if it changed)
     else
       render_template 'edit'
     end
@@ -86,11 +84,11 @@ module Irwi::Extensions::Controllers::WikiPages
 
     @page.destroy
 
-    redirect_to url_for( action: :show )
+    redirect_to url_for(action: :show)
   end
 
   def all
-    @pages = Irwi.config.paginator.paginate( page_class, page: params[:page] ) # Loading and paginating all pages
+    @pages = Irwi.config.paginator.paginate(page_class, page: params[:page]) # Loading and paginating all pages
 
     render_template 'all'
   end
@@ -107,18 +105,18 @@ module Irwi::Extensions::Controllers::WikiPages
   end
 
   # Renders user-specified or default template
-  def render_template( template )
+  def render_template(template)
     render "#{template_dir template}/#{template}", status: (case template when 'no' then 404 when 'not_allowed' then 403 else 200 end)
   end
 
   # Initialize @current_user instance variable
   def setup_current_user
-    @current_user = respond_to?( :current_user, true ) ? current_user : nil # Find user by current_user method or return nil
+    @current_user = respond_to?(:current_user, true) ? current_user : nil # Find user by current_user method or return nil
   end
 
   # Initialize @page instance variable
   def setup_page
-    @page = page_class.find_by_path_or_new( params[:path] || '' ) # Find existing page by path or create new
+    @page = page_class.find_by_path_or_new(params[:path] || '') # Find existing page by path or create new
   end
 
   # Method, which called when user tries to visit
@@ -150,8 +148,7 @@ module Irwi::Extensions::Controllers::WikiPages
     before_action :setup_current_user # Setup @current_user instance variable before each action
 
     # Setup @page instance variable before each action
-    before_action :setup_page, only: [ :show, :history, :compare, :new, :edit, :update, :destroy, :add_attachment ]
+    before_action :setup_page, only: [:show, :history, :compare, :new, :edit, :update, :destroy, :add_attachment]
     helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end
-
 end

@@ -7,12 +7,11 @@ module Irwi::Extensions::Models
 end
 
 ActiveRecord::Base.instance_eval do
-
-  def acts_as_wiki_page( config = {} )
+  def acts_as_wiki_page(_config = {})
     include Irwi::Extensions::Models::WikiPage
   end
 
-  def acts_as_wiki_page_version( config = {} )
+  def acts_as_wiki_page_version(_config = {})
     include Irwi::Extensions::Models::WikiPageVersion
   end
 
@@ -20,5 +19,4 @@ ActiveRecord::Base.instance_eval do
     include Irwi::Extensions::Models::WikiPageAttachment
     yield if block_given?
   end
-
 end

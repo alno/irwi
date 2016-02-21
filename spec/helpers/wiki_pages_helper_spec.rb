@@ -4,11 +4,9 @@ class PageAttachment < ActiveRecord::Base
 end
 
 describe Irwi::Helpers::WikiPagesHelper do
-
   it { is_expected.not_to be_nil }
 
   context "included in class" do
-
     subject do
       ActionView::Base.new.tap do |v|
         v.send :extend, ERB::Util
@@ -25,7 +23,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { is_expected.to respond_to(:wiki_page_path) }
 
     specify "should form url_for by wiki_page_new_path" do
-      allow(subject).to receive(:params).and_return({path: 'newpath'})
+      allow(subject).to receive(:params).and_return(path: 'newpath')
       expect(subject).to receive(:url_for).with(action: :new, path: 'newpath').and_return('newpath')
 
       expect(subject.wiki_page_new_path).to eq 'newpath'
@@ -95,28 +93,28 @@ describe Irwi::Helpers::WikiPagesHelper do
       expect(subject).to receive(:auto_link).with('Formatted content').and_return('Formatted content with links')
       expect(subject).to receive(:sanitize).with('Formatted content with links').and_return('Formatted and sanitized content with links')
 
-      expect(subject.wiki_content( 'Page content' )).to eq('Formatted and sanitized content with links')
+      expect(subject.wiki_content('Page content')).to eq('Formatted and sanitized content with links')
     end
 
     specify "should render wiki_page_info partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
       expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_info", locals: { page: 'MyPage' }).and_return('partial_body')
 
-      expect(subject.wiki_page_info( 'MyPage' )).to eq('partial_body')
+      expect(subject.wiki_page_info('MyPage')).to eq('partial_body')
     end
 
     specify "should render wiki_page_actions partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
       expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_actions", locals: { page: 'MyPage' }).and_return('partial_body')
 
-      expect(subject.wiki_page_actions( 'MyPage' )).to eq('partial_body')
+      expect(subject.wiki_page_actions('MyPage')).to eq('partial_body')
     end
 
     specify "should render wiki_page_history partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
-      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_history", locals: { page: 'MyPage', versions: [1,2], with_form: true }).and_return('partial_body')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_history", locals: { page: 'MyPage', versions: [1, 2], with_form: true }).and_return('partial_body')
 
-      expect(subject.wiki_page_history( 'MyPage', [1,2] )).to eq('partial_body')
+      expect(subject.wiki_page_history('MyPage', [1, 2])).to eq('partial_body')
     end
 
     specify "should render wiki_page_history partial (with default versions)" do
@@ -126,21 +124,21 @@ describe Irwi::Helpers::WikiPagesHelper do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
       expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_history", locals: { page: page, versions: [1], with_form: false }).and_return('partial_body')
 
-      expect(subject.wiki_page_history( page )).to eq('partial_body')
+      expect(subject.wiki_page_history(page)).to eq('partial_body')
     end
 
     specify "should linkify string" do
       expect(subject).to receive(:wiki_link).exactly(3).times.with('Some other page').and_return('url')
 
-      expect(subject.wiki_linkify( '[[Some other page]] - link' )).to eq('<a href="url">Some other page</a> - link')
-      expect(subject.wiki_linkify( '[[Some other page|Go other page]] - link' )).to eq('<a href="url">Go other page</a> - link')
-      expect(subject.wiki_linkify( '[[Some other page]]s are there' )).to eq('<a href="url">Some other pages</a> are there')
+      expect(subject.wiki_linkify('[[Some other page]] - link')).to eq('<a href="url">Some other page</a> - link')
+      expect(subject.wiki_linkify('[[Some other page|Go other page]] - link')).to eq('<a href="url">Go other page</a> - link')
+      expect(subject.wiki_linkify('[[Some other page]]s are there')).to eq('<a href="url">Some other pages</a> are there')
     end
 
     specify "should linkify with anchors" do
       expect(subject).to receive(:wiki_link).once.with('Some other page').and_return('url')
 
-      expect(subject.wiki_linkify( 'And [[Some other page#other|other page]]' )).to eq('And <a href="url#other">other page</a>')
+      expect(subject.wiki_linkify('And [[Some other page#other|other page]]')).to eq('And <a href="url#other">other page</a>')
     end
 
     specify "should generate link for non-existent page" do
@@ -149,9 +147,9 @@ describe Irwi::Helpers::WikiPagesHelper do
 
       expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      expect(subject).to receive(:url_for).with( controller: 'wiki_pages', action: :show, path: 'Page_title' ).and_return('url')
+      expect(subject).to receive(:url_for).with(controller: 'wiki_pages', action: :show, path: 'Page_title').and_return('url')
 
-      expect(subject.wiki_link( 'Page_title' )).to eq('url')
+      expect(subject.wiki_link('Page_title')).to eq('url')
     end
 
     specify "should generate link for existent page" do
@@ -163,9 +161,9 @@ describe Irwi::Helpers::WikiPagesHelper do
 
       expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      expect(subject).to receive(:url_for).with( controller: 'wiki_pages', action: :show, path: 'page_path' ).and_return('url')
+      expect(subject).to receive(:url_for).with(controller: 'wiki_pages', action: :show, path: 'page_path').and_return('url')
 
-      expect(subject.wiki_link( 'Page title' )).to eq('url')
+      expect(subject.wiki_link('Page title')).to eq('url')
     end
 
     specify "not be vulnerable to XSS when showing a diff" do
@@ -186,7 +184,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     end
 
     it "should render wiki_page_attachments" do
-      Irwi::config.page_attachment_class_name = 'PageAttachment'
+      Irwi.config.page_attachment_class_name = 'PageAttachment'
 
       allow(subject).to receive(:url_for).and_return("some_url")
       allow(subject).to receive(:protect_against_forgery?).and_return(false)
@@ -194,7 +192,5 @@ describe Irwi::Helpers::WikiPagesHelper do
       code = subject.wiki_page_attachments(double(id: 11, attachments: []))
       expect(code).to include('<form')
     end
-
   end
-
 end

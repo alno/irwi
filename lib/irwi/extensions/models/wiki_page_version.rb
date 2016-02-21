@@ -29,5 +29,4 @@ module Irwi::Extensions::Models::WikiPageVersion
       where('number >= ? AND number <= ?', first, last)
     }
   end
-
 end

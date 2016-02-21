@@ -1,5 +1,4 @@
 class CreateWikiPages < ActiveRecord::Migration
-
   def self.up
     create_table :wiki_pages do |t|
       t.integer :creator_id
@@ -8,7 +7,7 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, limit: 4294967295
+      t.text :content, limit: 4_294_967_295
 
       t.timestamps
     end
@@ -27,7 +26,7 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, limit: 4294967295
+      t.text :content, limit: 4_294_967_295
 
       t.timestamp :updated_at
     end
@@ -40,5 +39,4 @@ class CreateWikiPages < ActiveRecord::Migration
     drop_table :wiki_page_versions
     drop_table :wiki_pages
   end
-
 end

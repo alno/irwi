@@ -10,7 +10,6 @@ module Irwi::Support::Autodetector
   end
 
   module ClassMethods
-
     def autodetect
       const_get(:PROVIDERS).each do |f|
         begin
@@ -19,6 +18,5 @@ module Irwi::Support::Autodetector
         end
       end
     end
-
   end
 end

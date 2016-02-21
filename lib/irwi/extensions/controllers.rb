@@ -6,13 +6,11 @@ module Irwi::Extensions::Controllers
 end
 
 ActionController::Base.instance_eval do
-
   # @param config [Hash] config for controller class
   # @option page_class
   #
-  def acts_as_wiki_pages_controller( config = {} )
+  def acts_as_wiki_pages_controller(_config = {})
     include Irwi::Extensions::Controllers::WikiPages
-    include Irwi::Extensions::Controllers::WikiPageAttachments if Irwi::config.page_attachment_class_name
+    include Irwi::Extensions::Controllers::WikiPageAttachments if Irwi.config.page_attachment_class_name
   end
-
 end

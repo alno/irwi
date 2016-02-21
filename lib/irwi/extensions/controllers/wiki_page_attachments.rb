@@ -1,5 +1,4 @@
 module Irwi::Extensions::Controllers::WikiPageAttachments
-
   def add_attachment
     attachment = page_attachment_class.new(permitted_page_attachment_params)
     attachment.save!
@@ -21,5 +20,4 @@ module Irwi::Extensions::Controllers::WikiPageAttachments
   def permitted_page_attachment_params
     params.require(:wiki_page_attachment).permit(:page_id, :wiki_page_attachment)
   end
-
 end

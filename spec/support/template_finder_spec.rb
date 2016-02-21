@@ -1,11 +1,9 @@
 require "spec_helper"
 
 describe Irwi::Support::TemplateFinder do
-
   it { is_expected.not_to be_nil }
 
   context "included in class" do
-
     subject { Object.new }
 
     before(:each) do
@@ -29,7 +27,5 @@ describe Irwi::Support::TemplateFinder do
 
       expect(subject.send(:template_dir, 'my_template')).to eq 'base_wiki_pages'
     end
-
   end
-
 end

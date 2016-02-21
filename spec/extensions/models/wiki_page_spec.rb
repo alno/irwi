@@ -3,9 +3,7 @@ require "spec_helper"
 require "active_record"
 
 describe Irwi::Extensions::Models::WikiPage do
-
   class AbstractPage < ActiveRecord::Base
-
     def self.columns
       c = ActiveRecord::ConnectionAdapters::Column
 
@@ -15,34 +13,28 @@ describe Irwi::Extensions::Models::WikiPage do
         c.new("content", nil, "text", false)
       ]
     end
-
   end
 
   it { is_expected.not_to be_nil }
 
   before :all do
-    Irwi::config.page_attachment_class_name = nil
+    Irwi.config.page_attachment_class_name = nil
 
     @cls = Class.new AbstractPage do
-
-      self.table_name  = 'pages'
+      self.table_name = 'pages'
 
       include Irwi::Extensions::Models::WikiPage
-
     end
   end
 
   context "class" do
-
     subject { @cls }
 
     it { is_expected.to respond_to(:find) }
     it { is_expected.to respond_to(:find_by_path_or_new) }
-
   end
 
   context "instance" do
-
     subject { @cls.new }
 
     it { is_expected.to respond_to(:save) }
@@ -54,32 +46,25 @@ describe Irwi::Extensions::Models::WikiPage do
     it { is_expected.to respond_to(:versions) }
 
     it { is_expected.not_to respond_to(:attachments) }
-
   end
 
   context "with attachments" do
-
     before :all do
-      Irwi::config.page_attachment_class_name = 'WikiPageAttachment'
+      Irwi.config.page_attachment_class_name = 'WikiPageAttachment'
 
       @cls = Class.new AbstractPage do
-
-        self.table_name  = 'pages'
+        self.table_name = 'pages'
 
         include Irwi::Extensions::Models::WikiPage
       end
     end
 
     context "instance" do
-
       before :each do
         @obj = @cls.new
       end
 
       it { expect(@obj).to respond_to(:attachments) }
-
     end
-
   end
-
 end
