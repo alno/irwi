@@ -25,7 +25,7 @@ module Irwi::Extensions::Controllers::WikiPages
   def history
     return not_allowed unless history_allowed?
 
-    @versions = Irwi.config.paginator.paginate( @page.versions, :page => params[:page] ) # Paginating them
+    @versions = Irwi.config.paginator.paginate( @page.versions, page: params[:page] ) # Paginating them
 
     render_template( @page.new_record? ? 'no' : 'history' )
   end
@@ -43,7 +43,7 @@ module Irwi::Extensions::Controllers::WikiPages
 
       versions = @page.versions.between( old_num, new_num ) # Loading all versions between first and last
 
-      @versions = Irwi.config.paginator.paginate( versions, :page => params[:page] ) # Paginating them
+      @versions = Irwi.config.paginator.paginate( versions, page: params[:page] ) # Paginating them
 
       @new_version = @versions.first.number == new_num ? @versions.first : versions.first # Loading next version
       @old_version = @versions.last.number == old_num ? @versions.last : versions.last # Loading previous version
@@ -75,7 +75,7 @@ module Irwi::Extensions::Controllers::WikiPages
     @page.creator = @current_user if @page.new_record? # Assign it's creator if it's new page
 
     if !params[:preview] && (params[:cancel] || @page.save)
-      redirect_to url_for( :action => :show, :path => @page.path.split('/') ) # redirect to new page's path (if it changed)
+      redirect_to url_for( action: :show, path: @page.path.split('/') ) # redirect to new page's path (if it changed)
     else
       render_template 'edit'
     end
@@ -86,11 +86,11 @@ module Irwi::Extensions::Controllers::WikiPages
 
     @page.destroy
 
-    redirect_to url_for( :action => :show )
+    redirect_to url_for( action: :show )
   end
 
   def all
-    @pages = Irwi.config.paginator.paginate( page_class, :page => params[:page] ) # Loading and paginating all pages
+    @pages = Irwi.config.paginator.paginate( page_class, page: params[:page] ) # Loading and paginating all pages
 
     render_template 'all'
   end
@@ -108,7 +108,7 @@ module Irwi::Extensions::Controllers::WikiPages
 
   # Renders user-specified or default template
   def render_template( template )
-    render "#{template_dir template}/#{template}", :status => (case template when 'no' then 404 when 'not_allowed' then 403 else 200 end)
+    render "#{template_dir template}/#{template}", status: (case template when 'no' then 404 when 'not_allowed' then 403 else 200 end)
   end
 
   # Initialize @current_user instance variable
@@ -150,7 +150,7 @@ module Irwi::Extensions::Controllers::WikiPages
     before_action :setup_current_user # Setup @current_user instance variable before each action
 
     # Setup @page instance variable before each action
-    before_action :setup_page, :only => [ :show, :history, :compare, :new, :edit, :update, :destroy, :add_attachment ]
+    before_action :setup_page, only: [ :show, :history, :compare, :new, :edit, :update, :destroy, :add_attachment ]
     helper_method :show_allowed?, :edit_allowed?, :history_allowed?, :destroy_allowed? # Access control methods are avaliable in views
   end
 

@@ -2,11 +2,11 @@ module Irwi::Extensions::Models::WikiPageVersion
   extend ActiveSupport::Concern
 
   def next
-    self.class.first :conditions => ["id > ? AND page_id = ?", id, page_id], :order => 'id ASC'
+    self.class.first conditions: ["id > ? AND page_id = ?", id, page_id], order: 'id ASC'
   end
 
   def previous
-    self.class.first :conditions => ["id < ? AND page_id = ?", id, page_id], :order => 'id DESC'
+    self.class.first conditions: ["id < ? AND page_id = ?", id, page_id], order: 'id DESC'
   end
 
   private

@@ -25,51 +25,51 @@ describe Irwi::Helpers::WikiPagesHelper do
     it { is_expected.to respond_to(:wiki_page_path) }
 
     specify "should form url_for by wiki_page_new_path" do
-      allow(subject).to receive(:params).and_return({:path => 'newpath'})
-      expect(subject).to receive(:url_for).with(:action => :new, :path => 'newpath').and_return('newpath')
+      allow(subject).to receive(:params).and_return({path: 'newpath'})
+      expect(subject).to receive(:url_for).with(action: :new, path: 'newpath').and_return('newpath')
 
       expect(subject.wiki_page_new_path).to eq 'newpath'
     end
 
     specify "should form url_for by wiki_page_new_path if path left blank" do
       allow(subject).to receive(:params).and_return(nil)
-      expect(subject).to receive(:url_for).with(:action => :new).and_return('blank_path')
+      expect(subject).to receive(:url_for).with(action: :new).and_return('blank_path')
 
       expect(subject.wiki_page_new_path).to eq('blank_path')
     end
 
     specify "should form url_for by wiki_page_edit_path" do
-      expect(subject).to receive(:url_for).with(:action => :edit).and_return('epath')
+      expect(subject).to receive(:url_for).with(action: :edit).and_return('epath')
 
       expect(subject.wiki_page_edit_path).to eq('epath')
     end
 
     specify "should form url_for by wiki_page_edit_path with path" do
-      expect(subject).to receive(:url_for).with(:action => :edit, :path => 'qwerty').and_return('epath')
+      expect(subject).to receive(:url_for).with(action: :edit, path: 'qwerty').and_return('epath')
 
       expect(subject.wiki_page_edit_path('qwerty')).to eq('epath')
     end
 
     specify "should form url_for by wiki_page_history_path" do
-      expect(subject).to receive(:url_for).with(:action => :history).and_return('hpath')
+      expect(subject).to receive(:url_for).with(action: :history).and_return('hpath')
 
       expect(subject.wiki_page_history_path).to eq('hpath')
     end
 
     specify "should form url_for by wiki_page_compare_path" do
-      expect(subject).to receive(:url_for).with(:action => :compare).and_return('cpath')
+      expect(subject).to receive(:url_for).with(action: :compare).and_return('cpath')
 
       expect(subject.wiki_page_compare_path).to eq('cpath')
     end
 
     specify "should form url_for by wiki_page_path" do
-      expect(subject).to receive(:url_for).with(:action => :show).and_return('spath')
+      expect(subject).to receive(:url_for).with(action: :show).and_return('spath')
 
       expect(subject.wiki_page_path).to eq('spath')
     end
 
     specify "should form url_for by wiki_page_path with path" do
-      expect(subject).to receive(:url_for).with(:action => :show, :path => '123').and_return('spath')
+      expect(subject).to receive(:url_for).with(action: :show, path: '123').and_return('spath')
 
       expect(subject.wiki_page_path('123')).to eq('spath')
     end
@@ -100,21 +100,21 @@ describe Irwi::Helpers::WikiPagesHelper do
 
     specify "should render wiki_page_info partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
-      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_info", :locals => { :page => 'MyPage' }).and_return('partial_body')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_info", locals: { page: 'MyPage' }).and_return('partial_body')
 
       expect(subject.wiki_page_info( 'MyPage' )).to eq('partial_body')
     end
 
     specify "should render wiki_page_actions partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
-      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_actions", :locals => { :page => 'MyPage' }).and_return('partial_body')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_actions", locals: { page: 'MyPage' }).and_return('partial_body')
 
       expect(subject.wiki_page_actions( 'MyPage' )).to eq('partial_body')
     end
 
     specify "should render wiki_page_history partial" do
       expect(subject).to receive(:template_dir).and_return('partial_dir')
-      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => 'MyPage', :versions => [1,2], :with_form => true }).and_return('partial_body')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_history", locals: { page: 'MyPage', versions: [1,2], with_form: true }).and_return('partial_body')
 
       expect(subject.wiki_page_history( 'MyPage', [1,2] )).to eq('partial_body')
     end
@@ -124,7 +124,7 @@ describe Irwi::Helpers::WikiPagesHelper do
       expect(page).to receive(:versions).and_return([1])
 
       expect(subject).to receive(:template_dir).and_return('partial_dir')
-      expect(subject).to receive(:render).with(:partial => "partial_dir/wiki_page_history", :locals => { :page => page, :versions => [1], :with_form => false }).and_return('partial_body')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_history", locals: { page: page, versions: [1], with_form: false }).and_return('partial_body')
 
       expect(subject.wiki_page_history( page )).to eq('partial_body')
     end
@@ -149,7 +149,7 @@ describe Irwi::Helpers::WikiPagesHelper do
 
       expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      expect(subject).to receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'Page_title' ).and_return('url')
+      expect(subject).to receive(:url_for).with( controller: 'wiki_pages', action: :show, path: 'Page_title' ).and_return('url')
 
       expect(subject.wiki_link( 'Page_title' )).to eq('url')
     end
@@ -163,7 +163,7 @@ describe Irwi::Helpers::WikiPagesHelper do
 
       expect(Irwi.config).to receive(:page_class).and_return(page_class)
 
-      expect(subject).to receive(:url_for).with( :controller => 'wiki_pages', :action => :show, :path => 'page_path' ).and_return('url')
+      expect(subject).to receive(:url_for).with( controller: 'wiki_pages', action: :show, path: 'page_path' ).and_return('url')
 
       expect(subject.wiki_link( 'Page title' )).to eq('url')
     end
@@ -191,7 +191,7 @@ describe Irwi::Helpers::WikiPagesHelper do
       allow(subject).to receive(:url_for).and_return("some_url")
       allow(subject).to receive(:protect_against_forgery?).and_return(false)
 
-      code = subject.wiki_page_attachments(double(:id => 11, :attachments => []))
+      code = subject.wiki_page_attachments(double(id: 11, attachments: []))
       expect(code).to include('<form')
     end
 

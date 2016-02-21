@@ -8,16 +8,16 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, :limit => 4294967295
+      t.text :content, limit: 4294967295
 
       t.timestamps
     end
 
     add_index :wiki_pages, :creator_id
-    add_index :wiki_pages, :path, :unique => true
+    add_index :wiki_pages, :path, unique: true
 
     create_table :wiki_page_versions do |t|
-      t.integer :page_id, :null => false # Reference to page
+      t.integer :page_id, null: false # Reference to page
       t.integer :updator_id # Reference to user, updated page
 
       t.integer :number # Version number
@@ -27,7 +27,7 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, :limit => 4294967295
+      t.text :content, limit: 4294967295
 
       t.timestamp :updated_at
     end

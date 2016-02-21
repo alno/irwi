@@ -5,7 +5,7 @@ class Irwi::Formatters::WikiCloth
   end
 
   def format( text )
-    WikiCloth::Parser.new({:data => text}).to_html
+    WikiCloth::Parser.new({data: text}).to_html
   end
 
 end

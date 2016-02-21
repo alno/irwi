@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.summary = "Irwi is Ruby on Rails plugin which adds wiki functionality to your application."
   s.description = "Irwi is Ruby on Rails plugin which adds wiki functionality to your application."
 
+  s.required_ruby_version = ">= 1.9.3"
   s.required_rubygems_version = ">= 1.3.6"
 
   # Gem dependencies

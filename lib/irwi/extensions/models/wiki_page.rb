@@ -4,7 +4,7 @@ module Irwi::Extensions::Models::WikiPage
   module ClassMethods
 
     def find_by_path_or_new( path )
-      self.find_by_path( path ) || self.new( :path => path, :title => CGI::unescape(path) )
+      self.find_by_path( path ) || self.new( path: path, title: CGI::unescape(path) )
     end
 
   end
