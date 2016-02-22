@@ -20,11 +20,13 @@ describe Irwi::Extensions::Controllers::WikiPages do
   let(:cls) { WikiPagesController }
 
   context "class" do
-    it { expect(cls).to respond_to(:set_page_class) }
-    it { expect(cls).to respond_to(:page_class) }
+    subject { cls }
+
+    it { is_expected.to respond_to(:set_page_class) }
+    it { is_expected.to respond_to(:page_class) }
 
     specify "should have WikiPage as default page_class" do
-      expect(cls.page_class).to eq(WikiPage)
+      expect(subject.page_class).to eq(WikiPage)
     end
   end
 

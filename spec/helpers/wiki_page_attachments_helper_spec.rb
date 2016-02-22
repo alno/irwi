@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Irwi::Helpers::WikiPageAttachmentsHelper do
-  it { is_expected.to_not be_nil }
+  it { is_expected.not_to be_nil }
 
   context "included in class" do
     subject { Object.new }
