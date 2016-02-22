@@ -7,7 +7,7 @@ describe Irwi::Support::TemplateFinder do
     subject { Object.new }
 
     before(:each) do
-      subject.send :extend, Irwi::Support::TemplateFinder
+      subject.send :extend, described_class
 
       allow(subject).to receive(:controller_path).and_return('my_controller')
     end
