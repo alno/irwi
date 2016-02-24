@@ -70,11 +70,10 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_link(title)
-    if page = Irwi.config.page_class.find_by_title(title)
-      url_for(controller: Irwi.config.controller_name, action: :show, path: page.path)
-    else
-      url_for(controller: Irwi.config.controller_name, action: :show, path: CGI.escape(title))
-    end
+    page = Irwi.config.page_class.find_by_title(title)
+    path = page ? page.path : CGI.escape(title)
+
+    url_for(controller: Irwi.config.controller_name, action: :show, path: path)
   end
 
   ##
