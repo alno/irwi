@@ -22,9 +22,7 @@ module Irwi
   autoload :Paginators, 'irwi/paginators'
 
   def self.config
-    require 'irwi/config'
-
-    @@config ||= Irwi::Config.new
+    @config ||= Irwi::Config.new
   end
 end
 
@@ -32,5 +30,6 @@ require 'irwi/extensions/controllers'
 require 'irwi/extensions/models'
 require 'irwi/support/route_mapper' # Routes
 require 'irwi/helpers'
+require 'irwi/config'
 
 ActionController::Base.append_view_path File.expand_path('../../app/views', __FILE__) # Append default views
