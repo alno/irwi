@@ -10,8 +10,10 @@ module Irwi::Helpers::WikiPageAttachmentsHelper
     url_for(action: 'remove_attachment', attachment_id: attachment_id)
   end
 
+  IRWI_ATTACHMENT_REGEXP = /Attachment_([\d]+)_([\w]+)/
+
   def wiki_show_attachments(str)
-    str.gsub /Attachment_([\d]+)_([\w]+)/ do |_m|
+    str.gsub IRWI_ATTACHMENT_REGEXP do |_m|
       begin
         attachment = Irwi.config.page_attachment_class.find(Regexp.last_match(1))
         image_tag attachment.wiki_page_attachment.url(Regexp.last_match(2).to_sym), class: 'wiki_page_attachment'
