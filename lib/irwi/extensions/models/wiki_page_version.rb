@@ -12,7 +12,7 @@ module Irwi::Extensions::Models::WikiPageVersion
   private
 
   def raise_on_update
-    raise ActiveRecordError.new "Can't modify existing version"
+    raise ActiveRecordError, "Can't modify existing version"
   end
 
   included do
