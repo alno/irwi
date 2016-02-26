@@ -8,45 +8,61 @@ class Irwi::Comparators::DiffLcs < Irwi::Comparators::Base
   end
 
   def build_changes(old_text, new_text)
-    diffs = Diff::LCS.sdiff((old_text || '').mb_chars, (new_text || '').mb_chars) # Building symmetric diff sequence
-    changes = [] # Array for our result changes
+    old_text ||= ''
+    new_text ||= ''
 
-    diffs.each do |change|
-      case change.action
-      when '=' then
-        if !changes.empty? && changes.last.action == '=' # Append to last not changed span, if exists
-          changes.last.value << change.old_element
-        else
-          changes << new_not_changed(change.old_element)
-        end
+    # Build symmetric diff sequence
+    diffs = Diff::LCS.sdiff(old_text.mb_chars, new_text.mb_chars)
 
-      when '+' then
-        if !changes.empty? && changes.last.action == '+' # Append to last addition, if exists
-          changes.last.new_value << change.new_element
-        elsif !changes.empty? && changes.last.action == '!' # Append to last replace, if exists (it's necessary when replacing short string with a new long)
-          changes.last.new_value << change.new_element
-        else
-          changes << new_changed('+', nil, change.new_element)
-        end
+    # Transform diff changes to spans
+    diffs.each_with_object [], &method(:append_change)
+  end
 
-      when '-' then
-        if !changes.empty? && changes.last.action == '-' # Append to last deletion, if exists
-          changes.last.old_value << change.old_element
-        else
-          changes << new_changed('-', change.old_element, nil)
-        end
+  private
 
-      when '!' then
-        if !changes.empty? && changes.last.action == '!' # Append to last replace, if exists
-          changes.last.old_value << change.old_element
-          changes.last.new_value << change.new_element
-        else
-          changes << new_changed('!', change.old_element, change.new_element)
-        end
-
-      end
+  def append_change(change, changes)
+    case change.action
+    when '=' then append_not_changed(changes, change.old_element)
+    when '+' then append_added(changes, change.new_element)
+    when '-' then append_removed(changes, change.old_element)
+    when '!' then append_replaced(changes, change.old_element, change.new_element)
     end
+  end
 
-    changes
+  def append_not_changed(changes, element)
+    if !changes.empty? && changes.last.action == '=' # Append to last not changed span, if exists
+      changes.last.value << element
+    else
+      changes << new_not_changed(element)
+    end
+  end
+
+  def append_added(changes, new_element)
+    last_action = changes.last && changes.last.action
+
+    if last_action == '+' # Append to last addition, if exists
+      changes.last.new_value << new_element
+    elsif last_action == '!' # Append to last replace, if exists (it's necessary when replacing short string with a new long)
+      changes.last.new_value << new_element
+    else
+      changes << new_changed('+', nil, new_element)
+    end
+  end
+
+  def append_removed(changes, old_element)
+    if !changes.empty? && changes.last.action == '-' # Append to last deletion, if exists
+      changes.last.old_value << old_element
+    else
+      changes << new_changed('-', old_element, nil)
+    end
+  end
+
+  def append_replaced(changes, old_element, new_element)
+    if !changes.empty? && changes.last.action == '!' # Append to last replace, if exists
+      changes.last.old_value << old_element
+      changes.last.new_value << new_element
+    else
+      changes << new_changed('!', old_element, new_element)
+    end
   end
 end
