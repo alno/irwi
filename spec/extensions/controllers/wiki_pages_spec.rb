@@ -10,8 +10,7 @@ describe Irwi::Extensions::Controllers::WikiPages do
     private
 
     def current_user
-      return @current_user if defined?(@current_user)
-      @current_user = 'Some user'
+      'Some user'
     end
   end
 
