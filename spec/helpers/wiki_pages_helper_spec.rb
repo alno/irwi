@@ -10,7 +10,7 @@ describe Irwi::Helpers::WikiPagesHelper do
     subject do
       ActionView::Base.new.tap do |v|
         v.send :extend, ERB::Util
-        v.send :extend, Irwi::Helpers::WikiPagesHelper
+        v.send :extend, described_class
       end
     end
 

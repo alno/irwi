@@ -25,7 +25,7 @@ describe Irwi::Extensions::Models::WikiPage do
     Class.new AbstractPage do
       self.table_name = 'pages'
 
-      include Irwi::Extensions::Models::WikiPage
+      acts_as_wiki_page
     end
   end
 
@@ -59,7 +59,7 @@ describe Irwi::Extensions::Models::WikiPage do
       Class.new AbstractPage do
         self.table_name = 'pages'
 
-        include Irwi::Extensions::Models::WikiPage
+        acts_as_wiki_page
       end
     end
 
