@@ -34,17 +34,7 @@ module Irwi::Extensions::Controllers::WikiPages
     if @page.new_record?
       render_template 'no'
     else
-      new_num = params[:new].to_i || @page.last_version_number # Last version number
-      old_num = params[:old].to_i || 1 # First version number
-
-      old_num, new_num = new_num, old_num if new_num < old_num # Swapping them if last < first
-
-      versions = @page.versions.between(old_num, new_num) # Loading all versions between first and last
-
-      @versions = Irwi.config.paginator.paginate(versions, page: params[:page]) # Paginating them
-
-      @new_version = @versions.first.number == new_num ? @versions.first : versions.first # Loading next version
-      @old_version = @versions.last.number == old_num ? @versions.last : versions.last # Loading previous version
+      @versions, @old_version, @new_version = load_paginated_versions(*version_number_params)
 
       render_template 'compare'
     end
@@ -94,6 +84,28 @@ module Irwi::Extensions::Controllers::WikiPages
   end
 
   private
+
+  def load_paginated_versions(old_num, new_num)
+    versions = @page.versions.between(old_num, new_num) # Loading all versions between first and last
+
+    paginated_versions = Irwi.config.paginator.paginate(versions, page: params[:page]) # Paginating them
+
+    new_version = paginated_versions.first.number == new_num ? paginated_versions.first : versions.first # Load next version
+    old_version = paginated_versions.last.number == old_num ? paginated_versions.last : versions.last # Load previous version
+
+    [paginated_versions, old_version, new_version]
+  end
+
+  def version_number_params
+    new_num = params[:new].to_i || @page.last_version_number # Last version number
+    old_num = params[:old].to_i || 1 # First version number
+
+    if new_num < old_num # Swapping them if last < first
+      [new_num, old_num]
+    else
+      [old_num, new_num]
+    end
+  end
 
   def permitted_page_params
     params.require(:page).permit(:title, :content, :comment)
