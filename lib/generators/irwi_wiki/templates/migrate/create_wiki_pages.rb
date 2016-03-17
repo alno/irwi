@@ -7,7 +7,7 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, limit: 4_294_967_295
+      t.text :content, limit: 268_435_456
 
       t.timestamps
     end
@@ -26,7 +26,7 @@ class CreateWikiPages < ActiveRecord::Migration
       t.string :path
       t.string :title
 
-      t.text :content, limit: 4_294_967_295
+      t.text :content, limit: 268_435_456
 
       t.timestamp :updated_at
     end
