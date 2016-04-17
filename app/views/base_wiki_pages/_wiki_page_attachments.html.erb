@@ -1,0 +1,14 @@
+<% page.attachments.each do |attachment| %>
+  <%= image_tag(attachment.wiki_page_attachment.url(:thumb)) %>
+  Attachment_<%= attachment.id %>
+  <%= link_to(wt('Remove'), wiki_remove_page_attachment_path(attachment.id), method: :delete) %>
+<% end %>
+
+<%= form_for(Irwi.config.page_attachment_class.new,
+             as: :wiki_page_attachment,
+             url: wiki_add_page_attachment_path(page),
+             html: { multipart: true }) do |form| %>
+  <%= form.file_field :wiki_page_attachment %>
+  <%= form.hidden_field :page_id, value: page.id %>
+  <%= form.submit 'New Attachment' %>
+<% end %>
