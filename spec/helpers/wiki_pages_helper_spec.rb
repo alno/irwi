@@ -186,11 +186,10 @@ describe Irwi::Helpers::WikiPagesHelper do
     it "renders wiki_page_attachments" do
       Irwi.config.page_attachment_class_name = 'PageAttachment'
 
-      allow(subject).to receive(:url_for).and_return("some_url")
-      allow(subject).to receive(:protect_against_forgery?).and_return(false)
+      expect(subject).to receive(:template_dir).and_return('partial_dir')
+      expect(subject).to receive(:render).with(partial: "partial_dir/wiki_page_attachments", locals: { page: 'MyPage' }).and_return('partial_body')
 
-      code = subject.wiki_page_attachments(double(id: 11, attachments: []))
-      expect(code).to include('<form')
+      expect(subject.wiki_page_attachments('MyPage')).to eq 'partial_body'
     end
   end
 end

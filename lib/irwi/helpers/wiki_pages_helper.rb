@@ -124,6 +124,8 @@ module Irwi::Helpers::WikiPagesHelper
   end
 
   def wiki_page_attachments(page = @page)
+    return unless Irwi.config.page_attachment_class_name
+
     render partial: "#{template_dir '_wiki_page_actions'}/wiki_page_attachments", locals: { page: page }
   end
 end
