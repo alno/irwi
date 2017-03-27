@@ -26,3 +26,6 @@ doc
 *.gem
 .bundle
 vendor/bundle
+
+## RubyMine
+.idea

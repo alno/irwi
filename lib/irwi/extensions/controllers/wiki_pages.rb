@@ -108,7 +108,7 @@ module Irwi::Extensions::Controllers::WikiPages
   end
 
   def permitted_page_params
-    params.require(:page).permit(:title, :content, :comment)
+    params.require(:page).permit(:title, :content, :comment, :previous_version_number)
   end
 
   # Retrieves wiki_page_class for this controller
