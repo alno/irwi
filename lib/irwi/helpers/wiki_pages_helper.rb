@@ -97,7 +97,7 @@ module Irwi::Helpers::WikiPagesHelper
     config = args.extract_options!
     config[:default] = msg if config[:default].blank?
     config[:scope] = 'wiki'
-    I18n.t(msg, config)
+    I18n.t(msg, **config)
   end
 
   def wiki_page_style
